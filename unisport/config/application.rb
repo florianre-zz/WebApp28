@@ -31,5 +31,8 @@ module Unisport
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    ## Change the schema of the database to be SQL readable
+    config.active_record.schema_format = :sql
   end
 end
