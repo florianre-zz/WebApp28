@@ -23,6 +23,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 ## Add Bower to the project (package manager for JavaScript)
 gem 'bower-rails'
 
+## Add database_cleaner to clean databse after test are performed
+gem 'database_cleaner'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -32,6 +35,11 @@ group :development, :test do
   ## Add Rspec ruby testing framework for back end testing
   gem "rspec-rails", '~> 3.0'
 
+  ## Add Poltergeist and Capybara (implicit) for end to end test
+
+  # START_HIGHLIGHT
+  gem 'poltergeist'
+  # END_HIGHLIGHT
 end
 
 group :development do
