@@ -1,2 +1,10 @@
 # Add bootstrap and sass frameworks
+
 asset 'bootstrap-sass-official'
+
+# Add angular
+
+# START_HIGHLIGHT
+# END_HIGHLIGHT
+asset 'angular', '~> 1.5'
+resolution 'angular', '1.5'
