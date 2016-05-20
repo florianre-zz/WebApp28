@@ -26,6 +26,16 @@ gem 'bower-rails'
 ## Add database_cleaner to clean databse after test are performed
 gem 'database_cleaner'
 
+## Add angular templates (need to precise version of sprockets)
+gem "angular-rails-templates"
+gem "sprockets", "~> 2.0"
+
+## Use devise gem for authentification framework
+gem 'devise'
+
+## Use faker to create fake data
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

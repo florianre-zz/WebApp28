@@ -12,3 +12,7 @@ resolution 'angular', '1.5'
 # Add angular mock for testing with injections
 
 asset 'angular-mocks'
+
+# Add angular routes
+
+asset 'angular-route'
