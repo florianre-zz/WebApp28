@@ -40,6 +40,10 @@ group :development, :test do
   # START_HIGHLIGHT
   gem 'poltergeist'
   # END_HIGHLIGHT
+
+  ## Add jasmine front end testing framework using teaspoon
+  ## (javascript test runner for Rails)
+  gem 'teaspoon-jasmine'
 end
 
 group :development do

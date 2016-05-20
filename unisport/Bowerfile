@@ -8,3 +8,7 @@ asset 'bootstrap-sass-official'
 # END_HIGHLIGHT
 asset 'angular', '~> 1.5'
 resolution 'angular', '1.5'
+
+# Add angular mock for testing with injections
+
+asset 'angular-mocks'
