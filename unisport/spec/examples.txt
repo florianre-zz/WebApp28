@@ -1,4 +1,4 @@
 example_id                                      | status  | run_time        |
 ----------------------------------------------- | ------- | --------------- |
-./spec/controllers/feed_controller_spec.rb[1:1] | passed  | 0.00386 seconds |
+./spec/controllers/feed_controller_spec.rb[1:1] | passed  | 0.02001 seconds |
 ./spec/helpers/feed_helper_spec.rb[1:1]         | pending | 0.00001 seconds |

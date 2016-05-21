@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg', '0.19.0.pre20160409114042'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 ## Add Bower to the project (package manager for JavaScript)
 gem 'bower-rails'
 
-## Add database_cleaner to clean databse after test are performed
+## Add database_cleaner to clean database after test are performed
 gem 'database_cleaner'
 
 ## Add angular templates (need to precise version of sprockets)
@@ -35,6 +35,10 @@ gem 'devise'
 
 ## Use faker to create fake data
 gem 'faker'
+
+## Gems to fix bugs
+gem 'nokogiri', '1.6.8.rc3'
+gem 'tzinfo-data'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
