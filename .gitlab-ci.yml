@@ -1,0 +1,30 @@
+# Gitlab CI file
+before_script:
+  - cd unisport
+
+stages:
+  - build
+  - test
+  - deploy
+
+initial:
+  stage: build
+
+  script:
+    - sudo chown -R gitlab-runner $HOME/.bundle
+    - sudo gem install bundle
+    - bundle update
+    - bundle install
+    - bundle exec rake db:setup
+
+test_frontend:
+  stage: test
+
+  script:
+    - bundle exec rake teaspoon
+
+test_backend:
+  stage: test
+
+  script:
+    - bundle exec rake
