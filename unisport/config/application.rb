@@ -34,5 +34,19 @@ module Unisport
 
     ## Change the schema of the database to be SQL readable
     config.active_record.schema_format = :sql
+
+    ## Precompile new manifest files
+    config.assets.precompile += %w( users/registrations.css )
+
+    ## Set up the template to use for each controller
+    config.to_prepare do
+      Users::SessionsController.layout           "application"
+      Users::RegistrationsController.layout      "users/registrations"
+      Users::ConfirmationsController.layout      "application"
+      Users::UnlocksController.layout            "application"
+      Users::PasswordsController.layout          "application"
+      Users::OmniauthCallbacksController.layout  "application"
+    end
+
   end
 end
