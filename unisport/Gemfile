@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
-gem 'pg', '0.19.0.pre20160409114042'
+gem 'pg', '0.18.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +32,7 @@ gem "sprockets", "~> 2.0"
 
 ## Use devise gem for authentification framework
 gem 'devise'
+gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt' 
 
 ## Use faker to create fake data
 gem 'faker'
