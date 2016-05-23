@@ -1,6 +1,5 @@
 # Gitlab CI file
 before_script:
-  - cd unisport
 
 stages:
   - build
