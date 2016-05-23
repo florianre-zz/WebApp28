@@ -1,6 +1,5 @@
 # Gitlab CI file
 before_script:
-  - cd unisport
 
 stages:
   - build
@@ -15,7 +14,9 @@ initial:
     - sudo gem install bundle
     - bundle update
     - bundle install
-    - bundle exec rake db:setup
+    - bundle exec rake db:drop
+    - bundle exec rake db:create
+    - bundle exec rake db:migrate
 
 test_frontend:
   stage: test
