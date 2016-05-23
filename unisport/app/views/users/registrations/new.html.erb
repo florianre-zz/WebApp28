@@ -1,0 +1,83 @@
+<!--
+<nav class="navbar navbar-default navbar-fixed-top">
+
+  <div class="container-fluid navbar-right col-md-3">
+    <div class="navbar-header col-md-4">
+      <div class="center-block">block</div>
+      <a class="navbar-brand center-block text-center" style="float: none" href="#">Feed</a>
+    </div>
+
+    <div class="navbar-header col-md-4">
+      <a class="navbar-brand center-block" style="float: none" href="#">Profile</a>
+    </div>
+
+    <div class="navbar-header col-md-4">
+      <a class="navbar-brand center-block" style="float: none" href="#">Login</a>
+    </div>
+  </div>
+</nav> -->
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="container">
+	<div class="row main">
+		<div class="main-login main-center">
+			<form class="form-horizontal" method="post" action="#">
+
+        <div class="panel-title text-center">
+          <h1 class="title">Sign Up</h1>
+          <hr/>
+        </div>
+
+				<div class="form-group">
+          <%= f.label :email, "Your Email", :class => "cols-sm-2 control-label", :for => "email" %>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <%= f.email_field :email, autofocus: true,
+              :type => "text", :class => "form-control", :id => "email", :placeholder =>"Enter your Email"%>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+          <%= f.label :password, "Password", :class => "cols-sm-2 control-label", :for => "password" %>
+           <% if @minimum_password_length %>(<%= @minimum_password_length %> characters minimum)<% end %>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+
+              <%= f.password_field :password, :autocomplete => "off",
+              :type => "password", :class => "form-control", :id => "password", :placeholder =>"Enter your Password" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+          <%= f.label :password_confirmation, "Confirm Password", :class => "cols-sm-2 control-label", :for => "confirm" %>
+					<div class="cols-sm-10">
+						<div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+
+              <%= f.password_field :password_confirmation, :autocomplete => "off",
+              :type => "password", :class => "form-control", :id => "confirm", :placeholder =>"Confirm your Password" %>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group ">
+          <%= f.submit "Start sweating!", :class => "btn btn-primary btn-lg btn-block login-button", :type => "submit" %>
+				</div>
+
+				<div class="login-register">
+		      <%= render "users/shared/links" %>
+		    </div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<% end %>
