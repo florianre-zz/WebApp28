@@ -47,6 +47,9 @@ gem 'tzinfo-data'
 ## Gem to visualise database
 gem 'rails_db'
 
+## Gem to catch emails to test email validation
+gem 'mailcatcher'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
