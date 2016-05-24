@@ -296,8 +296,8 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
-  momentjs-rails (>= 2.9.0)
   mailcatcher
+  momentjs-rails (>= 2.9.0)
   nokogiri (= 1.6.8.rc3)
   pg (= 0.18.4)
   poltergeist
