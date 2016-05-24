@@ -43,6 +43,36 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: university_tables; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE university_tables (
+    id integer NOT NULL,
+    email character varying,
+    uni_name character varying
+);
+
+
+--
+-- Name: university_tables_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE university_tables_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: university_tables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE university_tables_id_seq OWNED BY university_tables.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -89,7 +119,22 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY university_tables ALTER COLUMN id SET DEFAULT nextval('university_tables_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: university_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY university_tables
+    ADD CONSTRAINT university_tables_pkey PRIMARY KEY (id);
 
 
 --
@@ -130,4 +175,6 @@ SET search_path TO "$user", public;
 INSERT INTO schema_migrations (version) VALUES ('20160521163520');
 
 INSERT INTO schema_migrations (version) VALUES ('20160524115044');
+
+INSERT INTO schema_migrations (version) VALUES ('20160524142857');
 
