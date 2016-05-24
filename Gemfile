@@ -44,6 +44,9 @@ gem 'faker'
 gem 'nokogiri', '1.6.8.rc3'
 gem 'tzinfo-data'
 
+## Gem to visualise database
+gem 'rails_db'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
