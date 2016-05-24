@@ -1,9 +1,100 @@
-<header>
-  <h1>
-    Welcome to UniSport
-  </h1>
-</header>
+<nav class="navbar navbar-findcond navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="row">
 
-<li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-</li>
+		  <div class="col-md-offset-2 col-md-2 navbar-header">
+		  	<a class="navbar-brand" href="#">UniSport</a>
+		  </div>
+
+		  <div class="col-md-offset-4 col-md-2" id="navbar">
+		  	<ul class="nav navbar-nav navbar-right">
+		  		<!-- <li class="dropdown">
+		  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Bildirimler <span class="badge">0</span></a>
+		  		</li>
+
+		  		<li class="active"><a href="#">Ana Sayfa <span class="sr-only">(current)</span></a></li>
+
+		  		<li class="dropdown">
+		  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+		  		</li> -->
+
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </li>
+		  	</ul>
+
+		  </div>
+    </div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-offset-2 col-md-2">
+      <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+    </div>
+    <div class="btn-group col-md-2 dropdown">
+      <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sport <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu col-md-2">
+        <li><a href="#">Imperial College</a></li>
+        <li><a href="#">UCL</a></li>
+        <li><a href="#">LSE</a></li>
+      </ul>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#datetimepicker1').datetimepicker();
+          });
+      </script>
+    </div>
+    <div class="btn-group col-md-2 dropdown">
+      <button type="button" class="btn btn-success btn-block">
+        Apply filters
+      </button>
+    </div>
+  </div>
+
+  <article class="row">
+
+    <div class="col-md-offset-2 col-md-8">
+
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">Tennis</h3>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+
+            <%=image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
+
+            <div class="col-md-10">
+
+              <p class="pull-right">1 person needed</p>
+              <p>Thurday 12 February 2016, 2pm</p>
+              <p>Hyde Park, meet at Ethos in front of Imperial</p>
+              <p class="pull-right">Posted by Paul Vidal</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+</div>
