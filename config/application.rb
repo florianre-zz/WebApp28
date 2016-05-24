@@ -36,10 +36,17 @@ module Unisport
     config.active_record.schema_format = :sql
 
     ## Precompile new manifest files
-    config.assets.precompile += %w( users/registrations.css )
+    config.assets.precompile +=
+      [
+        "users/registrations.css",
+        "feed.css",
+        "feed.js"
+      ]
 
     ## Set up the template to use for each controller
     config.to_prepare do
+      FeedController.layout                      "feed"
+
       Users::SessionsController.layout           "application"
       Users::RegistrationsController.layout      "users/registrations"
       Users::ConfirmationsController.layout      "application"

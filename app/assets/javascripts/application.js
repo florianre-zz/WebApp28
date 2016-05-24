@@ -15,5 +15,6 @@
 //= require angular
 //= require angular-route
 //= require angular-rails-templates
-//= require_tree .
+//= require bootstrap-sass-official/assets/javascripts/bootstrap/dropdown
+
 // require_tree ./templates
