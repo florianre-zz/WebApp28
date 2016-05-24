@@ -4,4 +4,5 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_column :users, :last_name, :string
     add_column :users, :university, :string
   end
+  
 end
