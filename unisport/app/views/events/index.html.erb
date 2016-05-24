@@ -1,0 +1,22 @@
+<h1>Listing events</h1>
+ 
+<table>
+  <tr>
+    <th>Sport</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Location</th>
+    <th>People Needed</th>
+
+  </tr>
+ 
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.sport %></td>
+      <td><%= event.date %></td>
+      <td><%= event.time %></td>
+      <td><%= event.location %></td>
+      <td><%= event.needed %></td>
+    </tr>
+  <% end %>
+</table>
