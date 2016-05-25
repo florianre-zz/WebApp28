@@ -9,13 +9,15 @@ class User < ActiveRecord::Base
 
   def create_table
     university_table = Hash.new
-    Dir.glob('../../universities/*.txt') do |f|
+    universities_mail_ext = '../assets/universities/*.txt'
+    Dir.glob(universities_mail_ext) do |f|
       file = File.open(f, "r")
       data = file.read
-      university_table["@#{File.basename(f, ".txt")}.ac.uk"] = data
+      university_ext = "#{File.basename(f, ".txt")}.ac.uk"
+      university_table[university_ext] = data
       file.close
     end
-    return university_table
+    university_table
   end
 
 end
