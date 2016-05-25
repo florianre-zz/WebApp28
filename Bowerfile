@@ -16,3 +16,7 @@ asset 'angular-mocks'
 # Add angular routes
 
 asset 'angular-route'
+
+# Add angular ressource
+
+asset 'angular-resource'
