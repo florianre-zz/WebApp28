@@ -21,8 +21,47 @@
           <li>
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           </li>
-		  	</ul>
 
+
+          <button id = "create_event">Create Event</button>
+
+          <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+          </script>
+
+          <script type="text/javascript">
+            $(function() {
+              $("#date_picker").datepicker({showOn: "button"});
+
+              $('#message').dialog({
+                autoOpen: false,
+                dialogClass: "no-close",
+                buttons: {
+                  Cancel: function() {
+                    $(this).dialog("close");
+                  }
+                },
+                close: function () {
+                  $("#datepicker1").datepicker('destroy');
+                }
+              });
+
+              $("#message").dialog("widget")            .find(".ui-dialog-titlebar-close").hide();
+            })
+
+            $('#create_event').on('click', function() {
+              $('#message').dialog("open");
+            });
+          </script>
+
+          <div id="message" title="New event">
+            <p> Sorry this feature is not available yet <p>
+            <p>Date: <input type="text" id="date_picker"></p>
+          </div>
+
+
+		  	</ul>
 		  </div>
     </div>
 	</div>
