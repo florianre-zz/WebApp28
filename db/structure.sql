@@ -43,6 +43,16 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: university_mails; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE university_mails (
+    mail_extension character varying NOT NULL,
+    university_name character varying NOT NULL
+);
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -99,11 +109,26 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: university_mails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY university_mails
+    ADD CONSTRAINT university_mails_pkey PRIMARY KEY (mail_extension);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_university_mails_on_mail_extension; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_university_mails_on_mail_extension ON university_mails USING btree (mail_extension);
 
 
 --
@@ -154,4 +179,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160524115044');
 INSERT INTO schema_migrations (version) VALUES ('20160524184621');
 
 INSERT INTO schema_migrations (version) VALUES ('20160525102626');
+
+INSERT INTO schema_migrations (version) VALUES ('20160525191352');
 
