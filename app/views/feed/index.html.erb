@@ -32,7 +32,14 @@
 
   <div class="row">
     <div class="col-md-offset-2 col-md-2">
-      <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2">
+      <div class="dropdown open">
+        <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="universitySearch"></input>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide = "selectedUni.length == 0">
+          <li ng-repeat="university in selectedUni = (getUniversities() | filter:universitySearch)">
+            <div class="dropdown-item">{{university.name}}</div>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="btn-group col-md-2 dropdown">
       <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,9 +75,8 @@
 
   <article class="row">
 
-    <li ng-repeat="event in events">
-      <div class="col-md-offset-2 col-md-8">
-
+    <div class="col-md-offset-2 col-md-8">
+      <li ng-repeat="event in events">
         <div class="panel panel-default">
 
           <div class="panel-heading">
@@ -93,9 +99,9 @@
             </div>
           </div>
         </div>
+      </li>
+    </div>
 
-      </div>
-    </li>
   </div>
 
   </article>

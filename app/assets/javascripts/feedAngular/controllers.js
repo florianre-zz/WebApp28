@@ -29,5 +29,44 @@ feedModule.controller('feedController', ['$scope',
         "place": "Liverpool, meet in Paris",
         "id": "Posted by Floriant Emile"
       }
-    ]
+      ]
+      $scope.universitySearch = "";
+      $scope.selectedUni = "";
+      $scope.universities = [
+        {
+          "name":"imperial"
+        },
+        {
+          "name":"ucl"
+        },
+        {
+          "name":"lse"
+        },
+        {
+          "name":"teds"
+        },
+        {
+          "name":"sdds"
+        },
+        {
+          "name":"sddsds"
+        },
+        {
+          "name":"yolqdfbtay"
+        },
+        {
+          "name":"rztsbgbs"
+        },
+        {
+          "name":"ustbsbscl"
+        },
+      ]
+
+      $scope.getUniversities = function() {
+      if($scope.universitySearch == "") {
+        return [];
+      } else {
+        return $scope.universities;
+      }
+    };
   }]);
