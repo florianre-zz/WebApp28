@@ -4,8 +4,11 @@
 
 var feedModule = angular.module('feedModule', []);
 
-feedModule.controller('feedController', ['$scope',
-  function($scope) {
+feedModule.controller('feedController', ['$scope', '$http',
+  function($scope, $http) {
+    $scope.getFeedScope = function() {
+         return $scope;
+    }
     $scope.events = [
       {
         "sport": "tennis",
@@ -69,11 +72,31 @@ feedModule.controller('feedController', ['$scope',
         $scope.filterUniversity = $scope.searchUniversity;
       }
 
+      $scope.sports = [
+        {
+          "name":"dance"
+        },
+        {
+          "name":"tennis"
+        },
+        {
+          "name":"football"
+        },
+        {
+          "name":"moto"
+        },
+        {
+          "name":"baseball"
+        }
+      ];
+
+      $scope.filterSport = "dance";
+
       $scope.getSearchUniversities = function() {
-      if($scope.searchUniversity == "") {
-        return [];
-      } else {
-        return $scope.universities;
-      }
-    };
+        if($scope.searchUniversity == "") {
+          return [];
+        } else {
+          return $scope.universities;
+        }
+      };
   }]);

@@ -31,6 +31,7 @@
 <div class="container-fluid">
 
   <div class="row">
+
     <div class="col-md-offset-2 col-md-2">
       <div class="dropdown open">
         <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="searchUniversity"></input>
@@ -41,16 +42,18 @@
         </ul>
       </div>
     </div>
+
     <div class="btn-group col-md-2 dropdown">
-      <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sport <span class="caret"></span>
+      <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{filterSport}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu col-md-2">
-        <li><a href="#">Tennis</a></li>
-        <li><a href="#">Football</a></li>
-        <li><a href="#">Rugby</a></li>
+        <li ng-repeat="sport in sports">
+          <div class="dropdown-item" ng-click="getFeedScope().filterSport = sport.name">{{sport.name}}</div>
+        </li>
       </ul>
     </div>
+
     <div class="col-md-2">
       <div class="form-group">
         <div class='input-group date' id='datetimepicker1'>
