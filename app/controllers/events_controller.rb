@@ -33,14 +33,14 @@ class EventsController < ApplicationController
     # Create new entry and store it in the events table of the database
     # Parameters of new event are given from the HTTP POST request
     new_event =
-      Event.create(:sport => params[:params][:sport],
-                   :date => params[:params][:date],
-                   :start_time => params[:params][:start_time],
-                   :end_time => params[:params][:end_time],
-                   :location => params[:params][:location],
-                   :additional_info => params[:params][:additional_info],
-                   :needed => params[:params][:needed],
-                   :min_participants => params[:params][:min_participants],
+      Event.create(:sport => params[:sport],
+                   :date => params[:date],
+                   :start_time => params[:start_time],
+                   :end_time => params[:end_time],
+                   :location => params[:location],
+                   :additional_info => params[:additional_info],
+                   :needed => params[:needed],
+                   :min_participants => params[:min_participants],
                    :participants => 1,
                    :user_id => current_user.id)
 

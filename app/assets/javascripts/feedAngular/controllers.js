@@ -11,17 +11,15 @@ feedModule.controller('feedController', ['$scope', '$http',
       method: 'POST',
       url: '/events.json',
       data: 
-      {"params":
-          {
-            "sport": "Tennis",
-            "date": "2016-07-01",
-            "start_time": "16:00:00",
-            "end_time": "17:00:00",
-            "location": "Hyde Park",
-            "additional_info": "Bring racket",
-            "needed": 1,
-            "min_participants": 2
-          }
+      {
+        "sport": "Tennis",
+        "date": "2016-07-01",
+        "start_time": "16:00:00",
+        "end_time": "17:00:00",
+        "location": "Hyde Park",
+        "additional_info": "Bring racket",
+        "needed": 1,
+        "min_participants": 2
       },
       headers: { 'Content-Type' : 'application/json' }
     }).then(function(response) {
