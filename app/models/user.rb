@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  validates :email, :format => /\A([\w+\-]\.?)+@ic.ac.uk\z/i
+  possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
+  validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
 
   has_many :event_participants
   has_many :events
