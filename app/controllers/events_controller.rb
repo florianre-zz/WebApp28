@@ -1,4 +1,13 @@
 class EventsController < ApplicationController
+  def index
+    @events = Event.all()
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @events }
+    end
+  end
+
   def create
     current_user_id = current_user.id
 
@@ -31,5 +40,4 @@ class EventsController < ApplicationController
     EventParticipant.create(:event_id => new_event.id,
                             :user_id => current_user_id)
   end
-
 end
