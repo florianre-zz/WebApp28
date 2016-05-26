@@ -44,7 +44,7 @@ gem 'faker'
 gem 'nokogiri', '1.6.8.rc3'
 gem 'tzinfo-data'
 
-## Gem to visualise database
+## Gem to visualise database -- add /rails/db to root
 gem 'rails_db'
 
 ## Install datepicker to choose datep
@@ -53,6 +53,9 @@ gem 'bootstrap-datepicker-rails'
 
 ## Gem to catch emails to test email validation
 gem 'mailcatcher'
+
+## Gem to allow composite primary keys in models
+gem 'composite_primary_keys'
 
 
 group :development, :test do
