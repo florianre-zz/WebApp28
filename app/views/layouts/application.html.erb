@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+<%- end -%>
+
 <head>
   <title>Unisport</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,10 +14,6 @@
 <body>
 
 <%= yield %>
-
-<%- flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-<%- end -%>
 
 </body>
 </html>
