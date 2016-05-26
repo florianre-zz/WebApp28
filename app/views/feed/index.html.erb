@@ -33,10 +33,10 @@
   <div class="row">
     <div class="col-md-offset-2 col-md-2">
       <div class="dropdown open">
-        <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="universitySearch"></input>
+        <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="searchUniversity"></input>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide = "selectedUni.length == 0">
-          <li ng-repeat="university in selectedUni = (getUniversities() | filter:universitySearch)">
-            <div class="dropdown-item">{{university.name}}</div>
+          <li ng-repeat="university in selectedUni = (getSearchUniversities() | filter:searchUniversity)">
+            <div class="dropdown-item" ng-click="updateFilterUniversity()">{{university.name}}</div>
           </li>
         </ul>
       </div>
@@ -76,7 +76,7 @@
   <article class="row">
 
     <div class="col-md-offset-2 col-md-8">
-      <li ng-repeat="event in events">
+      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport}">
         <div class="panel panel-default">
 
           <div class="panel-heading">
@@ -91,6 +91,7 @@
               <div class="col-md-10">
 
                 <p class="pull-right">{{event.needed}}</p>
+                <p>{{event.university}}</p>
                 <p>{{event.date}}</p>
                 <p>{{event.place}}</p>
                 <p class="pull-right">{{event.id}}</p>
