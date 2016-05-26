@@ -1,6 +1,6 @@
 //= require application
 //= require moment
-//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker
 //= require feedAngular/app.js
 //= require feedAngular/controllers.js
 //= require feedAngular/directives.js

@@ -49,7 +49,7 @@ gem 'rails_db'
 
 ## Install datepicker to choose datep
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+gem 'bootstrap-datepicker-rails'
 
 ## Gem to catch emails to test email validation
 gem 'mailcatcher'

@@ -6,9 +6,12 @@ var feedModule = angular.module('feedModule', []);
 
 feedModule.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
+
+
+
     $scope.getFeedScope = function() {
          return $scope;
-    }
+    };
     $scope.events = [
       {
         "sport": "tennis",
@@ -28,7 +31,7 @@ feedModule.controller('feedController', ['$scope', '$http',
       },
       {
         "sport": "football",
-        "date": "2016-02-02",
+        "date": "2016/06/02",
         "needed": "2 person needed",
         "place": "Liverpool, meet in Paris",
         "id": "Posted by Floriant Emile",
@@ -88,6 +91,13 @@ feedModule.controller('feedController', ['$scope', '$http',
       ];
 
       $scope.filterSport = "";
+      $scope.removeFilters = function() {
+        $scope.filterSport = "";
+        $scope.filterUniversity = "";
+        $scope.filterDate = "";
+      };
+
+      $scope.filterDate = "";
 
       $scope.getSearchUniversities = function() {
         if($scope.searchUniversity == "") {

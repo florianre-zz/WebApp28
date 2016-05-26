@@ -55,27 +55,25 @@
     </div>
 
     <div class="col-md-2">
-      <div class="form-group">
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
+      <div class="input-group date" data-provide="datepicker" data-date-format="yyyy/mm/dd">
+        <input type="text" class="form-control" ng-model="filterDate">
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
         </div>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker1').datetimepicker();
-          });
-      </script>
     </div>
 
+    <div class="btn-group col-md-2 dropdown">
+      <button type="button" class="btn btn-success btn-block" ng-click="removeFilters()">
+        Remove filters
+      </button>
+    </div>
   </div>
 
   <article class="row">
 
     <div class="col-md-offset-2 col-md-8">
-      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport}|orderBy:'date':true">
+      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
         <div class="panel panel-default">
 
           <div class="panel-heading">
