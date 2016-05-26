@@ -6,18 +6,28 @@ var feedModule = angular.module('feedModule', []);
 
 feedModule.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
-    $http.({
-      url: '/events/create',
-      method: "POST",
-      data: {"params": {"sport": "Tennis", "date": "2016-07-01",
-      "start_time":"16:00:00", "end_time":"17:00:00", "location": "Hyde Park", "additional_info":"Bring racket", "needed":"2", "min_participants":"2"}}
-    })
-    .then(function(response) {
+
+    $http.post(
+      '/events.json',
+      {"params":
+          {
+            "sport": "Tennis",
+            "date": "2016-07-01",
+            "start_time": "16:00:00",
+            "end_time": "17:00:00",
+            "location": "Hyde Park",
+            "additional_info": "Bring racket",
+            "needed": 2,
+            "min_participants": 2
+          }
+      }
+    ).then(function(response) {
       alert("it worked");
     },
     function(response) {
       alert("it did not work");
     });
+
     $scope.events = [
       {
         "sport": "tennis",
