@@ -10,28 +10,39 @@ feedModule.controller('feedController', ['$scope', '$http',
          return $scope;
     };
 
-    $http({
-      method: 'POST',
-      url: '/events.json',
-      data:
-      {
-        "sport": "Tennis",
-        "date": "2016-07-01",
-        "start_time": "16:00:00",
-        "end_time": "17:00:00",
-        "location": "Hyde Park",
-        "additional_info": "Bring racket",
-        "needed": 1,
-        "min_participants": 2
+    $scope.createSport = "";
+    $scope.createDate = "";
+    $scope.createStartTime = "";
+    $scope.createEndTime = "";
+    $scope.createLocation = "";
+    $scope.createNeeded = "";
+    $scope.createMinimum = "1"
+    $scope.createAdditional = "See you soon !!!!!!!!!!!!!!!!!!!";
+
+    $scope.createEvent = function() {
+      $http({
+        method: 'POST',
+        url: '/events.json',
+        data:
+        {
+          "sport": $scope.createSport,
+          "date": $scope.createDate,
+          "start_time": $scope.createStartTime,
+          "end_time": $scope.createEndTime,
+          "location": $scope.createLocation,
+          "additional_info": $scope.createAdditional,
+          "needed": $scope.createNeeded,
+          "min_participants": $scope.createMinimum
+        },
+        headers: { 'Content-Type' : 'application/json' }
+      }).then(function(response) {
+        alert("it worked");
       },
-      headers: { 'Content-Type' : 'application/json' }
-    }).then(function(response) {
-      alert("it worked");
-    },
-    function(response) {
-      alert("it did not work");
-    });
-    
+      function(response) {
+        alert("it did not work");
+      });
+    };
+
     $scope.events = [
       {
         "sport": "tennis",
