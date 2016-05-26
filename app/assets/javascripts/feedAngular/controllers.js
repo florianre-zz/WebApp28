@@ -4,8 +4,15 @@
 
 var feedModule = angular.module('feedModule', []);
 
-feedModule.controller('feedController', ['$scope',
-  function($scope) {
+feedModule.controller('feedController', ['$scope', '$http',
+  function($scope, $http) {
+    // $scope.request = $http.post('/events/create', {"params": {"sport": "tennis", "date": "3 janvier", "start_time":"3 juillet", "end_time":"4 janvier", "location": "paris", "additional_info":"info", "needed":"2 persons", "min_participants":"2"}})
+    // .then(function(response) {
+    //   alert("it worked");
+    // },
+    // function(response) {
+    //   alert("it did not work");
+    // });
     $scope.events = [
       {
         "sport": "tennis",
