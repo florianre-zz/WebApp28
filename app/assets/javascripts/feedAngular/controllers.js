@@ -6,7 +6,7 @@ var feedModule = angular.module('feedModule', []);
 
 feedModule.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
-    $http.({
+    $http({
       url: '/events/create',
       method: "POST",
       data: {"params": {"sport": "Tennis", "date": "2016-07-01",
