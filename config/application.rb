@@ -43,7 +43,12 @@ module Unisport
       [
         "users/registrations.css",
         "feed.css",
-        "feed.js"
+        "feed.js",
+        "feedAngular/app.js",
+        "feedAngular/controllers.js",
+        "feedAngular/directives.js",
+        "feedAngular/filters.js",
+        "feedAngular/services.js"
       ]
 
     ## Set up the template to use for each controller

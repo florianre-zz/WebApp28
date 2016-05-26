@@ -72,7 +72,14 @@
 
   <div class="row">
     <div class="col-md-offset-2 col-md-2">
-      <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2">
+      <div class="dropdown open">
+        <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="searchUniversity"></input>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide = "selectedUni.length == 0">
+          <li ng-repeat="university in selectedUni = (getSearchUniversities() | filter:searchUniversity)">
+            <div class="dropdown-item" ng-click="updateFilterUniversity()">{{university.name}}</div>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="btn-group col-md-2 dropdown">
       <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -109,31 +116,34 @@
   <article class="row">
 
     <div class="col-md-offset-2 col-md-8">
+      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport}">
+        <div class="panel panel-default">
 
-      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{event.sport}}</h3>
+          </div>
 
-        <div class="panel-heading">
-          <h3 class="panel-title">Tennis</h3>
-        </div>
+          <div class="panel-body">
+            <div class="row">
 
-        <div class="panel-body">
-          <div class="row">
+              <%=image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
 
-            <%=image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
+              <div class="col-md-10">
 
-            <div class="col-md-10">
+                <p class="pull-right">{{event.needed}}</p>
+                <p>{{event.university}}</p>
+                <p>{{event.date}}</p>
+                <p>{{event.place}}</p>
+                <p class="pull-right">{{event.id}}</p>
+              </div>
 
-              <p class="pull-right">1 person needed</p>
-              <p>Thurday 12 February 2016, 2pm</p>
-              <p>Hyde Park, meet at Ethos in front of Imperial</p>
-              <p class="pull-right">Posted by Paul Vidal</p>
             </div>
-
           </div>
         </div>
-      </div>
-
+      </li>
     </div>
+
+  </div>
 
   </article>
 
