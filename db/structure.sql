@@ -34,6 +34,18 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: event_participants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE event_participants (
+    event_id integer NOT NULL,
+    user_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -156,6 +168,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
+-- Name: event_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_participants
+    ADD CONSTRAINT event_participants_pkey PRIMARY KEY (event_id, user_id);
+
+
+--
 -- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -177,6 +197,13 @@ ALTER TABLE ONLY university_mails
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_event_participants_on_event_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_event_participants_on_event_id_and_user_id ON event_participants USING btree (event_id, user_id);
 
 
 --
@@ -238,4 +265,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160525102626');
 INSERT INTO schema_migrations (version) VALUES ('20160525191352');
 
 INSERT INTO schema_migrations (version) VALUES ('20160526120051');
+
+INSERT INTO schema_migrations (version) VALUES ('20160526132053');
 

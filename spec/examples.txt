@@ -1,6 +1,7 @@
 example_id                                                         | status  | run_time        |
 ------------------------------------------------------------------ | ------- | --------------- |
-./spec/controllers/feed_controller_spec.rb[1:1]                    | passed  | 0.01701 seconds |
+./spec/controllers/feed_controller_spec.rb[1:1]                    | passed  | 0.01651 seconds |
+./spec/models/event_participant_spec.rb[1:1]                       | pending | 0 seconds       |
 ./spec/models/event_spec.rb[1:1]                                   | pending | 0 seconds       |
 ./spec/models/university_mail_spec.rb[1:1]                         | pending | 0 seconds       |
-./spec/university_mail/mail_university_hash_generator_spec.rb[1:1] | passed  | 0.08356 seconds |
+./spec/university_mail/mail_university_hash_generator_spec.rb[1:1] | passed  | 0.06705 seconds |

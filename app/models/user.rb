@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
          :lockable, :timeoutable
 
   validates :email, :format => /\A([\w+\-]\.?)+@ic.ac.uk\z/i
+
+  has_many :event_participants
+  has_many :events
 end
