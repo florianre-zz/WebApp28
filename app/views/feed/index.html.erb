@@ -37,7 +37,7 @@
         <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="searchUniversity"></input>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide = "selectedUni.length == 0">
           <li ng-repeat="university in selectedUni = (getSearchUniversities() | filter:searchUniversity)">
-            <div class="dropdown-item" ng-click="updateFilterUniversity()">{{university.name}}</div>
+            <div class="dropdown-item" ng-click="getFeedScope().filterUniversity = university.name">{{university.name}}</div>
           </li>
         </ul>
       </div>
@@ -69,12 +69,13 @@
           });
       </script>
     </div>
+
   </div>
 
   <article class="row">
 
     <div class="col-md-offset-2 col-md-8">
-      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport}">
+      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport}|orderBy:'date':true">
         <div class="panel panel-default">
 
           <div class="panel-heading">
