@@ -7,8 +7,10 @@ var feedModule = angular.module('feedModule', []);
 feedModule.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
 
-    $http.post(
-      '/events.json',
+    $http({
+      method: 'POST',
+      url: '/events.json',
+      data: 
       {"params":
           {
             "sport": "Tennis",
@@ -17,11 +19,12 @@ feedModule.controller('feedController', ['$scope', '$http',
             "end_time": "17:00:00",
             "location": "Hyde Park",
             "additional_info": "Bring racket",
-            "needed": 2,
+            "needed": 1,
             "min_participants": 2
           }
-      }
-    ).then(function(response) {
+      },
+      headers: { 'Content-Type' : 'application/json' }
+    }).then(function(response) {
       alert("it worked");
     },
     function(response) {
