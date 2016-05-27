@@ -53,8 +53,6 @@ CREATE TABLE events (
     id integer NOT NULL,
     sport character varying NOT NULL,
     date date NOT NULL,
-    start_time time without time zone NOT NULL,
-    end_time time without time zone NOT NULL,
     location character varying NOT NULL,
     additional_info character varying,
     needed integer NOT NULL,
@@ -63,6 +61,8 @@ CREATE TABLE events (
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    start_time timestamp without time zone,
+    end_time timestamp without time zone,
     university character varying
 );
 
@@ -268,6 +268,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160525191352');
 INSERT INTO schema_migrations (version) VALUES ('20160526120051');
 
 INSERT INTO schema_migrations (version) VALUES ('20160526132053');
+
+INSERT INTO schema_migrations (version) VALUES ('20160526232436');
 
 INSERT INTO schema_migrations (version) VALUES ('20160527095147');
 
