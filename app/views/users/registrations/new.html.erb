@@ -1,22 +1,3 @@
-<!--
-<nav class="navbar navbar-default navbar-fixed-top">
-
-  <div class="container-fluid navbar-right col-md-3">
-    <div class="navbar-header col-md-4">
-      <div class="center-block">block</div>
-      <a class="navbar-brand center-block text-center" style="float: none" href="#">Feed</a>
-    </div>
-
-    <div class="navbar-header col-md-4">
-      <a class="navbar-brand center-block" style="float: none" href="#">Profile</a>
-    </div>
-
-    <div class="navbar-header col-md-4">
-      <a class="navbar-brand center-block" style="float: none" href="#">Login</a>
-    </div>
-  </div>
-</nav> -->
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -29,6 +10,28 @@
           <h1 class="title">Sign Up</h1>
           <hr/>
         </div>
+
+				<div class="form-group">
+					<%= f.label :first_name, "First name", :class => "cols-sm-2 control-label", :for => "first_name" %>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+							<%= f.text_field :first_name, autofocus: true,
+							:type => "text", :class => "form-control", :id => "first_name", :placeholder =>"First name"%>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :last_name, "Last name", :class => "cols-sm-2 control-label", :for => "last_name" %>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+							<%= f.text_field :last_name, autofocus: true,
+							:type => "text", :class => "form-control", :id => "last_name", :placeholder =>"Last name"%>
+						</div>
+					</div>
+				</div>
 
 				<div class="form-group">
           <%= f.label :email, "Your Email", :class => "cols-sm-2 control-label", :for => "email" %>

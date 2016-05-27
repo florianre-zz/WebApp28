@@ -35,12 +35,28 @@ module Unisport
     ## Change the schema of the database to be SQL readable
     config.active_record.schema_format = :sql
 
+    ## Automatically load the library path for testing
+    config.autoload_paths += %W(#{Rails.root}/lib)
+
     ## Precompile new manifest files
-    config.assets.precompile += %w( users/registrations.css )
+    config.assets.precompile +=
+      [
+        "users/registrations.css",
+        "users/sessions.css",
+        "feed.css",
+        "feed.js",
+        "feedAngular/app.js",
+        "feedAngular/controllers.js",
+        "feedAngular/directives.js",
+        "feedAngular/filters.js",
+        "feedAngular/services.js"
+      ]
 
     ## Set up the template to use for each controller
     config.to_prepare do
-      Users::SessionsController.layout           "application"
+      FeedController.layout                      "feed"
+
+      Users::SessionsController.layout           "users/sessions"
       Users::RegistrationsController.layout      "users/registrations"
       Users::ConfirmationsController.layout      "application"
       Users::UnlocksController.layout            "application"

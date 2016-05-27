@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'feed#index'
 
+  # http post request redirected to create function in events_controller
+  resources :events, only: [:index, :create]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

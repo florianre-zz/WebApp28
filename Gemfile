@@ -44,6 +44,16 @@ gem 'faker'
 gem 'nokogiri', '1.6.8.rc3'
 gem 'tzinfo-data'
 
+## Gem to visualise database -- add /rails/db to root
+gem 'rails_db'
+
+## Install datepicker to choose datep
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap-datepicker-rails'
+
+## Gem to allow composite primary keys in models
+gem 'composite_primary_keys'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -62,6 +72,9 @@ group :development, :test do
   ## Add jasmine front end testing framework using teaspoon
   ## (javascript test runner for Rails)
   gem 'teaspoon-jasmine'
+
+  ## Gem to catch emails to test email validation
+  gem 'mailcatcher'
 end
 
 group :development do
