@@ -99,7 +99,7 @@ feedModule.controller('feedController', ['$scope', '$http',
           "name":"Imperial College London"
         },
         {
-          "name":"Univeristy College London"
+          "name":"University College London"
         },
         {
           "name":"London School of Economics"

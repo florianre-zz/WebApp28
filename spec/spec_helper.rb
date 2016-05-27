@@ -93,7 +93,7 @@ begin
   Kernel.srand config.seed
 
   ## Maintain test database with correct schema
-  ActiveRecord::Migration.maintain_test_schema!
+  # ActiveRecord::Migration.maintain_test_schema!
   
 end
 
