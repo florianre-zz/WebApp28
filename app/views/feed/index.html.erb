@@ -121,14 +121,10 @@
     </div>
 
     <div class="btn-group col-md-2 dropdown">
-      <button type="button" class="btn btn-success btn-block" ng-click="getEvents()">
+      <button type="button" class="btn btn-success btn-block" ng-click="removeFilters()">
         Remove filters
       </button>
     </div>
-
-    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in sports" md-item-text="sport.name">
-  <span md-highlight-text="searchText">{{sport.name}}</span>
-</md-autocomplete>
 
   </div>
 

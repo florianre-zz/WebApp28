@@ -91,7 +91,8 @@ feedModule.controller('feedController', ['$scope', '$http',
         "needed": "9 people needed",
         "id": "Posted by Florian Emile",
       }
-      ]
+    ];
+
       $scope.searchUniversity = "";
       $scope.selectedUni = "";
       $scope.universities = [
@@ -120,17 +121,20 @@ feedModule.controller('feedController', ['$scope', '$http',
 
       $scope.filterUniversity = "";
 
-      $scope.selectedSport = "any";
+      $scope.selectedSport = "All Sport";
       $scope.filterSport = "";
       $scope.updateSport = function(name) {
         $scope.selectedSport = name;
-        if(name == "any")  {
+        if(name == "All Sport")  {
           $scope.filterSport = "";
         } else {
           $scope.filterSport = name;
         }
       };
       $scope.sports = [
+        {
+          "name":"All Sport"
+        },
         {
           "name":"Dance"
         },
@@ -144,12 +148,6 @@ feedModule.controller('feedController', ['$scope', '$http',
           "name":"Running"
         },
         {
-          "name":"baseball"
-        },
-        {
-          "name":"any"
-        },
-        {
           "name":"Baseball"
         }
       ];
@@ -158,6 +156,7 @@ feedModule.controller('feedController', ['$scope', '$http',
         $scope.filterSport = "";
         $scope.filterUniversity = "";
         $scope.filterDate = "";
+        $scope.selectedSport = "All Sport";
       };
 
       $scope.filterDate = "";
