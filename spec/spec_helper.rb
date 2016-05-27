@@ -91,6 +91,10 @@ begin
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  ## Maintain test database with correct schema
+  ActiveRecord::Migration.maintain_test_schema!
+  
 end
 
 end
