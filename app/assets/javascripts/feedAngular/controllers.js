@@ -37,10 +37,21 @@ feedModule.controller('feedController', ['$scope', '$http',
           "min_participants": $scope.createMinimum
         }
       }).then(function(response) {
-        // alert("it worked");
+        $scope.events.push({
+          "id": "Paul Vidal",
+          "sport": $scope.createSport,
+          "university": $scope.createUniversity,
+          "date": $scope.createDate,
+          "start_time": $scope.createStartTime,
+          "end_time": $scope.createEndTime,
+          "location": $scope.createLocation,
+          "additional_info": $scope.createAdditional,
+          "needed": $scope.createNeeded,
+          "min_participants": $scope.createMinimum
+        });
       },
       function(response) {
-        // alert("it did not work");
+        alert("it did not work");
       });
     };
 
@@ -59,14 +70,14 @@ feedModule.controller('feedController', ['$scope', '$http',
 
     $scope.events = [
       {
-        "sport": "MMA",
+        "sport": "Tennis",
         "date": "2016/07/02",
         // "start_time": "14:00:00",
         // "end_time": "15:00:00",
-        "place": "Hyde Park, meet at Ethos in front of Imperial",
+        "location": "Hyde Park, meet at Ethos in front of Imperial",
         "additional_info": "Please bring a racket, see you there!",
-        "needed": "1 person needed",
-        "id": "Posted by Paul Vidal",
+        "needed": "1",
+        "id": "Paul Vidal",
         "university": "Imperial College London",
       },
       {
@@ -75,10 +86,10 @@ feedModule.controller('feedController', ['$scope', '$http',
         "date": "2016/07/21",
         // "start_time": "16:30:00",
         // "end_time": "17:00:00",
-        "place": "Battersea Park",
+        "location": "Battersea Park",
         "additional_info": "See you there!",
-        "needed": "1 person needed",
-        "id": "Posted by Corentin Herbinet",
+        "needed": "1",
+        "id": "Corentin Herbinet",
       },
       {
         "sport": "Football",
@@ -86,10 +97,10 @@ feedModule.controller('feedController', ['$scope', '$http',
         "date": "2016/06/28",
         // "start_time": "10:00:00",
         // "end_time": "12:00:00",
-        "place": "Westway Sports Centre",
+        "location": "Westway Sports Centre",
         "additional_info": "Can someone bring a football please?",
-        "needed": "9 people needed",
-        "id": "Posted by Florian Emile",
+        "needed": "9",
+        "id": "Florian Emile",
       }
     ];
 
