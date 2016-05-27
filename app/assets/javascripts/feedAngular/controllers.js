@@ -11,6 +11,7 @@ feedModule.controller('feedController', ['$scope', '$http',
     };
 
     $scope.createSport = "";
+    $scope.createUniversity = "";
     $scope.createDate = "";
     $scope.createStartTime = "";
     $scope.createEndTime = "";
@@ -26,6 +27,7 @@ feedModule.controller('feedController', ['$scope', '$http',
         data:
         {
           "sport": $scope.createSport,
+          "university": $scope.createUniversity,
           "date": $scope.createDate,
           "start_time": $scope.createStartTime,
           "end_time": $scope.createEndTime,
@@ -34,90 +36,92 @@ feedModule.controller('feedController', ['$scope', '$http',
           "needed": $scope.createNeeded,
           "min_participants": $scope.createMinimum
         },
-        headers: { 'Content-Type' : 'application/json' }
       }).then(function(response) {
-        alert("it worked");
+        // alert("it worked");
       },
       function(response) {
-        alert("it did not work");
+        // alert("it did not work");
       });
     };
 
     $scope.events = [
       {
-        "sport": "tennis",
-        "date": "2016-01-02",
-        "needed": "1 person needed",
+        "sport": "Tennis",
+        "date": "2016/07/02",
+        // "start_time": "14:00:00",
+        // "end_time": "15:00:00",
         "place": "Hyde Park, meet at Ethos in front of Imperial",
+        "additional_info": "Please bring a racket, see you there!",
+        "needed": "1 person needed",
         "id": "Posted by Paul Vidal",
-        "university":"imperial"
+        "university": "Imperial College London",
       },
       {
-        "sport": "dance",
-        "date": "2017-01-02",
-        "needed": "100 person needed",
-        "place": "Waterloo, meet at UCL",
+        "sport": "Running",
+        "university": "King's College London",
+        "date": "2016/07/21",
+        // "start_time": "16:30:00",
+        // "end_time": "17:00:00",
+        "place": "Battersea Park",
+        "additional_info": "See you there!",
+        "needed": "1 person needed",
         "id": "Posted by Corentin Herbinet",
-        "university":"lse"
       },
       {
-        "sport": "football",
-        "date": "2016/06/02",
-        "needed": "2 person needed",
-        "place": "Liverpool, meet in Paris",
+        "sport": "Football",
+        "university": "University College London",
+        "date": "2016/06/28",
+        // "start_time": "10:00:00",
+        // "end_time": "12:00:00",
+        "place": "Westway Sports Centre",
+        "additional_info": "Can someone bring a football please?",
+        "needed": "9 people needed",
         "id": "Posted by Florian Emile",
-        "university":"ucl"
       }
       ]
       $scope.searchUniversity = "";
       $scope.selectedUni = "";
       $scope.universities = [
         {
-          "name":"imperial"
+          "name":"Imperial College London"
         },
         {
-          "name":"ucl"
+          "name":"Univeristy College London"
         },
         {
-          "name":"lse"
+          "name":"London School of Economics"
         },
         {
-          "name":"teds"
+          "name":"King's College London"
         },
         {
-          "name":"sdds"
+          "name":"Queen Mary University"
         },
         {
-          "name":"sddsds"
+          "name":"City University London"
         },
         {
-          "name":"yolqdfbtay"
-        },
-        {
-          "name":"rztsbgbs"
-        },
-        {
-          "name":"ustbsbscl"
-        },
+          "name":"Royal Holloway University"
+        }
       ];
 
       $scope.filterUniversity = "";
 
       $scope.sports = [
         {
-          "name":"dance"
+          "name":"Dance"
         },
         {
-          "name":"tennis"
+          "name":"Tennis"
         },
         {
-          "name":"football"
+          "name":"Football"
         },
         {
-          "name":"moto"
+          "name":"Running"
         },
         {
-          "name":"baseball"
+          "name":"Baseball"
         }
       ];
 

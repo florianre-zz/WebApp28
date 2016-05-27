@@ -17,6 +17,7 @@ class EventsController < ApplicationController
     # Parameters of new event are given from the HTTP POST request
     new_event =
       Event.create(:sport => params[:sport],
+                   :university => params[:university],
                    :date => params[:date],
                    :start_time => params[:start_time],
                    :end_time => params[:end_time],
