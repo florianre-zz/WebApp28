@@ -102,11 +102,11 @@
 
     <div class="btn-group col-md-2 dropdown">
       <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        {{filterSport}} <span class="caret"></span>
+        {{selectedSport}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu col-md-2">
         <li ng-repeat="sport in sports">
-          <div class="dropdown-item" ng-click="getFeedScope().filterSport = sport.name">{{sport.name}}</div>
+          <div class="dropdown-item" ng-click="getFeedScope().updateSport(sport.name)">{{sport.name}}</div>
         </li>
       </ul>
     </div>
@@ -125,6 +125,10 @@
         Remove filters
       </button>
     </div>
+
+    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in sports" md-item-text="sport.name">
+  <span md-highlight-text="searchText">{{sport.name}}</span>
+</md-autocomplete>
 
   </div>
 

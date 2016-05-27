@@ -120,6 +120,16 @@ feedModule.controller('feedController', ['$scope', '$http',
 
       $scope.filterUniversity = "";
 
+      $scope.selectedSport = "any";
+      $scope.filterSport = "";
+      $scope.updateSport = function(name) {
+        $scope.selectedSport = name;
+        if(name == "any")  {
+          $scope.filterSport = "";
+        } else {
+          $scope.filterSport = name;
+        }
+      };
       $scope.sports = [
         {
           "name":"Dance"
@@ -134,11 +144,16 @@ feedModule.controller('feedController', ['$scope', '$http',
           "name":"Running"
         },
         {
+          "name":"baseball"
+        },
+        {
+          "name":"any"
+        },
+        {
           "name":"Baseball"
         }
       ];
 
-      $scope.filterSport = "";
       $scope.removeFilters = function() {
         $scope.filterSport = "";
         $scope.filterUniversity = "";
