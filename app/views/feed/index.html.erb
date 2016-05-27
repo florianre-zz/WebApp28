@@ -121,7 +121,7 @@
     </div>
 
     <div class="btn-group col-md-2 dropdown">
-      <button type="button" class="btn btn-success btn-block" ng-click="removeFilters()">
+      <button type="button" class="btn btn-success btn-block" ng-click="getEvents()">
         Remove filters
       </button>
     </div>
@@ -132,7 +132,7 @@
 
     <div class="col-md-offset-2 col-md-8">
 
-        <div class="panel panel-default" ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
+        <div class="panel panel-default" ng-repeat="event in events | filter:{university:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
 
           <div class="panel-heading">
             <h3 class="panel-title">{{event.sport}}</h3>
@@ -148,7 +148,7 @@
                 <p class="pull-right">{{event.needed}}</p>
                 <p>{{event.university}}</p>
                 <p>{{event.date}}</p>
-                <p>{{event.place}}</p>
+                <p>{{event.location}}</p>
                 <p class="pull-right">{{event.id}}</p>
               </div>
 

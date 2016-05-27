@@ -35,7 +35,7 @@ feedModule.controller('feedController', ['$scope', '$http',
           "additional_info": $scope.createAdditional,
           "needed": $scope.createNeeded,
           "min_participants": $scope.createMinimum
-        },
+        }
       }).then(function(response) {
         // alert("it worked");
       },
@@ -44,9 +44,22 @@ feedModule.controller('feedController', ['$scope', '$http',
       });
     };
 
+    // Get all events from database
+    $scope.getEvents = function() {
+      $http({
+        method: 'GET',
+        url: '/events.json'
+      }).then(function(response) {
+        $scope.events = response.data;
+      },
+      function(response) {
+        alert("it did not work");
+      });
+    };
+
     $scope.events = [
       {
-        "sport": "Tennis",
+        "sport": "MMA",
         "date": "2016/07/02",
         // "start_time": "14:00:00",
         // "end_time": "15:00:00",
