@@ -42,6 +42,7 @@ module Unisport
     config.assets.precompile +=
       [
         "users/registrations.css",
+        "users/sessions.css",
         "feed.css",
         "feed.js",
         "feedAngular/app.js",
@@ -55,7 +56,7 @@ module Unisport
     config.to_prepare do
       FeedController.layout                      "feed"
 
-      Users::SessionsController.layout           "application"
+      Users::SessionsController.layout           "users/sessions"
       Users::RegistrationsController.layout      "users/registrations"
       Users::ConfirmationsController.layout      "application"
       Users::UnlocksController.layout            "application"
