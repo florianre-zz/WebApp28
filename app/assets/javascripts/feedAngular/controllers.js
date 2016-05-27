@@ -135,7 +135,7 @@ feedModule.controller('feedController', ['$scope', '$http',
         },
         {
           "name":"any"
-        }
+        },
         {
           "name":"Baseball"
         }
