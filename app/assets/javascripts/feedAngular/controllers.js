@@ -16,8 +16,8 @@ feedModule.controller('feedController', ['$scope', '$http',
     $scope.createEndTime = "";
     $scope.createLocation = "";
     $scope.createNeeded = "";
-    $scope.createMinimum = "1"
-    $scope.createAdditional = "See you soon !!!!!!!!!!!!!!!!!!!";
+    $scope.createMinimum = ""
+    $scope.createAdditional = "";
 
     $scope.createEvent = function() {
       $http({

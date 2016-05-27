@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html ng-app="feedModule">
-<head>
-  <title>Unisport</title>
-  <%= stylesheet_link_tag    'feed', media: 'all' %>
-  <%= javascript_include_tag 'feed' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div ng-controller="feedController">
-    <%= yield %>
-  </div>
+  <head>
+    <title>Unisport</title>
+    <%= stylesheet_link_tag    'feed', media: 'all' %>
+    <%= javascript_include_tag 'feed' %>
+    <%= csrf_meta_tags %>
+  </head>
 
+  <body>
+    <div ng-controller="feedController">
+      <%= yield %>
+    </div>
+  </body>
 
-</body>
 </html>
