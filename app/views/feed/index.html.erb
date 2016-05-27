@@ -128,8 +128,8 @@
   <article class="row">
 
     <div class="col-md-offset-2 col-md-8">
-      <li ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
-        <div class="panel panel-default">
+
+        <div class="panel panel-default" ng-repeat="event in events|filter:{university:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
 
           <div class="panel-heading">
             <h3 class="panel-title">{{event.sport}}</h3>
@@ -152,7 +152,7 @@
             </div>
           </div>
         </div>
-      </li>
+
     </div>
 
   </div>
