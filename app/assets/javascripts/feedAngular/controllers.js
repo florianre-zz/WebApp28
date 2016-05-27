@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-var feedModule = angular.module('feedModule', []);
+var feedControllers = angular.module('feedControllers', []);
 
-feedModule.controller('feedController', ['$scope', '$http',
+feedControllers.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
     $scope.getFeedScope = function() {
          return $scope;
