@@ -24,7 +24,7 @@ feedModule.controller('feedController', ['$scope', '$http',
         method: 'POST',
         url: '/events.json',
         data:
-        {
+        { 
           "sport": $scope.createSport,
           "date": $scope.createDate,
           "start_time": $scope.createStartTime,
@@ -65,7 +65,7 @@ feedModule.controller('feedController', ['$scope', '$http',
         "date": "2016/06/02",
         "needed": "2 person needed",
         "place": "Liverpool, meet in Paris",
-        "id": "Posted by Floriant Emile",
+        "id": "Posted by Florian Emile",
         "university":"ucl"
       }
       ]

@@ -13,22 +13,6 @@ class EventsController < ApplicationController
   def create
     current_user_id = current_user.id
 
-    # BUG - params appear but can't retrieve them :(
-
-    # puts current_user_id
-    # puts
-    # puts "PARAMETERS"
-    # puts params[:params]
-    # puts "CONTROLLER"
-    # puts params[:controller]
-    # puts "FORMAT"
-    # puts params[:format]
-    # puts "SPORT"
-    # puts params[:params][:sport]
-
-    # puts
-    # puts
-
     # Create new entry and store it in the events table of the database
     # Parameters of new event are given from the HTTP POST request
     new_event =
