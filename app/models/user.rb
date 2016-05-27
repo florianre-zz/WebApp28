@@ -6,8 +6,11 @@ class User < ActiveRecord::Base
          :lockable, :timeoutable
 
   # FIXME: regex problem
-  # possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
-  # validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
+  # possible_reg = ["ic.ac.uk"]
+  if UniversityMail.table_exists?
+    possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
+  end
+  validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
 
   has_many :event_participants
   has_many :events

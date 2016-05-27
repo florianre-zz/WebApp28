@@ -3,11 +3,9 @@ require 'university_mail/university_country'
 module MailUniversityHashGenerator
   include UniversityCountry
 
-  def generate_mail_university_hash(university_country)
-
-    universities_path = get_universities_path(university_country)
-
+  def self.generate_mail_university_hash(university_country)
     university_table = Hash.new
+    universities_path = UniversityCountry.get_universities_path(university_country)
 
     Dir.glob(universities_path) do |f|
       file = File.open(f, "r")

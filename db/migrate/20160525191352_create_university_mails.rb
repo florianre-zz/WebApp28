@@ -14,15 +14,6 @@ class CreateUniversityMails < ActiveRecord::Migration
 
     ## add an index to speed up queries
     add_index :university_mails, :mail_extension, unique: true
-
-    ## Get the hash of all universities and their mail extension
-    university_table = generate_mail_university_hash(UniversityCountry::ENGLAND)
-
-    ## Populate the table with all the predefined english universities
-    university_table.each do |mail_ext, uni_name|
-      UniversityMail.create(mail_extension: mail_ext, university_name: uni_name)
-    end
-
   end
 
   def down
