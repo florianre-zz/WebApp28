@@ -1,3 +1,5 @@
+require 'university_mail/university_mail_extension_generator'
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,8 +9,8 @@ class User < ActiveRecord::Base
 
   # Wrapped in if statement to not cause error on db:migrate
   if UniversityMail.table_exists?
-    possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
-    validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
+    possible_reg = UniversityMailExtensionGenerator.generate_university_mail_extensions()
+    validates :email, :format => possible_reg
   end
 
   has_many :event_participants
