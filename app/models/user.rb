@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  # Wrapped in if statement to not cause error on db:migrate
-  if UniversityMail.table_exists?
-    possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
-    validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
+  validate do |user|
+    unless University::Email.valid?(user.email)
+      user.errors[:email] << 'Must be valid university email'
+    end
   end
 
   has_many :event_participants, dependent: :destroy

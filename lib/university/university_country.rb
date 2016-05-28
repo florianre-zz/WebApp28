@@ -7,7 +7,7 @@ module UniversityCountry
 
   # Hash mapping country to folder where can be found
   LOCATION_HASH = {
-    ENGLAND => "lib/university_mail/universities_england/*.txt"
+    ENGLAND => "lib/university/universities_england/*.txt"
   }
 
   private_constant :LOCATION_HASH
