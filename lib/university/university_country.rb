@@ -13,7 +13,6 @@ module UniversityCountry
   private_constant :LOCATION_HASH
 
   def self.get_universities_path(university_country)
-
     if LOCATION_HASH.has_key?(university_country)
       LOCATION_HASH[university_country]
     else

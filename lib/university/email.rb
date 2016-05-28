@@ -4,11 +4,11 @@ module University
     # contains app
     # .join is a concatenation function for file paths i.e. join('config',
     # 'universities.yaml') is equivalent to config/universities.yaml
-    UNIVERSITIES = YAML.load_file(Rails.root.join('config', 'universities.yaml'))
+    UNIVERSITIES = UniversityMail.pluck(:mail_extension)
 
     # Verifies that email is a valid english university email
     def self.valid?(email)
-      UNIVERSITIES.any? { |uni| email.ends_with?("@#{uni[:domain]}") }
+      UNIVERSITIES.any? { |uni_ext| email.ends_with?("@#{uni_ext}") }
     end
   end
 end
