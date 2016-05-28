@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
     validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
   end
 
-  has_many :event_participants
-  has_many :events
+  has_many :event_participants, dependent: :destroy
+  has_many :events, dependent: :destroy
 end
