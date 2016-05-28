@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe(University::Email) do
-  before { stub_const('University::Email::UNIVERSITIES', universities) }
-  let(:universities) do
-    [{ name: 'Imperial College London', domain: 'imperial.ac.uk' }]
-  end
+  # if (UniversityMail.pluck(:mail_extension)).empty?
+  #   puts "You are in trouble"
+  # end
 
   describe '.valid?' do
     context 'with a valid university email' do
       it 'is true' do
-        expect(University::Email.valid?('lmj112@imperial.ac.uk')).to be(true)
+        expect(University::Email.valid?('fre14@imperial.ac.uk')).to be(true)
       end
     end
 
