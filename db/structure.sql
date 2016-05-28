@@ -63,7 +63,7 @@ CREATE TABLE events (
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    university character varying
+    university_location character varying NOT NULL
 );
 
 
@@ -270,4 +270,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160526120051');
 INSERT INTO schema_migrations (version) VALUES ('20160526132053');
 
 INSERT INTO schema_migrations (version) VALUES ('20160527095147');
+
+INSERT INTO schema_migrations (version) VALUES ('20160528114049');
 
