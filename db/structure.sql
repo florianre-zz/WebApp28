@@ -250,6 +250,22 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: fk_rails_565ef9d942; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_participants
+    ADD CONSTRAINT fk_rails_565ef9d942 FOREIGN KEY (event_id) REFERENCES events(id);
+
+
+--
+-- Name: fk_rails_d47e705293; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_participants
+    ADD CONSTRAINT fk_rails_d47e705293 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -272,4 +288,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160526132053');
 INSERT INTO schema_migrations (version) VALUES ('20160527095147');
 
 INSERT INTO schema_migrations (version) VALUES ('20160528114049');
+
+INSERT INTO schema_migrations (version) VALUES ('20160528175538');
 
