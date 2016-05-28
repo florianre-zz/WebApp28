@@ -1,4 +1,4 @@
-require 'university_mail/university_country'
+require 'university/university_country'
 
 module MailUniversityHashGenerator
   include UniversityCountry

@@ -1,6 +1,6 @@
 require 'rails_helper'
-require 'university_mail/mail_university_hash_generator'
-require 'university_mail/university_country'
+require 'university/mail_university_hash_generator'
+require 'university/university_country'
 
 RSpec.describe MailUniversityHashGenerator do
 
