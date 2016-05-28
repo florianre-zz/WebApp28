@@ -5,12 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  # FIXME: regex problem
-  # possible_reg = ["ic.ac.uk"]
+  # Wrapped in if statement to not cause error on db:migrate
   if UniversityMail.table_exists?
     possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
+    validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
   end
-  validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
 
   has_many :event_participants
   has_many :events

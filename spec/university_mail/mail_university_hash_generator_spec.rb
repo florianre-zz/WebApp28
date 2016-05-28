@@ -3,12 +3,12 @@ require 'university_mail/mail_university_hash_generator'
 require 'university_mail/university_country'
 
 RSpec.describe MailUniversityHashGenerator do
-  include MailUniversityHashGenerator, UniversityCountry
 
   it "generator creates a hash mapping mail extension to english university" do
     # generate the hash
     mail_university_hash =
-      generate_mail_university_hash(UniversityCountry::ENGLAND)
+      MailUniversityHashGenerator.generate_mail_university_hash(
+        UniversityCountry::ENGLAND)
 
     # check if some extension/university are present
     imperial_ext = "ic.ac.uk"
