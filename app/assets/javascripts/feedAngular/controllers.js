@@ -6,6 +6,7 @@ var feedControllers = angular.module('feedControllers', []);
 
 feedControllers.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
+
     $scope.getFeedScope = function() {
          return $scope;
     };
@@ -61,40 +62,34 @@ feedControllers.controller('feedController', ['$scope', '$http',
         $scope.events = response.data;
       },
       function(response) {
-        alert("it did not work");
+        // TODO: Error handling to do
+        alert("Failed to retrieve events");
+      });
+    };
+
+    // Get all universities name from database
+    $scope.getUniversities = function() {
+      $http({
+        method: 'GET',
+        url: '/university_mails.json'
+      }).then(function(response) {
+        $scope.universities = response.data;
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to get all universities");
       });
     };
 
       $scope.searchUniversity = "";
       $scope.selectedUni = "";
-      $scope.universities = [
-        {
-          "name":"Imperial College London"
-        },
-        {
-          "name":"University College London"
-        },
-        {
-          "name":"London School of Economics"
-        },
-        {
-          "name":"King's College London"
-        },
-        {
-          "name":"Queen Mary University"
-        },
-        {
-          "name":"City University London"
-        },
-        {
-          "name":"Royal Holloway University"
-        }
-      ];
+      $scope.universities = [];
 
       $scope.filterUniversity = "";
 
       $scope.selectedSport = "All Sport";
       $scope.filterSport = "";
+
       $scope.updateSport = function(name) {
         $scope.selectedSport = name;
         if(name == "All Sport")  {
@@ -139,5 +134,14 @@ feedControllers.controller('feedController', ['$scope', '$http',
         } else {
           return $scope.universities;
         }
+      };
+
+      // Initialisation of the pahe
+      $scope.init = function() {
+        // Get all events to display on feed
+        $scope.getEvents();
+
+        // Get all universities for autocomplete
+        $scope.getUniversities();
       };
   }]);
