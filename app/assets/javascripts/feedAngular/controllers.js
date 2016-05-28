@@ -4,9 +4,8 @@
 
 var feedControllers = angular.module('feedControllers', []);
 
-feedControllers.controller('feedController', ['$scope', '$http',
-  function($scope, $http) {
-
+feedControllers.controller('feedController', ['$scope', '$http', '$filter',
+  function($scope, $http, $filter) {
     $scope.getFeedScope = function() {
          return $scope;
     };
@@ -85,6 +84,18 @@ feedControllers.controller('feedController', ['$scope', '$http',
       $scope.selectedUni = "";
       $scope.universities = [];
 
+      $scope.universityInputValue = "";
+      $scope.inputUniversityModified = function (userInput) {
+        $scope.universityInputValue = userInput;
+      };
+      $scope.universitySelected = function (selectedInfo) {
+          if(selectedInfo != undefined) {
+            $scope.filterUniversity = selectedInfo.title;
+          } else if ($scope.universityInputValue == "") {
+            $scope.filterUniversity = "";
+          }
+      };
+
       $scope.filterUniversity = "";
 
       $scope.selectedSport = "All Sport";
@@ -122,6 +133,7 @@ feedControllers.controller('feedController', ['$scope', '$http',
       $scope.removeFilters = function() {
         $scope.filterSport = "";
         $scope.filterUniversity = "";
+        $scope.$broadcast('angucomplete-alt:clearInput', 'universitySelection');
         $scope.filterDate = "";
         $scope.selectedSport = "All Sport";
       };

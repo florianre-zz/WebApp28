@@ -1,6 +1,7 @@
 /*
  *= require application
  *= require bootstrap-datepicker3
+ *= require angucomplete-alt
  *= require_self
  */
 
@@ -88,3 +89,7 @@
  article {
    padding-top: 20px;
  }
+
+ .highlightLetters {
+    color: #ff0000;
+}

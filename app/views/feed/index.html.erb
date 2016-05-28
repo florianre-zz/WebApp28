@@ -90,14 +90,22 @@
   <div class="row">
 
     <div class="col-md-offset-2 col-md-2">
-      <div class="dropdown open">
-        <input type="text" class="form-control" placeholder="University" aria-describedby="sizing-addon2" ng-model="searchUniversity"></input>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-hide = "selectedUni.length == 0">
-          <li ng-repeat="university in selectedUni = (getSearchUniversities() | filter:searchUniversity)">
-            <div class="dropdown-item" ng-click="getFeedScope().filterUniversity = university.name">{{university.name}}</div>
-          </li>
-        </ul>
-      </div>
+      <angucomplete-alt id="universitySelection"
+                selected-object="universitySelected"
+                title-field="university_location"
+                search-fields="university_location"
+                placeholder="University"
+                minlength="1"
+                match-class="highlightLetters"
+                local-data="events"
+                text-searching="Finding matching Universities"
+                text-no-results="Sorry, could not find this University"
+                auto-match="true"
+                focus-first="true"
+                input-class="form-control form-control-small"
+                pause="0"
+                input-changed="inputUniversityModified">
+      </angucomplete-alt>
     </div>
 
     <div class="btn-group col-md-2 dropdown">
@@ -112,7 +120,7 @@
     </div>
 
     <div class="col-md-2">
-      <div class="input-group date" data-provide="datepicker" data-date-format="yyyy/mm/dd">
+      <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
         <input type="text" class="form-control" ng-model="filterDate">
         <div class="input-group-addon">
           <span class="glyphicon glyphicon-th"></span>
@@ -138,7 +146,7 @@
 
     <div class="col-md-offset-2 col-md-8">
 
-        <div class="panel panel-default" ng-repeat="event in events">
+        <div class="panel panel-default" ng-repeat="event in events|filter:{university_location:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
 
           <div class="panel-heading">
             <h3 class="panel-title">{{event.sport}}</h3>
@@ -166,8 +174,6 @@
         </div>
 
     </div>
-
-  </div>
 
   </article>
 
