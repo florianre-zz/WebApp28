@@ -6,52 +6,50 @@ var feedControllers = angular.module('feedControllers', []);
 
 feedControllers.controller('feedController', ['$scope', '$http',
   function($scope, $http) {
+
     $scope.getFeedScope = function() {
          return $scope;
     };
 
+    // Get all feeds elements when created
+    $scope.events = [];
+
     $scope.createSport = "";
-    $scope.createUniversity = "";
     $scope.createDate = "";
     $scope.createStartTime = "";
     $scope.createEndTime = "";
+    $scope.createUniversityLocation = "";
     $scope.createLocation = "";
     $scope.createNeeded = "";
     $scope.createMinimum = ""
     $scope.createAdditional = "";
 
     $scope.createEvent = function() {
+      var event =
+        {
+          "sport": $scope.createSport,
+          "date": $scope.createDate,
+          "start_time": $scope.createStartTime,
+          "end_time": $scope.createEndTime,
+          "university_location": $scope.createUniversityLocation,
+          "location": $scope.createLocation,
+          "needed": $scope.createNeeded,
+          "min_participants": $scope.createMinimum,
+          "additional_info": $scope.createAdditional,
+        }
+
       $http({
         method: 'POST',
         url: '/events.json',
-        data:
-        {
-          "sport": $scope.createSport,
-          "university": $scope.createUniversity,
-          "date": $scope.createDate,
-          "start_time": $scope.createStartTime,
-          "end_time": $scope.createEndTime,
-          "location": $scope.createLocation,
-          "additional_info": $scope.createAdditional,
-          "needed": $scope.createNeeded,
-          "min_participants": $scope.createMinimum
-        }
+        data: event
       }).then(function(response) {
-        $scope.events.push({
-          "id": "Paul Vidal",
-          "sport": $scope.createSport,
-          "university": $scope.createUniversity,
-          "date": $scope.createDate,
-          "start_time": $scope.createStartTime,
-          "end_time": $scope.createEndTime,
-          "location": $scope.createLocation,
-          "additional_info": $scope.createAdditional,
-          "needed": $scope.createNeeded,
-          "min_participants": $scope.createMinimum
-        });
+        // TODO: change as not efficient but need to get name
+        // $scope.events.push(event);
+        $scope.getEvents()
       },
       function(response) {
-        alert("it did not work");
+        // TODO: Error handling to do
+        alert("Failed to add events");
       });
     };
 
@@ -64,76 +62,34 @@ feedControllers.controller('feedController', ['$scope', '$http',
         $scope.events = response.data;
       },
       function(response) {
-        alert("it did not work");
+        // TODO: Error handling to do
+        alert("Failed to retrieve events");
       });
     };
 
-    $scope.events = [
-      {
-        "sport": "Tennis",
-        "date": "2016/07/02",
-        // "start_time": "14:00:00",
-        // "end_time": "15:00:00",
-        "location": "Hyde Park, meet at Ethos in front of Imperial",
-        "additional_info": "Please bring a racket, see you there!",
-        "needed": "1",
-        "id": "Paul Vidal",
-        "university": "Imperial College London",
+    // Get all universities name from database
+    $scope.getUniversities = function() {
+      $http({
+        method: 'GET',
+        url: '/university_mails.json'
+      }).then(function(response) {
+        $scope.universities = response.data;
       },
-      {
-        "sport": "Running",
-        "university": "King's College London",
-        "date": "2016/07/21",
-        // "start_time": "16:30:00",
-        // "end_time": "17:00:00",
-        "location": "Battersea Park",
-        "additional_info": "See you there!",
-        "needed": "1",
-        "id": "Corentin Herbinet",
-      },
-      {
-        "sport": "Football",
-        "university": "University College London",
-        "date": "2016/06/28",
-        // "start_time": "10:00:00",
-        // "end_time": "12:00:00",
-        "location": "Westway Sports Centre",
-        "additional_info": "Can someone bring a football please?",
-        "needed": "9",
-        "id": "Florian Emile",
-      }
-    ];
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to get all universities");
+      });
+    };
 
       $scope.searchUniversity = "";
       $scope.selectedUni = "";
-      $scope.universities = [
-        {
-          "name":"Imperial College London"
-        },
-        {
-          "name":"University College London"
-        },
-        {
-          "name":"London School of Economics"
-        },
-        {
-          "name":"King's College London"
-        },
-        {
-          "name":"Queen Mary University"
-        },
-        {
-          "name":"City University London"
-        },
-        {
-          "name":"Royal Holloway University"
-        }
-      ];
+      $scope.universities = [];
 
       $scope.filterUniversity = "";
 
       $scope.selectedSport = "All Sport";
       $scope.filterSport = "";
+
       $scope.updateSport = function(name) {
         $scope.selectedSport = name;
         if(name == "All Sport")  {
@@ -178,5 +134,14 @@ feedControllers.controller('feedController', ['$scope', '$http',
         } else {
           return $scope.universities;
         }
+      };
+
+      // Initialisation of the pahe
+      $scope.init = function() {
+        // Get all events to display on feed
+        $scope.getEvents();
+
+        // Get all universities for autocomplete
+        $scope.getUniversities();
       };
   }]);
