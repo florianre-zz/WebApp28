@@ -1,13 +1,15 @@
 class EventsController < ApplicationController
+
+  GET_ALL_EVENTS_QUERY =
+    "SELECT *
+     FROM events JOIN users ON events.user_id = users.id;"
+
   def index
-    @events = Event.all()
+    @events = ActiveRecord::Base.connection.execute(GET_ALL_EVENTS_QUERY)
 
     respond_to do |format|
       format.json { render json: @events }
     end
-  end
-
-  def show
   end
 
   def create
@@ -17,14 +19,14 @@ class EventsController < ApplicationController
     # Parameters of new event are given from the HTTP POST request
     new_event =
       Event.create(:sport => params[:sport],
-                   :university => params[:university],
                    :date => params[:date],
                    :start_time => params[:start_time],
                    :end_time => params[:end_time],
+                   :university_location => params[:university_location],
                    :location => params[:location],
-                   :additional_info => params[:additional_info],
                    :needed => params[:needed],
                    :min_participants => params[:min_participants],
+                   :additional_info => params[:additional_info],
                    :participants => 1,
                    :user_id => current_user.id)
 

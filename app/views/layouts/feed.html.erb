@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div ng-controller="feedController">
+    <div ng-controller="feedController" ng-init="getEvents()">
       <%= yield %>
     </div>
   </body>
