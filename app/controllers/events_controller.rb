@@ -28,13 +28,14 @@ class EventsController < ApplicationController
                    :min_participants => params[:min_participants],
                    :additional_info => params[:additional_info],
                    :participants => 1,
-                   :user_id => current_user.id)
+                   :user_id => current_user_id)
 
     # Create new event participant and store it in the event_participants
     # table of the database
     # Parameters are given from current user id and created event id
     EventParticipant.create(:event_id => new_event.id,
                             :user_id => current_user_id)
+
     render :nothing => true
   end
 end
