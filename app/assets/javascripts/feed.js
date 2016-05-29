@@ -1,6 +1,7 @@
 //= require application
 //= require moment
 //= require angucomplete-alt
+//= require angular-animate
 //= require bootstrap-datepicker
 //= require feedAngular/app.js
 //= require feedAngular/controllers.js
