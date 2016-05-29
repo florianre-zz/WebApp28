@@ -20,24 +20,34 @@ nav.navbar {
     font-weight: bolder;
   }
 
-  .dropdown-menu {
+  .dropdown-menu#logged_in {
     margin-top: $border-size;
 
     .navbar-login {
-      width: 305px;
       padding: 10px;
       padding-bottom: 0px;
     }
 
     .navbar-login-session {
       padding: 10px;
-      padding-bottom: 0px;
+      padding-bottom: 2px;
       padding-top: 0px;
     }
+  }
 
-    .icon-size {
-      font-size: 87px;
+  .dropdown-menu#login {
+    margin-top: $border-size;
+    width: 300px;
+    padding: 15px;
+
+    #login_button {
+      margin-left: 10px;
+      margin-right: 10px;
     }
+  }
+
+  .glyphicon {
+    padding-right: 3px;
   }
 }
 
