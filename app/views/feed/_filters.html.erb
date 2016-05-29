@@ -1,0 +1,54 @@
+<div class="row">
+
+  <div class="col-md-offset-2 col-md-2">
+    <angucomplete-alt id="universitySelection"
+              selected-object="universitySelected"
+              title-field="university_location"
+              search-fields="university_location"
+              placeholder="University"
+              minlength="1"
+              match-class="highlightLetters"
+              local-data="events"
+              text-searching="Finding matching Universities"
+              text-no-results="Sorry, could not find this University"
+              auto-match="true"
+              focus-first="true"
+              input-class="form-control form-control-small"
+              pause="0"
+              input-changed="inputUniversityModified">
+    </angucomplete-alt>
+  </div>
+
+  <div class="btn-group col-md-2 dropdown">
+    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      {{selectedSport}} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu col-md-2">
+      <li ng-repeat="sport in sports">
+        <div class="dropdown-item" ng-click="getFeedScope().updateSport(sport.name)">{{sport.name}}</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-2">
+    <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+      <input type="text" class="form-control" ng-model="filterDate">
+      <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group col-md-1">
+    <button type="button" class="btn btn-success btn-block" ng-click="removeFilters()">
+      Clear filters
+    </button>
+  </div>
+
+  <div class="btn-group col-md-1">
+    <button type="button" class="btn btn-success btn-block" ng-click="getEvents()">
+      Refresh
+    </button>
+  </div>
+
+</div>
