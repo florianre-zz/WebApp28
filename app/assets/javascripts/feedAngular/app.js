@@ -6,5 +6,6 @@ var feedModule = angular.module('feedModule', [
   'ngRoute',
   'feedControllers',
   'feedDirectives',
-  'angucomplete-alt'
+  'angucomplete-alt',
+  'ngAnimate'
 ]);

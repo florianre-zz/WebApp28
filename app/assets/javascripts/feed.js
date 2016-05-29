@@ -3,6 +3,7 @@
 //= require angucomplete-alt
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.uk.js
+//= require angular-animate
 //= require feedAngular/app.js
 //= require feedAngular/controllers.js
 //= require feedAngular/directives.js

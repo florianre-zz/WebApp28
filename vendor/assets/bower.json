@@ -6,7 +6,8 @@
     "angular-mocks": "latest",
     "angular-route": "latest",
     "angular-resource": "latest",
-    "angucomplete-alt": "latest"
+    "angucomplete-alt": "latest",
+    "angular-animate": "latest"
   },
   "resolutions": {
     "angular": "1.5"

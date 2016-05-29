@@ -2,7 +2,7 @@
 
   <div class="col-md-offset-2 col-md-8">
 
-      <div class="panel panel-default" ng-repeat="event in events|filter:{university_location:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
+      <div class="panel panel-default event-listing" ng-repeat="event in events|filter:{university_location:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
 
         <div class="panel-heading">
           <h3 class="panel-title">{{event.sport}}</h3>
