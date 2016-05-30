@@ -22,7 +22,7 @@
               <p>Starts at {{event.start_time}}</p>
               <p>Ends at {{event.end_time}}</p>
               <% if user_signed_in? %>
-                <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, at {{event.university}}</p>
+                <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
               <% end %>
 
             </div>

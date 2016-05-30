@@ -98,7 +98,7 @@ feedControllers.controller('feedController', ['$scope', '$http', '$filter',
 
       $scope.filterUniversity = "";
 
-      $scope.selectedSport = "All Sport";
+      $scope.selectedSport = "All Sports";
       $scope.filterSport = "";
 
       $scope.updateSport = function(name) {

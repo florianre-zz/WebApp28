@@ -3,8 +3,20 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index]
 
   GET_ALL_EVENTS_QUERY =
-    "SELECT *
-     FROM events JOIN users ON events.user_id = users.id;"
+    "SELECT to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
+            to_char(events.start_time, 'HH24:MI') AS start_time,
+            to_char(events.end_time, 'HH24:MI') AS end_time,
+            events.sport,
+            events.location,
+            events.needed,
+            events.min_participants,
+            events.participants,
+            events.university_location,
+            users.first_name,
+            users.last_name,
+            university_mails.university_name
+     FROM events JOIN users ON events.user_id = users.id
+     JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension);"
 
   def index
     @events = ActiveRecord::Base.connection.execute(GET_ALL_EVENTS_QUERY)
