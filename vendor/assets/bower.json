@@ -1,15 +1,10 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "bootstrap-sass-official": "latest",
-    "angular": "~> 1.5",
-    "angular-mocks": "latest",
-    "angular-route": "latest",
-    "angular-resource": "latest",
-    "angucomplete-alt": "latest",
-    "angular-animate": "~> 1.4.x"
+    "angular": "1.4.10",
+    "angular-animate": "1.4.10"
   },
   "resolutions": {
-    "angular": "1.5"
+    "angular": "1.4.10"
   }
 }
