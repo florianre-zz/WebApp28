@@ -20,7 +20,6 @@ feedControllers.controller('feedController', ['$scope', '$http', '$filter',
     $scope.createUniversityLocation = "";
     $scope.createLocation = "";
     $scope.createNeeded = "";
-    $scope.createMinimum = ""
     $scope.createAdditional = "";
 
     $scope.createEvent = function() {
@@ -33,7 +32,6 @@ feedControllers.controller('feedController', ['$scope', '$http', '$filter',
           "university_location": $scope.createUniversityLocation,
           "location": $scope.createLocation,
           "needed": $scope.createNeeded,
-          "min_participants": $scope.createMinimum,
           "additional_info": $scope.createAdditional,
         }
 
