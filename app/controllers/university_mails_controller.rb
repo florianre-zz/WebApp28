@@ -1,4 +1,6 @@
 class UniversityMailsController < ApplicationController
+  # No authentification needed to get universities
+  skip_before_action :authenticate_user!, :only => [:index]
 
   GET_ALL_UNIVERSITIES =
     "SELECT DISTINCT university_name

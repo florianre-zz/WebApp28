@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  # No authentification needed to see events (can't see all elements)
+  skip_before_action :authenticate_user!, :only => [:index]
 
   GET_ALL_EVENTS_QUERY =
     "SELECT *

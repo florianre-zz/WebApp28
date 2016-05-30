@@ -11,7 +11,7 @@
         <div class="panel-body">
           <div class="row">
 
-            <%=image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
+            <%= image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
 
             <div class="col-md-10">
 
@@ -21,7 +21,9 @@
               <p>{{event.date}}</p>
               <p>Starts at {{event.start_time}}</p>
               <p>Ends at {{event.end_time}}</p>
-              <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, at {{event.university}}</p>
+              <% if user_signed_in? %>
+                <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, at {{event.university}}</p>
+              <% end %>
 
             </div>
 
