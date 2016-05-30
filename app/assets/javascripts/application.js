@@ -10,12 +10,4 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
 //= require angular
-//= require angular-route
-//= require angular-rails-templates
-//= require bootstrap-sass-official/assets/javascripts/bootstrap/dropdown
-//= require bootstrap-sass-official/assets/javascripts/bootstrap/modal
-
-// require_tree ./templates

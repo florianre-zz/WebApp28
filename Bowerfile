@@ -6,8 +6,8 @@ asset 'bootstrap-sass-official'
 
 # START_HIGHLIGHT
 # END_HIGHLIGHT
-asset 'angular', '~> 1.5'
-resolution 'angular', '1.5'
+asset 'angular', '1.4.x'
+resolution 'angular', '1.4.x'
 
 # Add angular mock for testing with injections
 
@@ -27,4 +27,6 @@ asset 'angucomplete-alt'
 
 # Add angular animate
 
-asset 'angular-animate'
+asset 'angular-animate', '~> 1.4.x'
+
+asset ''

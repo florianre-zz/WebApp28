@@ -1,73 +1,23 @@
 /*
- *= require application
- *= require bootstrap-datepicker3
- *= require angucomplete-alt
  *= require_self
  */
 
-// Main elements
-
- body {
-   padding-top: 72px;
+ .test {
+   background-color: red;
  }
 
- // Create event styling
-
- // Filters styling
-
- .highlightLetters {
-    color: #ff0000;
-}
-
- // Events feed styling
-
- article {
-   padding-top: 20px;
+ .test.ng-enter {
+   -moz-transition: 7s linear all;
+   -o-transition: 7s linear all;
+   -webkit-transition: 7s linear all;
+   transition: 7s linear all;
  }
 
-.tennis {
-  padding-left: 30px;
-  padding-right: 30px;
-}
 
-/* Animation feed */
+ .test.ng-enter {
+   width: 0px;
+ }
 
-.event-listing.ng-enter,
-.event-listing.ng-leave,
-.event-listing.ng-move {
-  -webkit-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
-  -moz-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
-  -o-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
-  transition: 1.0s cubic-bezier(.12,.88,.12,.95) all;
-}
-
-// New event added to the feed
-
-.event-listing.ng-enter {
-  opacity: 0;
-  height: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  overflow: hidden;
-}
-
-//TODO replace the hardcoded value by variable for height and margin bottom
-.event-listing.ng-enter.ng-enter-active,
-.event-listing.ng-leave {
-  opacity: 1;
-  height: 242px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-// Event removed from the feed
-
-.event-listing.ng-leave.ng-leave-active {
-  opacity: 0;
-  height: 0;
-  margin-bottom: 0;
-  border: 0;
-  padding-top: 0;
-  padding-bottom:0;
-}
+ .test.ng-enter.ng-enter-active {
+   width: 1920px;
+ }

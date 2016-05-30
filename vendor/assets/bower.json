@@ -7,7 +7,7 @@
     "angular-route": "latest",
     "angular-resource": "latest",
     "angucomplete-alt": "latest",
-    "angular-animate": "latest"
+    "angular-animate": "~> 1.4.x"
   },
   "resolutions": {
     "angular": "1.5"

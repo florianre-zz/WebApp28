@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html ng-app="feedModule">
   <head>
-    <title>Unisport</title>
     <%= stylesheet_link_tag    'feed', media: 'all' %>
     <%= javascript_include_tag 'feed' %>
-    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <div ng-controller="feedController" ng-init="init()">
-      <%= yield %>
+    <div ng-controller="feedController">
+      <button ng-click="events.push({name:'Steve Jobs'})">Add item to ng-repeat</button>
+      <button ng-click="events.pop()">Remove item from ng-repeat</button>
+      <div class="test" ng-repeat="event in events">
+        <div>test</div>
+      </div>
     </div>
   </body>
 
