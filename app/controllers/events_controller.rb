@@ -10,13 +10,14 @@ class EventsController < ApplicationController
             events.location,
             events.needed,
             events.min_participants,
-            events.participants,
             events.university_location,
             users.first_name,
             users.last_name,
-            university_mails.university_name
+            university_mails.university_name,
+            SUM(event_participants.participants) OVER (PARTITION BY event_participants.event_id) AS participants
      FROM events JOIN users ON events.user_id = users.id
-     JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension);"
+                 JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+                 JOIN event_participants ON events.id = event_participants.event_id;"
 
   def index
     @events = ActiveRecord::Base.connection.execute(GET_ALL_EVENTS_QUERY)
@@ -39,16 +40,15 @@ class EventsController < ApplicationController
                    :university_location => params[:university_location],
                    :location => params[:location],
                    :needed => params[:needed],
-                   :min_participants => params[:min_participants],
-                   :additional_info => params[:additional_info],
-                   :participants => 1,
+                   :additional_info => params[:additional_info],  
                    :user_id => current_user_id)
 
     # Create new event participant and store it in the event_participants
     # table of the database
     # Parameters are given from current user id and created event id
     EventParticipant.create(:event_id => new_event.id,
-                            :user_id => current_user_id)
+                            :user_id => current_user_id,
+                            :participants => 1)
 
     render :nothing => true
   end

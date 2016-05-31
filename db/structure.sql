@@ -41,7 +41,8 @@ CREATE TABLE event_participants (
     event_id integer NOT NULL,
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    participants integer NOT NULL
 );
 
 
@@ -59,7 +60,6 @@ CREATE TABLE events (
     additional_info character varying,
     needed integer NOT NULL,
     min_participants integer,
-    participants integer NOT NULL,
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -290,4 +290,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160527095147');
 INSERT INTO schema_migrations (version) VALUES ('20160528114049');
 
 INSERT INTO schema_migrations (version) VALUES ('20160528175538');
+
+INSERT INTO schema_migrations (version) VALUES ('20160530213709');
 

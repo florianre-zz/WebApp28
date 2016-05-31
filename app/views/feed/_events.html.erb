@@ -14,8 +14,16 @@
             <%= image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
 
             <div class="col-md-10">
+              <div class="pull-right col-md-4">
+                <div class="col-md-4 text-right">
+                  {{event.participants}}/{{event.needed}}
+                </div>
+                <div class="progress col-md-8">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.participants / event.needed * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.participants / event.needed * 100}}%;">
+                  </div>
+                </div>
+              </div>
 
-              <p class="pull-right">Needed: <b>{{event.needed}}</b></p>
               <p>Around: {{event.university_location}}</p>
               <p>{{event.location}}</p>
               <p>{{event.date}}</p>
