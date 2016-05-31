@@ -21,6 +21,9 @@ class Event < ActiveRecord::Base
 	## University location must be a valid university
 	validate :university_location_is_valid
 
+	## Sport must be a valid sport
+	validate :sport_is_valid
+
 
 	private
 
@@ -44,8 +47,14 @@ class Event < ActiveRecord::Base
 
   def university_location_is_valid
     if !UniversityMail.where(university_name: self.university_location).exists? then
-      errors.add(:university_location, 'University location is invalid.')
+      errors.add(:university_location, "University location is invalid.")
     end
+  end
+
+  def sport_is_valid
+  	if !Sport.where(name: self.sport).exists? then
+  		errors.add(:sport, "Sport choice is invalid.")
+  	end
   end
 
 end

@@ -5,8 +5,10 @@ module SportsHashGenerator
     sports_list_path = "lib/sports/sports_all.txt"
 
     IO.foreach(sports_list_path) do |line|
-      if !sports_table.has_key?(line)
-        sports_table[line] = "This is a hard sport!"
+      ## Removing space after sport name
+      sport = line.chomp
+      if !sports_table.has_key?(sport)
+        sports_table[sport] = "This is a hard sport!"
       end
     end
 
