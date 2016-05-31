@@ -10,6 +10,7 @@ class EventsController < ApplicationController
             to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
             to_char(events.start_time, 'HH24:MI') AS start_time,
             to_char(events.end_time, 'HH24:MI') AS end_time,
+            events.id,
             events.sport,
             events.location,
             events.needed,

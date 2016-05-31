@@ -320,6 +320,14 @@ CREATE CONSTRAINT TRIGGER existing_university AFTER INSERT OR UPDATE ON events N
 
 
 --
+-- Name: event_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT event_to_sport_fk FOREIGN KEY (sport) REFERENCES sports(name);
+
+
+--
 -- Name: fk_rails_0cb5590091; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -374,4 +382,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160530213709');
 INSERT INTO schema_migrations (version) VALUES ('20160531133414');
 
 INSERT INTO schema_migrations (version) VALUES ('20160531171817');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531223133');
 
