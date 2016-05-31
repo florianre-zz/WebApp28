@@ -113,13 +113,13 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         // Initialisation of all event characteristics
         $scope.event = {
           "sport": "Tennis",
-          "date": "04-05-2016",
+          "date": "06-07-2016",
           "start_time": "16:00:00",
           "end_time": "17:00:00",
-          "university_location": "Imperial",
-          "location": "Imperial",
-          "needed": 2,
-          "additional_info": "Bring racket"
+          "university_location": "Imperial College London",
+          "location": "Hyde Park Tennis Courts",
+          "needed": 1,
+          "additional_info": "Bring a racket and 5 pounds!"
         }
 
         // Creating a new event

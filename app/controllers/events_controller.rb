@@ -3,7 +3,11 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index]
 
   GET_ALL_EVENTS_QUERY =
-    "SELECT to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
+    "SELECT to_char(events.date, 'Day') AS day_name,
+            to_char(events.date, 'FMDD') AS day_number,
+            to_char(events.date, 'FMMon') AS month,
+            to_char(events.date, 'YYYY') AS year,
+            to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
             to_char(events.start_time, 'HH24:MI') AS start_time,
             to_char(events.end_time, 'HH24:MI') AS end_time,
             events.sport,
@@ -39,7 +43,8 @@ class EventsController < ApplicationController
                    :end_time => params[:end_time],
                    :university_location => params[:university_location],
                    :location => params[:location],
-                   :needed => params[:needed],
+                   :needed => params[:needed] + 1,
+                   :min_participants => params[:needed] + 1,
                    :additional_info => params[:additional_info],  
                    :user_id => current_user_id)
 

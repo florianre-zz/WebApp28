@@ -17,7 +17,6 @@ universities_hash.each do |ext, name|
     uni_mail.update(university_name: name)
   end
 end
-puts i
 
 sports_hash = SportsHashGenerator.generate_sports_hash()
 sports_hash.each do |name, _|
