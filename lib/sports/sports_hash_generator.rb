@@ -10,7 +10,6 @@ module SportsHashGenerator
       end
     end
 
-    puts sports_table
     sports_table
   end
 

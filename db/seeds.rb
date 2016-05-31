@@ -7,18 +7,24 @@ require 'sports/sports_hash_generator'
 # The data can then be loaded with the rake db:seed (or created alongside the db
 # with db:setup).
 
-
-if UniversityMail.count == 0
-  universities_hash = MailUniversityHashGenerator.generate_mail_university_hash(
-                        UniversityCountry::ENGLAND)
-  universities_hash.each do |name, population|
-    UniversityMail.create(mail_extension: name, university_name: population)
+universities_hash = MailUniversityHashGenerator.generate_mail_university_hash(
+                      UniversityCountry::ENGLAND)
+universities_hash.each do |ext, name|
+  uni_mail = UniversityMail.find_by mail_extension: ext
+  if uni_mail == nil
+    UniversityMail.create(mail_extension: ext, university_name: name)
+  elsif uni_mail != nil && uni_mail.university_name != name
+    uni_mail.update(university_name: name)
   end
 end
+puts i
 
-if Sport.count == 0
-  sports_hash = SportsHashGenerator.generate_sports_hash()
-  sports_hash.each do |name, _|
+sports_hash = SportsHashGenerator.generate_sports_hash()
+sports_hash.each do |name, _|
+  sport = Sport.find_by name: name
+  if sport == nil
     Sport.create(name: name)
+  elsif
+    sport.update(name: name)
   end
 end
