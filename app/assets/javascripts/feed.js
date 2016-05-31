@@ -4,6 +4,7 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.uk.js
 //= require angular-animate
+//= require bootstrap-toggle
 //= require feedAngular/app.js
 //= require feedAngular/controllers.js
 //= require feedAngular/directives.js

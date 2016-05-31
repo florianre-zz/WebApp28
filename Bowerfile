@@ -28,3 +28,7 @@ asset 'angucomplete-alt'
 # Add angular animate
 
 asset 'angular-animate'
+
+# Add bootstrap toggle
+
+asset 'bootstrap-toggle'

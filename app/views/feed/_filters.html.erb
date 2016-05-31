@@ -21,7 +21,7 @@
 
   <div class="btn-group col-md-2 dropdown">
     <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {{selectedSport}} <span class="caret"></span>
+      {{selectedSport}} </span>
     </button>
     <ul class="dropdown-menu col-md-2">
       <li ng-repeat="sport in sports">
@@ -31,24 +31,18 @@
   </div>
 
   <div class="col-md-2">
-    <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-      <input type="text" class="form-control" ng-model="filterDate">
+    <div class="input-group date" data-provide="datepicker" data-date-format="DD dd MM" data-date-autoclose="true"
+        data-date-clear-btn="true" data-date-today-highlight="true" data-date-max-view-mode="0">
+      <input type="text" class="form-control" ng-model="filterDate" id="input-date" readonly>
       <div class="input-group-addon">
         <span class="glyphicon glyphicon-th"></span>
       </div>
     </div>
   </div>
 
-  <div class="btn-group col-md-1">
-    <button type="button" class="btn btn-success btn-block" ng-click="removeFilters()">
-      Clear Filters
-    </button>
-  </div>
-
-  <div class="btn-group col-md-1">
-    <button type="button" class="btn btn-success btn-block" ng-click="getEvents()">
-      Refresh
-    </button>
+  <div class="btn-group col-md-2" id="uni_toggle_checkbox">
+    <input type="checkbox" checked data-toggle="toggle" data-off="Only my University" data-on="All universities"
+        data-style="slow" data-width="100%" data-onstyle="default" data-offstyle="default">
   </div>
 
 </div>
