@@ -81,7 +81,7 @@
   -webkit-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
   -moz-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
   -o-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
-  transition: 1.0s cubic-bezier(.12,.88,.12,.95) all;
+  transition: 10.0s cubic-bezier(.12,.88,.12,.95) all;
 }
 
 // New event added to the feed
@@ -99,7 +99,7 @@
 .event-listing.ng-enter.ng-enter-active,
 .event-listing.ng-leave {
   opacity: 1;
-  height: 242px;
+  height: 244px;
   margin-bottom: 20px;
   overflow: hidden;
 }
