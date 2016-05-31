@@ -137,6 +137,9 @@ feedControllers.controller('feedController', ['$scope', '$http', '$filter',
       };
 
       $scope.filterDate = "";
+      $('.date').datepicker().on('clearDate', function(e) {
+        $scope.$apply(function () {$scope.filterDate = "";});
+      });
 
       $scope.getSearchUniversities = function() {
         if($scope.searchUniversity == "") {
