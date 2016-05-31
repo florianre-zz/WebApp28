@@ -1,44 +1,46 @@
-<article class="row">
+<div ng-controller="eventListController">
+  <article class="row">
 
-  <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8">
 
-      <div class="panel panel-default event-listing" ng-repeat="event in events|filter:{university_location:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
+        <div class="panel panel-default event-listing" ng-repeat="event in getFeedScope().events|filter:{university_location:filterUniversity, sport:filterSport, date:filterDate}|orderBy:'date':true">
 
-        <div class="panel-heading">
-          <h3 class="panel-title">{{event.sport}}</h3>
-        </div>
+          <div class="panel-heading">
+            <h3 class="panel-title">{{event.sport}}</h3>
+          </div>
 
-        <div class="panel-body">
-          <div class="row">
+          <div class="panel-body">
+            <div class="row">
 
-            <%= image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
+              <%= image_tag("tennis.png", alt: "Example Image", class: "col-md-2 image-responsive tennis")%>
 
-            <div class="col-md-10">
-              <div class="pull-right col-md-4">
-                <div class="col-md-4 text-right">
-                  <b>{{event.participants}}/{{event.needed}}</b>
-                </div>
-                <div class="progress col-md-8">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.participants / event.needed * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.participants / event.needed * 100}}%;">
+              <div class="col-md-10">
+                <div class="pull-right col-md-4">
+                  <div class="col-md-4 text-right">
+                    <b>{{event.participants}}/{{event.needed}}</b>
+                  </div>
+                  <div class="progress col-md-8">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.participants / event.needed * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.participants / event.needed * 100}}%;">
+                    </div>
                   </div>
                 </div>
+
+                <p>Around: {{event.university_location}}</p>
+                <p>{{event.location}}</p>
+                <p>{{event.date}}</p>
+                <p>Starts at {{event.start_time}}</p>
+                <p>Ends at {{event.end_time}}</p>
+                <% if user_signed_in? %>
+                  <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
+                <% end %>
+
               </div>
 
-              <p>Around: {{event.university_location}}</p>
-              <p>{{event.location}}</p>
-              <p>{{event.date}}</p>
-              <p>Starts at {{event.start_time}}</p>
-              <p>Ends at {{event.end_time}}</p>
-              <% if user_signed_in? %>
-                <p class="pull-right">Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
-              <% end %>
-
             </div>
-
           </div>
         </div>
-      </div>
 
-  </div>
+    </div>
 
-</article>
+  </article>
+</div>
