@@ -96,6 +96,15 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sports (
+    name character varying NOT NULL
+);
+
+
+--
 -- Name: university_mails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -182,6 +191,14 @@ ALTER TABLE ONLY event_participants
 
 ALTER TABLE ONLY events
     ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sports
+    ADD CONSTRAINT sports_pkey PRIMARY KEY (name);
 
 
 --
@@ -292,4 +309,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160528114049');
 INSERT INTO schema_migrations (version) VALUES ('20160528175538');
 
 INSERT INTO schema_migrations (version) VALUES ('20160530213709');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531171817');
 
