@@ -16,7 +16,7 @@
             <div class="col-md-10">
               <div class="pull-right col-md-4">
                 <div class="col-md-4 text-right">
-                  {{event.participants}}/{{event.needed}}
+                  <b>{{event.participants}}/{{event.needed}}</b>
                 </div>
                 <div class="progress col-md-8">
                   <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{event.participants / event.needed * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{event.participants / event.needed * 100}}%;">
