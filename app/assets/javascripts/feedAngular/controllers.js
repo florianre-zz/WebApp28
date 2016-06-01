@@ -76,6 +76,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
           $scope.getFeedScope().$apply(function () {$scope.getFeedScope().filterDate = "";});
         });
 
+        //TODO open a pop up to select the sports
         // Update the sport selected and bind it with the sport filter
         $scope.selectedSport = "All Sports";
         $scope.updateSport = function(name) {
@@ -88,15 +89,14 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         };
 
         // Manage change in university value in the autocomplete filter for university
-        $scope.universityInputValue = "";
-        $scope.inputUniversityModified = function (userInput) {
-          $scope.universityInputValue = userInput;
+        $scope.inputUniversityUpdated = function (userInput) {
+          if (userInput == "") {
+            $scope.getFeedScope().filterUniversity = "";
+          }
         };
         $scope.universitySelected = function (selectedInfo) {
             if(selectedInfo != undefined) {
               $scope.getFeedScope().filterUniversity = selectedInfo.title;
-            } else if ($scope.universityInputValue == "") {
-              $scope.getFeedScope().filterUniversity = "";
             }
         };
   }]);
@@ -119,7 +119,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
           "end_time": "17:00:00",
           "university_location": "Imperial College London",
           "location": "Hyde Park Tennis Courts",
-          "needed": 1,
+          "needed": "1",
           "additional_info": "Bring a racket and 5 pounds!"
         }
 
@@ -139,8 +139,28 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         };
   }]);
 
+
   // Controllers for the list of event
   feedControllers.controller('eventListController', ['$scope', '$http',
     function($scope, $http) {
 
+      // Person join an event
+      $scope.joinEvent = function(event_id) {
+        $http({
+          method: 'POST',
+          url: '/event_participants.json',
+          data: {
+            "event_id": event_id,
+            "participants": 1,
+            "message": ""
+          }
+        }).then(function(response) {
+          // TODO: success message
+          alert("Successfully created events");
+        },
+        function(response) {
+          // TODO: Error handling to do
+          alert("Failed to add events");
+        });
+      };
   }]);
