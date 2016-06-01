@@ -14,8 +14,8 @@ RSpec.describe SportsHashGenerator do
     sport = "Basketball"
     expect(sports_hash.key?(sport)).to eq(true)
 
-    york_ext = "Cooking"
-    expect(sports_hash.key?(york_ext)).to eq(false)
+    sport = "Cooking"
+    expect(sports_hash.key?(sport)).to eq(false)
   end
 
 end
