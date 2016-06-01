@@ -114,3 +114,15 @@
   padding-top: 0;
   padding-bottom:0;
 }
+
+/*
+ * Styles added for column same size
+ */
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  align-items: center;
+}
