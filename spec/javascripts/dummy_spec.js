@@ -67,6 +67,7 @@ describe("feedModule Controllers", function() {
       });
 
       it("should retrieve events after getEvents is called", function() {
+        expect(scope.universities).toEqual([]);
         $httpBackend.expectGET('/events.json').respond([{test: 'firstValue'}, {test: 'SecondValue'}]);
         scope.getEvents();
         $httpBackend.flush();
@@ -74,6 +75,7 @@ describe("feedModule Controllers", function() {
       })
 
       it("should retrieve universities after getUniversities is called", function() {
+        expect(scope.universities).toEqual([]);
         $httpBackend.expectGET('/university_mails.json').respond([{test: 'firstValue'}, {test: 'SecondValue'}]);
         scope.getUniversities();
         $httpBackend.flush();
