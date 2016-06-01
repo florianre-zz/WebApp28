@@ -29,7 +29,7 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions =
-    expectations.syntax = [:expect]
+    expectations.syntax = [:should, :expect]
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -94,7 +94,11 @@ begin
 
   ## Maintain test database with correct schema
   # ActiveRecord::Migration.maintain_test_schema!
-  
+
+  config.before(:suite) do
+    Rails.application.load_seed # loading seeds
+  end
+
 end
 
 end

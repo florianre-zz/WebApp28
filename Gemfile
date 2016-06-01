@@ -77,6 +77,9 @@ group :development, :test do
 
   ## Gem to catch emails to test email validation
   gem 'mailcatcher'
+
+  ## Gem to include matchers
+  gem 'rspec-collection_matchers'
 end
 
 group :development do
