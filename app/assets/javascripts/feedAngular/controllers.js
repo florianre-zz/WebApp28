@@ -130,8 +130,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
             url: '/events.json',
             data: $scope.event
           }).then(function(response) {
-            var duplicateEvent = jQuery.extend(true, {}, $scope.event)
-            $scope.getFeedScope().events.push(duplicateEvent);
+            $scope.getFeedScope().getEvents();
           },
           function(response) {
             // TODO: Error handling to do
