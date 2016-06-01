@@ -2,7 +2,9 @@ class EventsController < ApplicationController
   # No authentification needed to see events (can't see all elements)
   skip_before_action :authenticate_user!, :only => [:index]
 
-  GET_ALL_EVENTS_QUERY =
+  def index
+
+    get_all_events_query =
     "SELECT DISTINCT to_char(events.date, 'Day') AS day_name,
                      to_char(events.date, 'FMDD') AS day_number,
                      to_char(events.date, 'FMMon') AS month,
@@ -25,8 +27,7 @@ class EventsController < ApplicationController
                  JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                  JOIN event_participants ON events.id = event_participants.event_id;"
 
-  def index
-    @events = ActiveRecord::Base.connection.execute(GET_ALL_EVENTS_QUERY)
+    @events = ActiveRecord::Base.connection.execute(get_all_events_query)
 
     respond_to do |format|
       format.json { render json: @events }
