@@ -83,3 +83,13 @@ nav.navbar ul.navbar-nav {
     background: $background-color;
   }
 }
+
+@media (max-width: 768px) {
+
+  nav.navbar ul.navbar-nav {
+    li.navbar-elem {
+      border-width: 0;
+    }
+  }
+
+}

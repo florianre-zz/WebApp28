@@ -7,7 +7,7 @@ class EventsController < ApplicationController
             to_char(events.date, 'FMDD') AS day_number,
             to_char(events.date, 'FMMon') AS month,
             to_char(events.date, 'YYYY') AS year,
-            to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
+            to_char(events.date, 'YYYY-MM-DD') AS date,
             to_char(events.start_time, 'HH24:MI') AS start_time,
             to_char(events.end_time, 'HH24:MI') AS end_time,
             events.id,
@@ -55,7 +55,9 @@ class EventsController < ApplicationController
     # Parameters are given from current user id and created event id
     EventParticipant.create(:event_id => new_event.id,
                             :user_id => current_user_id,
-                            :participants => 1)
+                            :participants => 1,
+                            :confirmed => true,
+                            :message => "")
 
     render :nothing => true
   end

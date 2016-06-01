@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # http request redirected to create function in events_controller
   resources :events, only: [:index, :create]
 
-  # http request redirected to create function in university_mail_controller
+  # http request redirected to create function in university_mails_controller
   resources :university_mails, only: [:index]
+
+  # http request redirected to create function in event_participants_controller
+  resources :event_participants, only: [:create]
 end
