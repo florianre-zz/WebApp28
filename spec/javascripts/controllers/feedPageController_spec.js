@@ -1,6 +1,6 @@
 'use strict';
 
-describe("feedPageController", function() {
+describe("feedPageController,", function() {
 
   beforeEach(module('feedModule'));
   var scope, feedPageController;
@@ -13,7 +13,7 @@ describe("feedPageController", function() {
     }));
 
 
-    describe("correct initialisation", function() {
+    describe("correct initialisation,", function() {
       it("should initialise filter of university to be empty", function() {
         expect(scope.filterUniversity).toBe("");
       });
@@ -32,7 +32,7 @@ describe("feedPageController", function() {
     });
 
 
-    describe("correctly initialised", function() {
+    describe("correctly initialised,", function() {
       it("should retrieve events on initialisation", function() {
         spyOn(scope, 'getEvents');
         scope.init();
@@ -47,7 +47,7 @@ describe("feedPageController", function() {
     });
 
 
-    describe("correctly interact with database", function() {
+    describe("correctly interact with database,", function() {
 
       var $httpBackend;
       beforeEach(inject(function (_$httpBackend_) {
