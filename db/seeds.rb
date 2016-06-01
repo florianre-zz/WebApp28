@@ -1,5 +1,6 @@
 require 'university/mail_university_hash_generator'
 require 'university/university_country'
+require 'sports/sports_hash_generator'
 
 # This file should contain all the record creation needed to seed the database
 # with its default values.
@@ -8,6 +9,21 @@ require 'university/university_country'
 
 universities_hash = MailUniversityHashGenerator.generate_mail_university_hash(
                       UniversityCountry::ENGLAND)
-universities_hash.each do |name, population|
-  UniversityMail.create(mail_extension: name, university_name: population)
+universities_hash.each do |ext, name|
+  uni_mail = UniversityMail.find_by mail_extension: ext
+  if uni_mail == nil
+    UniversityMail.create(mail_extension: ext, university_name: name)
+  elsif uni_mail != nil && uni_mail.university_name != name
+    uni_mail.update(university_name: name)
+  end
+end
+
+sports_hash = SportsHashGenerator.generate_sports_hash()
+sports_hash.each do |name, _|
+  sport = Sport.find_by name: name
+  if sport == nil
+    Sport.create(name: name)
+  elsif
+    sport.update(name: name)
+  end
 end

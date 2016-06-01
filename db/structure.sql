@@ -29,6 +29,41 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: check_email_is_valid(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_email_is_valid() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF NOT EXISTS (SELECT *
+                                FROM university_mails
+                                WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
+                 THEN RETURN NULL;
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
+--
+-- Name: check_university_is_valid(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_university_is_valid() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF NEW.university_location NOT IN (SELECT DISTINCT university_name
+                                                    FROM university_mails)
+                 THEN RETURN NULL;
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -42,7 +77,8 @@ CREATE TABLE event_participants (
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    participants integer NOT NULL
+    participants integer NOT NULL,
+    CONSTRAINT participants_gteq_one CHECK ((participants >= 1))
 );
 
 
@@ -63,7 +99,10 @@ CREATE TABLE events (
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    university_location character varying NOT NULL
+    university_location character varying NOT NULL,
+    CONSTRAINT logical_times CHECK ((start_time < end_time)),
+    CONSTRAINT min_participants_gteq_two CHECK (((min_participants < 2) IS NOT TRUE)),
+    CONSTRAINT needed_gteq_zero CHECK ((needed >= 1))
 );
 
 
@@ -92,6 +131,15 @@ ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
+);
+
+
+--
+-- Name: sports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sports (
+    name character varying NOT NULL
 );
 
 
@@ -185,6 +233,14 @@ ALTER TABLE ONLY events
 
 
 --
+-- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sports
+    ADD CONSTRAINT sports_pkey PRIMARY KEY (name);
+
+
+--
 -- Name: university_mails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -250,6 +306,36 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: existing_email; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER existing_email AFTER INSERT OR UPDATE ON users NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_email_is_valid();
+
+
+--
+-- Name: existing_university; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER existing_university AFTER INSERT OR UPDATE ON events NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_university_is_valid();
+
+
+--
+-- Name: event_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT event_to_sport_fk FOREIGN KEY (sport) REFERENCES sports(name);
+
+
+--
+-- Name: fk_rails_0cb5590091; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_0cb5590091 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: fk_rails_565ef9d942; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -292,4 +378,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160528114049');
 INSERT INTO schema_migrations (version) VALUES ('20160528175538');
 
 INSERT INTO schema_migrations (version) VALUES ('20160530213709');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531133414');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531171817');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531223133');
 
