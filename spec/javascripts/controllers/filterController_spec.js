@@ -4,13 +4,17 @@ describe("feedModule Controllers,", function() {
 
     beforeEach(module('feedModule'));
 
-    var mainScope, filterScope;
+    var element, mainScope, filterScope;
 
-    beforeEach(inject(function ($controller, $rootScope) {
+    beforeEach(inject(function ($controller, $rootScope, $compile) {
         mainScope = $rootScope.$new();
         $controller('feedPageController', {$scope: mainScope});
         filterScope = mainScope.$new();
-        $controller('filterController', {$scope: filterScope});
+        element = $compile('<div class="date" data-provide="datepicker"></div>')(filterScope);
+        $controller('filterController', {
+            $scope: filterScope,
+            $element: element
+        });
       }));
 
       describe("correct initialisation,", function() {
@@ -48,10 +52,10 @@ describe("feedModule Controllers,", function() {
           mainScope.filterUniversity = "value";
           filterScope.universitySelected({"title":"paul"});
           expect(mainScope.filterUniversity).toBe("paul");
-          filterScope.universitySelected({"title":"test"});
-          expect(mainScope.filterUniversity).toBe("test");
-          filterScope.universitySelected({"title":"new"});
-          expect(mainScope.filterUniversity).toBe("new");
+          filterScope.universitySelected({"title":"le"});
+          expect(mainScope.filterUniversity).toBe("le");
+          filterScope.universitySelected({"title":"bouffon"});
+          expect(mainScope.filterUniversity).toBe("bouffon");
         });
 
         it("should not update the filterUniversity value if calling universitySelected with undefined parameter", function() {
@@ -60,6 +64,16 @@ describe("feedModule Controllers,", function() {
           expect(mainScope.filterUniversity).toBe("value");
         });
 
+      });
+
+      it("should set filterDate to empty on broadcast of the clearDate event", function() {
+        mainScope.filterDate = "value";
+        var event = jQuery.Event('clearDate');
+        element.trigger(event);
+        // element.triggerHandler('clearDate');
+        // mainScope.$digest();
+        // mainScope.$broadcast('clearDate');
+        expect(mainScope.filterDate).toBe("");
       });
 
 });
