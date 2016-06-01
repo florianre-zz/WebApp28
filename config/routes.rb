@@ -10,8 +10,11 @@ Rails.application.routes.draw do
       unlocks: 'users/unlocks'
     }
 
-  # You can have the root of your site routed with "root"
+  # Feed is main page
   root 'feed#index'
+
+  # Profile page
+  get 'profile', to: 'profile#index'
 
   # http request redirected to create function in events_controller
   resources :events, only: [:index, :create]

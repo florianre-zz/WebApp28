@@ -49,12 +49,15 @@ module Unisport
         "feedAngular/controllers.js",
         "feedAngular/directives.js",
         "feedAngular/filters.js",
-        "feedAngular/services.js"
+        "feedAngular/services.js",
+        "profile.css",
+        "profile.js",
       ]
 
     ## Set up the template to use for each controller
     config.to_prepare do
       FeedController.layout                      "feed"
+      ProfileController.layout                   "profile"
 
       Users::SessionsController.layout           "users/sessions"
       Users::RegistrationsController.layout      "users/registrations"

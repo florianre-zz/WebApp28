@@ -38,7 +38,7 @@
           <% end %>
         </li>
 
-        <% if controller_name == 'feed' %>
+        <% if controller_name == 'feed' || controller_name == 'profile' %>
           <%= render @dropdown_partial %>
         <% end %>
 	  	</ul>
