@@ -2,6 +2,46 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
 
+  describe '#start_time' do
+    event = Event.new(sport: 'Football',
+                      date: Date.yesterday,
+                      end_time: '20:00:00',
+                      university_location: 'Imperial College London')
+
+    it "should pass time are logical validation" do
+      event.start_time = '21:00:00'
+      event.valid? # run validations
+      expect(event).to have(1).errors_on(:end_time)
+      expect(event.errors_on(:end_time)).to include('End time should be later than the start time!')
+    end
+
+    it "should pass time are logical validation" do
+      event.start_time = '18:00:00'
+      event.valid? # run validations
+      expect(event).to have(0).errors_on(:end_time)
+    end
+  end
+
+  describe '#end_time' do
+    event = Event.new(sport: 'Football',
+                      date: Date.yesterday,
+                      start_time: '20:00:00',
+                      university_location: 'Imperial College London')
+
+    it "should fail time are logical validation" do
+      event.end_time = '19:00:00'
+      event.valid? # run validations
+      expect(event).to have(1).errors_on(:end_time)
+      expect(event.errors_on(:end_time)).to include('End time should be later than the start time!')
+    end
+
+    it "should pass time are logical validation" do
+      event.end_time = '21:00:00'
+      event.valid? # run validations
+      expect(event).to have(0).errors_on(:end_time)
+    end
+  end
+
   describe '#min_participants' do
     event = Event.new(sport: 'Football',
                       date: Date.yesterday,
