@@ -7,7 +7,7 @@ class EventsController < ApplicationController
             to_char(events.date, 'FMDD') AS day_number,
             to_char(events.date, 'FMMon') AS month,
             to_char(events.date, 'YYYY') AS year,
-            to_char(events.date, 'FMDDth FMMonth YYYY') AS date,
+            to_char(events.date, 'YYYY-MM-DD') AS date,
             to_char(events.start_time, 'HH24:MI') AS start_time,
             to_char(events.end_time, 'HH24:MI') AS end_time,
             events.id,
