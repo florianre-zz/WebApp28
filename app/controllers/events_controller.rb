@@ -55,7 +55,9 @@ class EventsController < ApplicationController
     # Parameters are given from current user id and created event id
     EventParticipant.create(:event_id => new_event.id,
                             :user_id => current_user_id,
-                            :participants => 1)
+                            :participants => 1,
+                            :confirmed => true,
+                            :message => "")
 
     render :nothing => true
   end

@@ -78,6 +78,8 @@ CREATE TABLE event_participants (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     participants integer NOT NULL,
+    confirmed boolean NOT NULL,
+    message character varying,
     CONSTRAINT participants_gteq_one CHECK ((participants >= 1))
 );
 
@@ -384,4 +386,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160531133414');
 INSERT INTO schema_migrations (version) VALUES ('20160531171817');
 
 INSERT INTO schema_migrations (version) VALUES ('20160531223133');
+
+INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 
