@@ -23,13 +23,13 @@ test_frontend:
   stage: test
 
   script:
-    - bundle exec rake teaspoon
+    - bundle exec rake teaspoon RAILS_ENV=test
 
 test_backend:
   stage: test
 
   script:
-    - bundle exec rake
+    - bundle exec rake RAILS_ENV=test
 
 deployement:
   stage: deploy
