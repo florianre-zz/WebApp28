@@ -16,6 +16,7 @@ class EventsController < ApplicationController
             events.needed,
             events.min_participants,
             events.university_location,
+            events.additional_info,
             users.first_name,
             users.last_name,
             university_mails.university_name,
@@ -46,7 +47,7 @@ class EventsController < ApplicationController
                    :location => params[:location],
                    :needed => params[:needed] + 1,
                    :min_participants => params[:needed] + 1,
-                   :additional_info => params[:additional_info],  
+                   :additional_info => params[:additional_info],
                    :user_id => current_user_id)
 
     # Create new event participant and store it in the event_participants
