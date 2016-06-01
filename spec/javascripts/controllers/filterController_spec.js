@@ -66,14 +66,6 @@ describe("feedModule Controllers,", function() {
 
       });
 
-      it("should set filterDate to empty on broadcast of the clearDate event", function() {
-        mainScope.filterDate = "value";
-        var event = jQuery.Event('clearDate');
-        element.trigger(event);
-        // element.triggerHandler('clearDate');
-        // mainScope.$digest();
-        // mainScope.$broadcast('clearDate');
-        expect(mainScope.filterDate).toBe("");
-      });
+      //TODO testing for the datepicker
 
 });
