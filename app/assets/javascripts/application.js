@@ -17,5 +17,3 @@
 //= require angular-rails-templates
 //= require bootstrap-sass-official/assets/javascripts/bootstrap/dropdown
 //= require bootstrap-sass-official/assets/javascripts/bootstrap/modal
-
-// require_tree ./templates
