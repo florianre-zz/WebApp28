@@ -13,9 +13,6 @@ Rails.application.routes.draw do
   # Feed is main page
   root 'feed#index'
 
-  # Profile page
-  get 'profile', to: 'profile#index'
-
   # http request redirected to create function in events_controller
   resources :events, only: [:index, :create]
 
@@ -24,4 +21,7 @@ Rails.application.routes.draw do
 
   # http request redirected to create function in event_participants_controller
   resources :event_participants, only: [:create]
+
+  # http requested redirected to create function in profile_controller
+  resources :profile, only: [:index, :get_created_events, :get_joined_events]
 end
