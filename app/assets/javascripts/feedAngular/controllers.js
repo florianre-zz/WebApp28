@@ -23,7 +23,12 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
     // Get all feeds elements and universities when created
     $scope.events = [];
     $scope.universities = [];
+    // Initialising filters
+    $scope.filterUniversity = "";
+    $scope.filterSport = "";
+    $scope.filterDate = "";
 
+    // TODO put in a service interaction with database
     // Get all events from database
     $scope.getEvents = function() {
       $http({
@@ -51,10 +56,6 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         alert("Failed to get all universities");
       });
     };
-
-      $scope.filterUniversity = "";
-      $scope.filterSport = "";
-      $scope.filterDate = "";
   }]);
 
 
