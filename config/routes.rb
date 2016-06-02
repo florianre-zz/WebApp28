@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   resources :event_participants, only: [:create]
 
   # http requested redirected to create function in profile_controller
-  resources :profile, only: [:index, :get_created_events, :get_joined_events]
+  resources :profile, only: [:index]
+  get 'profile/created_events', to: 'profile#get_created_events'
+  get 'profile/joined_events', to: 'profile#get_joined_events'
+
 end

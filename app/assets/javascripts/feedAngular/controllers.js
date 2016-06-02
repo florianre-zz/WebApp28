@@ -8,7 +8,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
   function($scope, $http, $filter) {
 
     $scope.getFeedScope = function() {
-         return $scope;
+      return $scope;
     };
 
     // Initialisation of the pahe
