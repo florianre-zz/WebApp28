@@ -168,7 +168,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         if($scope.filterDate == "") {
           return "";
         }
-        var convertedDate = moment($scope.filterDate, 'dddd DD MMMM').format('YYYY-MM-DD');
+        var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY-MM-DD');
         return convertedDate;
       }
   }]);
