@@ -1,0 +1,39 @@
+<div class="row" id="feed_events" ng-controller="eventListController">
+   <div class="col-md-offset-2 col-md-8">
+
+     <ul class="event-list" id="accordion">
+      <li class="event-listing panel"
+          ng-repeat="event in getFeedScope().events
+          | filter: {university_location: filterUniversity,
+                     sport: filterSport,
+                     date: convertFilterDate()}
+          | orderBy: 'date'">
+
+        <!-- Event layout -->
+        <div class="event_info" role="button" data-toggle="collapse"
+            data-parent="#accordion"
+            href="#info_extra_{{event.id}}"
+            aria-expanded="false" aria-controls="collapseExample">
+
+          <%= render "shared/event_body" %>
+        </div>
+
+        <!-- Collapse layout (hidden layout revealed on click) -->
+         <div class="collapse" id="info_extra_{{event.id}}">
+           <div class="event_info_extra">
+             <p>Additional informations</p>
+             <div class="well">
+               {{event.additional_info}}
+             </div>
+             <div class="join_button">
+               <button type="button" class="btn btn-success pull-right"
+                   ng-click="joinEvent(event.id)">Ask to join!</button>
+             </div>
+           </div>
+         </div>
+
+       </li>
+     </ul>
+
+   </div>
+ </div>

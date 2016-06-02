@@ -13,6 +13,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'pry-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -54,6 +55,10 @@ gem 'bootstrap-datepicker-rails'
 ## Gem to allow composite primary keys in models
 gem 'composite_primary_keys'
 
+## Gem for importing font awesome icons
+gem 'font-awesome-sass'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -75,6 +80,15 @@ group :development, :test do
 
   ## Gem to catch emails to test email validation
   gem 'mailcatcher'
+<<<<<<< HEAD
+=======
+
+  ## Gem to include matchers
+  gem 'rspec-collection_matchers'
+
+  ## Gem for creating factories instead of real instance
+  gem 'factory_girl_rails', "~> 4.0"
+>>>>>>> origin/profile
 end
 
 group :development do
