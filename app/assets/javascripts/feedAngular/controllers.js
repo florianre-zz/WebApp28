@@ -119,7 +119,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
           "end_time": "17:00:00",
           "university_location": "Imperial College London",
           "location": "Hyde Park Tennis Courts",
-          "needed": "1",
+          "needed": 1,
           "additional_info": "Bring a racket and 5 pounds!"
         }
 

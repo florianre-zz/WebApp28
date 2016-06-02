@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe(University::Email) do
-  # if (UniversityMail.pluck(:mail_extension)).empty?
-  #   puts "You are in trouble"
-  # end
 
   describe '.valid?' do
     context 'with a valid university email' do

@@ -4,19 +4,20 @@
     <div class="col-md-offset-2 col-md-2">
       <angucomplete-alt id="universitySelection"
                 selected-object="universitySelected"
-                title-field="university_location"
-                search-fields="university_location"
+                title-field="university_name"
+                search-fields="university_name"
                 placeholder="University"
                 minlength="1"
-                match-class="highlightLetters"
-                local-data="events"
+                local-data="universities"
                 text-searching="Finding matching Universities"
-                text-no-results="Sorry, could not find this University"
+                text-no-results="Sorry, university not found"
                 auto-match="true"
                 focus-first="true"
                 input-class="form-control form-control-small"
                 pause="0"
-                input-changed="inputUniversityUpdated">
+                input-changed="inputUniversityUpdated"
+                quantity="8"
+                match-class="highlightLetters">
       </angucomplete-alt>
     </div>
 

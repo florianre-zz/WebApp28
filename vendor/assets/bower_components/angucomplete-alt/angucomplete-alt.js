@@ -7,6 +7,9 @@
 
 /*! Copyright (c) 2014 Hidenari Nozaki and contributors | Licensed under the MIT license */
 
+/* Added limit to size list and ordering not working if not in alphabetic order because of the span
+, use function take revelant to filter the uni you want to display*/
+
 (function (root, factory) {
   'use strict';
   if (typeof module !== 'undefined' && module.exports) {
@@ -50,7 +53,7 @@
         '  <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">' +
         '    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>' +
         '    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>' +
-        '    <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{\'angucomplete-selected-row\': $index == currentIndex}">' +
+        '    <div class="angucomplete-row" ng-repeat="result in takeRevelant(results)|limitTo:quantity" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{\'angucomplete-selected-row\': $index == currentIndex}">' + // Line added
         '      <div ng-if="imageField" class="angucomplete-image-holder">' +
         '        <img ng-if="result.image && result.image != \'\'" ng-src="{{result.image}}" class="angucomplete-image"/>' +
         '        <div ng-if="!result.image && result.image != \'\'" class="angucomplete-image-default"></div>' +
@@ -79,6 +82,37 @@
       var unbindInitialValue;
       var displaySearching;
       var displayNoResults;
+
+
+      // Function added
+      function keysrt(key) {
+        return function(a,b){
+          if ( a.originalObject.university_name < b.originalObject.university_name )
+            return -1;
+          if ( a.originalObject.university_name > b.originalObject.university_name )
+            return 1;
+          return 0;
+        }
+      };
+      // Function added
+      scope.takeRevelant = function(list) {
+        if(list == undefined) {
+          return list;
+        }
+        var revelant = [];
+        // Taking only the one which start by the given letter
+        for (var i in list) {
+          if((list[i].originalObject.university_name.toUpperCase()).search((scope.searchStr).toUpperCase()) == 0) {
+            revelant.push(list[i]);
+          }
+        }
+        // sort the result
+        revelant.sort(keysrt("originalObject.university_name"));
+        // set the result to the chosen values
+        scope.results = revelant.slice();
+        return revelant;
+      };
+
 
       elem.on('mousedown', function(event) {
         if (event.target.id) {
@@ -779,6 +813,7 @@
       restrict: 'EA',
       require: '^?form',
       scope: {
+        quantity: '@', //Line added
         selectedObject: '=',
         selectedObjectData: '=',
         disableInput: '=',

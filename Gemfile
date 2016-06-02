@@ -80,6 +80,12 @@ group :development, :test do
 
   ## Gem to catch emails to test email validation
   gem 'mailcatcher'
+
+  ## Gem to include matchers
+  gem 'rspec-collection_matchers'
+
+  ## Gem for creating factories instead of real instance
+  gem 'factory_girl_rails', "~> 4.0"
 end
 
 group :development do
