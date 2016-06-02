@@ -75,3 +75,9 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
 
   }
 ]);
+
+profileControllers.controller('participantSelectionController', ['$scope', '$http',
+  function($scope, $http) {
+
+  }
+]);
