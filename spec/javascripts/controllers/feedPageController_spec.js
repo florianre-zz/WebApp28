@@ -45,7 +45,7 @@ describe("feedPageController,", function() {
         expect(scope.getUniversities).toHaveBeenCalled();
       });
     });
-
+    
 
     describe("correctly interact with database,", function() {
 
