@@ -1,4 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
+$heightEvent: 120px;
+$marginBottom: 26px;
 
 #feed_events {
   padding-top: 26px;
@@ -31,7 +33,7 @@
     box-shadow: 0px 0px 5px rgb(51, 51, 51);
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
     padding: 0px;
-    margin: 0px 0px 26px;
+    margin: 0px 0px $marginBottom;
     border-radius: 5px;
 
     .event_info {
@@ -146,14 +148,14 @@
       overflow:hidden;
 
       .event_info {
-        height: 120px;
+        height: $heightEvent;
 
         time,
     	  .img {
           width: 120px;
     	  	float: left;
     	  	display: inline-block;
-          height: 120px;
+          height: $heightEvent;
     	  	padding: 0px;
     	  	margin: 0px;
     	  }
@@ -164,7 +166,7 @@
 
         .info {
           overflow: hidden;
-          height: 120px;
+          height: $heightEvent;
         }
       }
 	  }
@@ -193,12 +195,11 @@
   overflow: hidden;
 }
 
-//TODO replace the hardcoded value by variable for height and margin bottom
 .event-listing.ng-enter.ng-enter-active,
 .event-listing.ng-leave {
   opacity: 1;
-  height: 244px;
-  margin-bottom: 20px;
+  height: $heightEvent;
+  margin-bottom: $marginBottom;
   overflow: hidden;
 }
 
