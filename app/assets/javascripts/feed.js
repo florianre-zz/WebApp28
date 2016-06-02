@@ -8,7 +8,10 @@
 //= require angular-animate
 //= require bootstrap-toggle
 //= require feedAngular/app.js
-//= require feedAngular/controllers.js
+//= require feedAngular/controllers/feedController.js
+//= require feedAngular/controllers/createEventController.js
+//= require feedAngular/controllers/eventListController.js
+//= require feedAngular/controllers/filterController.js
 //= require feedAngular/directives.js
 //= require feedAngular/filters.js
 //= require feedAngular/services.js
