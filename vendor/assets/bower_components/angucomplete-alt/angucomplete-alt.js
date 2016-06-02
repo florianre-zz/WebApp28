@@ -398,8 +398,10 @@
           event.preventDefault();
           if ((scope.currentIndex + 1) < scope.results.length && scope.showDropdown) {
             scope.$apply(function() {
-              scope.currentIndex ++;
-              updateInputField();
+              if(scope.currentIndex < scope.quantity - 1) { // Line added to avoid being able to go down to much
+                scope.currentIndex ++;
+                updateInputField();
+              }
             });
 
             if (isScrollOn) {
