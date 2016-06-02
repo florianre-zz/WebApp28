@@ -164,6 +164,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         });
       };
 
+      // Convert date to be suitable for filtering
       $scope.convertFilterDate = function () {
         if($scope.filterDate == "") {
           return "";
