@@ -12,13 +12,13 @@
 
    <!-- Sport image of event -->
    <!-- TODO: image corresponding to sport to put -->
-   <%= image_tag("football.png", class: "img")%>
+   <%= image_tag("football.png", class: "img") %>
 
    <!-- Sport Event infos -->
    <div class="info">
      <div class="title pull-right col-md-5">
        <div class="col-md-5 text-right">
-         <b>{{event.participants}}/{{event.needed}}</b>
+         <b>{{event.participants}}/{{event.needed}} <i class="fa fa-user" aria-hidden="true"></i></b>
        </div>
        <div class="progress col-md-7">
          <div class="progress-bar progress-bar-success" role="progressbar"
@@ -29,13 +29,9 @@
        </div>
      </div>
      <h3 class="title">{{event.sport}}</h3>
-     <p class="desc">{{event.start_time}} to {{event.end_time}}</p>
-     <p class="desc">Around {{event.university_location}}, {{event.location}}</p>
-     <% if user_signed_in? %>
-       <p class="text-right col-md-12">
-         Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}
-       </p>
-     <% end %>
+     <p class="desc"><i class="fa fa-clock-o" aria-hidden="true"></i> {{event.start_time}} to {{event.end_time}}</p>
+     <p class="desc"><i class="fa fa-map-marker" aria-hidden="true"></i> Around {{event.university_location}}</p>
+
    </div>
 
  </div>

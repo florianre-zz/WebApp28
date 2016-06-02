@@ -41,8 +41,7 @@ module Unisport
     ## Precompile new manifest files
     config.assets.precompile +=
       [
-        "users/registrations.css",
-        "users/sessions.css",
+        "authentification.css",
         "feed.css",
         "feed.js",
         "feedAngular/app.js",
