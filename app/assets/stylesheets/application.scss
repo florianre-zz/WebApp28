@@ -15,3 +15,8 @@
  *= require font-awesome
  *= require_self
  */
+
+ // Clear focus outline across whole app
+ :focus {
+   outline: 0 !important;
+ }
