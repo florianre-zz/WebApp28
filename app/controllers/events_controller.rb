@@ -4,30 +4,77 @@ class EventsController < ApplicationController
 
   def index
 
-    get_all_events_query =
-    "SELECT DISTINCT to_char(events.date, 'Day') AS day_name,
-                     to_char(events.date, 'FMDD') AS day_number,
-                     to_char(events.date, 'FMMon') AS month,
-                     to_char(events.date, 'YYYY') AS year,
-                     to_char(events.date, 'YYYY-MM-DD') AS date,
-                     to_char(events.start_time, 'HH24:MI') AS start_time,
-                     to_char(events.end_time, 'HH24:MI') AS end_time,
-                     events.id,
-                     events.sport,
-                     events.location,
-                     events.needed,
-                     events.min_participants,
-                     events.university_location,
-                     events.additional_info,
-                     users.first_name,
-                     users.last_name,
-                     university_mails.university_name,
-                     SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants
-     FROM events JOIN users ON events.user_id = users.id
-                 JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
-                 JOIN event_participants ON events.id = event_participants.event_id;"
+    if user_signed_in?
 
-    @events = ActiveRecord::Base.connection.execute(get_all_events_query)
+      get_all_events_signed_in_query =
+        "WITH events_table AS
+           (
+            SELECT DISTINCT  to_char(events.date, 'Day') AS day_name,
+                             to_char(events.date, 'FMDD') AS day_number,
+                             to_char(events.date, 'FMMon') AS month,
+                             to_char(events.date, 'YYYY') AS year,
+                             to_char(events.date, 'YYYY-MM-DD') AS date,
+                             to_char(events.start_time, 'HH24:MI') AS start_time,
+                             to_char(events.end_time, 'HH24:MI') AS end_time,
+                             events.id,
+                             events.user_id AS creator_id,
+                             events.sport,
+                             events.location,
+                             events.needed,
+                             events.min_participants,
+                             events.university_location,
+                             events.additional_info,
+                             users.first_name,
+                             users.last_name,
+                             university_mails.university_name,
+                             SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants,
+                             CASE WHEN EXISTS (SELECT *
+                                               FROM event_participants
+                                               WHERE event_participants.user_id = #{current_user.id})
+                                  THEN 'Already Joined' ELSE 'Ask to Join' END AS status
+              FROM events JOIN users ON events.user_id = users.id
+                          JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+                          JOIN event_participants ON events.id = event_participants.event_id
+             )
+             SELECT *
+             FROM events_table
+             WHERE events_table.creator_id <> #{current_user.id};"
+
+      @events = ActiveRecord::Base.connection.execute(get_all_events_signed_in_query)
+
+    else 
+
+      get_all_events_signed_out_query =
+        "WITH events_table AS
+         (
+          SELECT DISTINCT  to_char(events.date, 'Day') AS day_name,
+                           to_char(events.date, 'FMDD') AS day_number,
+                           to_char(events.date, 'FMMon') AS month,
+                           to_char(events.date, 'YYYY') AS year,
+                           to_char(events.date, 'YYYY-MM-DD') AS date,
+                           to_char(events.start_time, 'HH24:MI') AS start_time,
+                           to_char(events.end_time, 'HH24:MI') AS end_time,
+                           events.id,
+                           events.user_id AS creator_id,
+                           events.sport,
+                           events.location,
+                           events.needed,
+                           events.min_participants,
+                           events.university_location,
+                           events.additional_info,
+                           users.first_name,
+                           users.last_name,
+                           university_mails.university_name,
+                           SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants
+            FROM events JOIN users ON events.user_id = users.id
+                        JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+                        JOIN event_participants ON events.id = event_participants.event_id
+           )
+           SELECT *
+           FROM events_table;"
+
+      @events = ActiveRecord::Base.connection.execute(get_all_events_signed_out_query)
+    end
 
     respond_to do |format|
       format.json { render json: @events }
