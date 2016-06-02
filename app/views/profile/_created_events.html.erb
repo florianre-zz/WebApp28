@@ -1,0 +1,34 @@
+<div class="row" id="profile_created_events"
+    ng-controller="createdEventsController" ng-init="init()">
+
+   <div class="col-md-offset-2 col-md-8">
+     <h1 ng-if="hasCreatedEvents()">Created Events</h1>
+
+     <ul class="event-list">
+       <li class="event-listing"
+           ng-repeat="event in getFeedScope().createdEvents
+           | orderBy: 'date': true">
+
+        <!-- Event layout -->
+        <%= render "shared/event_body" %>
+
+        <!-- Collapse layout (hidden layout revealed on click) -->
+        <div class="collapse" id="info_extra_{{event.id}}">
+          <div class="event_info_extra">
+            <p>Additional informations</p>
+            <div class="well">
+              {{event.additional_info}}
+            </div>
+            <!-- <div class="join_button">
+              <button type="button" class="btn btn-success pull-right"
+                  ng-click="joinEvent(event.id)">Ask to join!</button>
+            </div> -->
+          </div>
+        </div>
+
+      </li>
+    </ul>
+
+  </div>
+
+</div>

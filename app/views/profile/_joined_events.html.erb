@@ -1,13 +1,9 @@
-<div class="row" id="feed_events" ng-controller="eventListController">
+<div class="row" id="profile_joined_events" ng-controller="joinedEventsController" ng-init="init()">
    <div class="col-md-offset-2 col-md-8">
-     <ul class="event-list">
+     <h1 ng-if="hasJoinedEvents()">Joined Events</h1>
 
-      <li class="event-listing"
-          ng-repeat="event in getFeedScope().events
-          | filter:{ university_location:filterUniversity,
-                     sport:filterSport,
-                     date:filterDate }
-          | orderBy: 'date': true">
+     <ul class="event-list">
+      <li class="event-listing" ng-repeat="event in getFeedScope().joinedEvents | orderBy:'date':true">
 
         <!-- Event layout -->
         <%= render "shared/event_body" %>
@@ -19,15 +15,15 @@
              <div class="well">
                {{event.additional_info}}
              </div>
-             <div class="join_button">
+             <!-- <div class="join_button">
                <button type="button" class="btn btn-success pull-right"
                    ng-click="joinEvent(event.id)">Ask to join!</button>
-             </div>
+             </div> -->
            </div>
          </div>
 
        </li>
      </ul>
 
-   </div>
- </div>
+  </div>
+</div>
