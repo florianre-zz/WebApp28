@@ -55,6 +55,9 @@ gem 'bootstrap-datepicker-rails'
 ## Gem to allow composite primary keys in models
 gem 'composite_primary_keys'
 
+## Gem for importing font awesome icons
+gem 'font-awesome-sass'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
