@@ -12,7 +12,7 @@
           <%= f.label :email, "Your Email", :class => "cols-sm-2 control-label", :for => "email" %>
           <div class="cols-md-10">
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
               <%= f.email_field :email, autofocus: true,
               :type => "text", :class => "form-control", :id => "email", :placeholder =>"Enter your Email"%>
             </div>
@@ -25,7 +25,7 @@
           <%= f.label :password, "Password", :class => "cols-sm-2 control-label", :for => "confirm" %>
           <div class="cols-md-10">
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
               <%= f.password_field :password, :autocomplete => "off",
               :type => "password", :class => "form-control", :id => "confirm", :placeholder =>"Password" %>
 
