@@ -3,7 +3,6 @@ class ProfileController < ApplicationController
   helper_method :resource_name, :resource, :devise_mapping
 
   def index
-    @profile_link = "#"
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
 
