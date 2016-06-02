@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   resources :profile, only: [:index]
   get 'profile/created_events', to: 'profile#get_created_events'
   get 'profile/joined_events', to: 'profile#get_joined_events'
+  get 'profile/event_join_demands', to: 'profile#get_event_join_demands'
 
 end

@@ -101,6 +101,29 @@ class ProfileController < ApplicationController
     end
   end
 
+  def get_event_join_demands
+    event_id = params[:id]
+    current_user_id = current_user.id
+
+    get_event_join_demands_query = 
+      "SELECT users.first_name,
+              users.last_name,
+              university_mails.university_name,
+              event_participants.participants,
+              event_participants.message
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+                  JOIN event_participants ON event_participants.user_id = users.id
+       WHERE events_participants.user_id <> #{current_user_id}
+       AND   events_participants.event_id = #{event_id}
+       AND   event_participants.confirmed = false;"
+
+    @demands = ActiveRecord::Base.connection.execute(get_event_join_demands_query)
+
+    respond_to do |format|
+      format.json { render json: @demands }
+    end    
+  end
+
   # Helper methods
   def resource_name
     :user
