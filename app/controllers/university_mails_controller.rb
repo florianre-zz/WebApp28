@@ -11,7 +11,7 @@ class UniversityMailsController < ApplicationController
       ActiveRecord::Base.connection.execute(GET_ALL_UNIVERSITIES)
 
     respond_to do |format|
-      format.json { render json: @events }
+      format.json { render json: @universities }
     end
   end
 end
