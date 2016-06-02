@@ -163,4 +163,12 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
           alert("Failed to add events");
         });
       };
+
+      $scope.convertFilterDate = function () {
+        if($scope.filterDate == "") {
+          return "";
+        }
+        var convertedDate = moment($scope.filterDate, 'dddd DD MMMM').format('YYYY-MM-DD');
+        return convertedDate;
+      }
   }]);
