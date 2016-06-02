@@ -1,26 +1,18 @@
-<div class="row" id="profile_joined_events" ng-controller="joinedEventsController" ng-init="init()">
+<div class="row" id="profile_joined_events"
+    ng-controller="joinedEventsController" ng-init="init()">
+
    <div class="col-md-offset-2 col-md-8">
      <h1 ng-if="hasJoinedEvents()">Joined Events</h1>
 
      <ul class="event-list">
-      <li class="event-listing" ng-repeat="event in getFeedScope().joinedEvents | orderBy:'date':true">
+       <li class="event-listing"
+           ng-repeat="event in getFeedScope().joinedEvents
+           | orderBy: 'date': true">
 
         <!-- Event layout -->
-        <%= render "shared/event_body" %>
-
-        <!-- Collapse layout (hidden layout revealed on click) -->
-         <div class="collapse" id="info_extra_{{event.id}}">
-           <div class="event_info_extra">
-             <p>Additional informations</p>
-             <div class="well">
-               {{event.additional_info}}
-             </div>
-             <!-- <div class="join_button">
-               <button type="button" class="btn btn-success pull-right"
-                   ng-click="joinEvent(event.id)">Ask to join!</button>
-             </div> -->
-           </div>
-         </div>
+        <div class="event_info">
+          <%= render "shared/event_body" %>
+        </div>
 
        </li>
      </ul>

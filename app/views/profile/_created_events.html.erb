@@ -10,21 +10,15 @@
            | orderBy: 'date': true">
 
         <!-- Event layout -->
-        <%= render "shared/event_body" %>
+        <div class="event_info" role="button"
+             data-toggle="modal"
+             data-target="#select_participants">
 
-        <!-- Collapse layout (hidden layout revealed on click) -->
-        <div class="collapse" id="info_extra_{{event.id}}">
-          <div class="event_info_extra">
-            <p>Additional informations</p>
-            <div class="well">
-              {{event.additional_info}}
-            </div>
-            <!-- <div class="join_button">
-              <button type="button" class="btn btn-success pull-right"
-                  ng-click="joinEvent(event.id)">Ask to join!</button>
-            </div> -->
-          </div>
+          <%= render "shared/event_body" %>
         </div>
+
+        <!-- Popup layout for participant selection to event -->
+        <%= render "event_participants_selection" %>
 
       </li>
     </ul>
