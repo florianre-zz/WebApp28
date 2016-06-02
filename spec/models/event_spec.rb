@@ -2,11 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
 
-  def check_for_failed_validation(testee, field, expected_number_of_errors)
-    expect(testee).to_not be_valid
-    expect(testee).to have(expected_number_of_errors).errors_on(field)
-  end
-
   describe '#date' do
     it 'should fail past date validation' do
       event = build(:event, date: Date.yesterday)
