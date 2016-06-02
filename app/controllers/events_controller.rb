@@ -31,7 +31,7 @@ class EventsController < ApplicationController
                              CASE WHEN EXISTS (SELECT *
                                                FROM event_participants
                                                WHERE event_participants.user_id = #{current_user.id})
-                                  THEN 'Already Joined' ELSE 'Ask to Join' END AS status
+                                  THEN 'joined' ELSE 'possible' END AS status
               FROM events JOIN users ON events.user_id = users.id
                           JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                           JOIN event_participants ON events.id = event_participants.event_id
