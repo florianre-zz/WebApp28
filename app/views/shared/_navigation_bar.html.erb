@@ -16,7 +16,7 @@
 
         <li class="navbar-elem">
           <% if user_signed_in? %>
-            <%= link_to @new_event_link, :class => "navbar-link", :'data-toggle' => "modal", :'data-target' => "#myModal" do %>
+            <%= link_to @new_event_link, :class => "navbar-link", :'data-toggle' => "modal", :'data-target' => "#createEventModal" do %>
               <span class="glyphicon glyphicon-plus-sign"></span> New Event</a>
             <% end %>
           <% else %>
