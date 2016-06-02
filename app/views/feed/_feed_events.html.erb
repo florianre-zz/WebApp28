@@ -7,10 +7,15 @@
           | filter: {university_location: filterUniversity,
                      sport: filterSport,
                      date: convertFilterDate()}
-          | orderBy: 'date': true"
+          | orderBy: 'date': true">
 
         <!-- Event layout -->
-        <%= render "shared/event_body" %>
+        <div class="event_info" role="button" data-toggle="collapse"
+            href="#info_extra_{{event.id}}"
+            aria-expanded="false" aria-controls="collapseExample">
+
+          <%= render "shared/event_body" %>
+        </div>
 
         <!-- Collapse layout (hidden layout revealed on click) -->
          <div class="collapse" id="info_extra_{{event.id}}">
