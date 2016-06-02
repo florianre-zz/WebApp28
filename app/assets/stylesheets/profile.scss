@@ -1,4 +1,22 @@
 /*
  *= require application
+ *= require events
  *= require_self
  */
+
+ /*
+  *  Main elements
+  */
+
+ body {
+   padding-top: 80px;
+ }
+
+ @media (min-width: 768px) {
+   .row-eq-height {
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -ms-flexbox;
+     display:         flex;
+   }
+ }

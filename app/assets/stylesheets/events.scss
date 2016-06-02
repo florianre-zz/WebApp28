@@ -4,6 +4,21 @@
   padding-top: 26px;
 }
 
+#profile_joined_events,
+#profile_created_events {
+  h1 {
+    margin-top: 10px;
+  }
+}
+
+#profile_created_events {
+
+}
+
+#profile_joined_events {
+
+}
+
 .event-list {
 	list-style: none;
 	font-family: 'Lato', sans-serif;
@@ -102,6 +117,12 @@
 
     p {
       margin-bottom: 5px;
+    }
+
+    // progress bar
+
+    .progress {
+      padding: 0px;
     }
   }
 
