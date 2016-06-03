@@ -36,10 +36,36 @@ feedControllers.controller('filterController', ['$scope', '$http',
         if (userInput == "") {
           $scope.getFeedScope().filterUniversity = "";
         }
+        // TODO remove hardcoding
+        // Check whether the input is the user uni to automatically toggle the button
+        if(userInput != "Imperial College London") {
+          $('#universityToggle').bootstrapToggle('on');
+        } else {
+          $('#universityToggle').bootstrapToggle('off');
+        }
+
       };
       $scope.universitySelected = function (selectedInfo) {
           if(selectedInfo != undefined) {
             $scope.getFeedScope().filterUniversity = selectedInfo.title;
           }
       };
+
+      // TODO do unit test and remove hardcoding
+      // Manage the toggle of university
+      $(function() {
+        $("#universityToggle").change(function() {
+          // If ot already in $digest or $apply
+          if(!$scope.$$phase) {
+            if($(this).prop("checked")) {
+              $scope.getFeedScope().$broadcast("angucomplete-alt:clearInput", "universitySelection");
+              $scope.getFeedScope().filterUniversity = "";
+            } else {
+              $scope.getFeedScope().$broadcast("angucomplete-alt:changeInput", "universitySelection", "Imperial College London");
+              $scope.getFeedScope().filterUniversity = "Imperial College London";
+            }
+            $scope.$apply();
+          }
+        })
+      })
 }]);
