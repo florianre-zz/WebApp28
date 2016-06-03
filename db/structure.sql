@@ -141,7 +141,8 @@ CREATE TABLE schema_migrations (
 --
 
 CREATE TABLE sports (
-    name character varying NOT NULL
+    name character varying NOT NULL,
+    image_path character varying
 );
 
 
@@ -388,4 +389,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160531171817');
 INSERT INTO schema_migrations (version) VALUES ('20160531223133');
 
 INSERT INTO schema_migrations (version) VALUES ('20160531223222');
+
+INSERT INTO schema_migrations (version) VALUES ('20160603213435');
 
