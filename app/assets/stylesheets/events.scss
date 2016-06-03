@@ -175,6 +175,10 @@ $marginBottom: 26px;
 
 /* Animation feed */
 
+.event-listing {
+  border: 0px;
+}
+
 .event-listing.ng-enter,
 .event-listing.ng-leave,
 .event-listing.ng-move {
