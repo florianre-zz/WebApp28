@@ -29,7 +29,7 @@ class ProfileController < ApplicationController
                          to_char(events.date, 'FMDD') AS day_number,
                          to_char(events.date, 'FMMon') AS month,
                          to_char(events.date, 'YYYY') AS year,
-                         to_char(events.date, 'YYYY-MM-DD') AS date,
+                         to_char(events.date, 'YYYY/MM/DD') || ' ' || to_char(events.start_time, 'HH24:MI:SS') AS date,
                          to_char(events.start_time, 'HH24:MI') AS start_time,
                          to_char(events.end_time, 'HH24:MI') AS end_time,
                          events.id,
@@ -68,7 +68,7 @@ class ProfileController < ApplicationController
                          to_char(events.date, 'FMDD') AS day_number,
                          to_char(events.date, 'FMMon') AS month,
                          to_char(events.date, 'YYYY') AS year,
-                         to_char(events.date, 'YYYY-MM-DD') AS date,
+                         to_char(events.date, 'YYYY/MM/DD') || ' ' || to_char(events.start_time, 'HH24:MI:SS') AS date,
                          to_char(events.start_time, 'HH24:MI') AS start_time,
                          to_char(events.end_time, 'HH24:MI') AS end_time,
                          events.id,
@@ -113,8 +113,7 @@ class ProfileController < ApplicationController
               event_participants.message
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                   JOIN event_participants ON event_participants.user_id = users.id
-       WHERE events_participants.user_id <> #{current_user_id}
-       AND   events_participants.event_id = #{event_id}
+       WHERE event_participants.event_id = #{event_id}
        AND   event_participants.confirmed = false;"
 
     @demands = ActiveRecord::Base.connection.execute(get_event_join_demands_query)
