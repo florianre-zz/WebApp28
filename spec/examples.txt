@@ -1,10 +1,13 @@
-example_id                                                         | status  | run_time        |
------------------------------------------------------------------- | ------- | --------------- |
-./spec/controllers/feed_controller_spec.rb[1:1]                    | passed  | 0.03302 seconds |
-./spec/helpers/events_helper_spec.rb[1:1]                          | pending | 0 seconds       |
-./spec/models/event_participant_spec.rb[1:1]                       | pending | 0 seconds       |
-./spec/models/event_spec.rb[1:1]                                   | pending | 0 seconds       |
-./spec/models/university_mail_spec.rb[1:1]                         | pending | 0 seconds       |
-./spec/university_mail/mail_university_hash_generator_spec.rb[1:1] | passed  | 0.14312 seconds |
-./spec/views/event/create.html.erb_spec.rb[1:1]                    | pending | 0 seconds       |
-./spec/views/events/create.html.erb_spec.rb[1:1]                   | pending | 0 seconds       |
+example_id                                                    | status  | run_time        |
+------------------------------------------------------------- | ------- | --------------- |
+./spec/controllers/feed_controller_spec.rb[1:1]               | passed  | 0.04004 seconds |
+./spec/helpers/events_helper_spec.rb[1:1]                     | pending | 0 seconds       |
+./spec/models/event_participant_spec.rb[1:1]                  | pending | 0 seconds       |
+./spec/models/event_spec.rb[1:1]                              | pending | 0 seconds       |
+./spec/models/sport_spec.rb[1:1]                              | pending | 0 seconds       |
+./spec/models/university_mail_spec.rb[1:1]                    | pending | 0 seconds       |
+./spec/sports/sports_hash_generator_spec.rb[1:1]              | passed  | 0.004 seconds   |
+./spec/university/email_spec.rb[1:1:1:1]                      | passed  | 0.04203 seconds |
+./spec/university/email_spec.rb[1:1:2:1]                      | passed  | 0.003 seconds   |
+./spec/university/mail_university_hash_generator_spec.rb[1:1] | passed  | 0.04079 seconds |
+./spec/views/events/create.html.erb_spec.rb[1:1]              | pending | 0 seconds       |

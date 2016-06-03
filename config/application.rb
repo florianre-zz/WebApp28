@@ -41,20 +41,22 @@ module Unisport
     ## Precompile new manifest files
     config.assets.precompile +=
       [
-        "users/registrations.css",
-        "users/sessions.css",
+        "authentification.css",
         "feed.css",
         "feed.js",
         "feedAngular/app.js",
         "feedAngular/controllers.js",
         "feedAngular/directives.js",
         "feedAngular/filters.js",
-        "feedAngular/services.js"
+        "feedAngular/services.js",
+        "profile.css",
+        "profile.js",
       ]
 
     ## Set up the template to use for each controller
     config.to_prepare do
       FeedController.layout                      "feed"
+      ProfileController.layout                   "profile"
 
       Users::SessionsController.layout           "users/sessions"
       Users::RegistrationsController.layout      "users/registrations"

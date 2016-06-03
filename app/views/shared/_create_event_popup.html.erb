@@ -1,0 +1,45 @@
+<div ng-controller="createEventController">
+  <div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="createEventModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add an Event</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Sport" aria-describedby="sizing-addon2" ng-model="event.sport"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Date" aria-describedby="sizing-addon2" ng-model="event.date"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Start Time" aria-describedby="sizing-addon2" ng-model="event.start_time"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="End Time" aria-describedby="sizing-addon2" ng-model="event.end_time"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="University Location" aria-describedby="sizing-addon2" ng-model="event.university_location"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Location" aria-describedby="sizing-addon2" ng-model="event.location"></input>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Needed" aria-describedby="sizing-addon2" ng-model="event.needed"></input>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Additional info" aria-describedby="sizing-addon2" ng-model="event.additional_info"></input>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- FIXME: dissmiss only on success -->
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createEvent()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

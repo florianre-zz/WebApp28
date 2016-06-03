@@ -5,7 +5,10 @@
     "angular": "~> 1.5",
     "angular-mocks": "latest",
     "angular-route": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "angucomplete-alt": "latest",
+    "angular-animate": "latest",
+    "bootstrap-toggle": "latest"
   },
   "resolutions": {
     "angular": "1.5"

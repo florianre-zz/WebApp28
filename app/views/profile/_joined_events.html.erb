@@ -1,0 +1,21 @@
+<div class="row" id="profile_joined_events"
+    ng-controller="joinedEventsController" ng-init="init()">
+
+   <div class="col-md-offset-2 col-md-8">
+     <h1 ng-if="hasJoinedEvents()">Joined Events</h1>
+
+     <ul class="event-list">
+       <li class="event-listing"
+           ng-repeat="event in getFeedScope().joinedEvents
+           | orderBy: 'date': true">
+
+        <!-- Event layout -->
+        <div class="event_info">
+          <%= render "shared/event_body" %>
+        </div>
+
+       </li>
+     </ul>
+
+  </div>
+</div>
