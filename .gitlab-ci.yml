@@ -40,7 +40,7 @@ on_failure:
   stage: notify_on_failure
 
   script:
-    - "curl -X POST --data-urlencode 'payload={\"text\": \"BUILD FAILED !!! go and check the mistake\"}' https://hooks.slack.com/services/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"
+    - "curl -X POST --data-urlencode 'payload={\"text\": \"BUILD FAILED !!! go and check the mistake\"}' https://hooks.slack.com/services/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"
 
   when: on_failure
 
