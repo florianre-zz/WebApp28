@@ -86,6 +86,7 @@ group :development, :test do
 
   ## Gem for creating factories instead of real instance
   gem 'factory_girl_rails', "~> 4.0"
+
 end
 
 group :development do
