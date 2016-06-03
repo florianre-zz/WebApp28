@@ -25,4 +25,13 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         alert("Failed to add events");
       });
     };
+
+    // Convert date to be suitable for filtering
+     $scope.convertFilterDate = function () {
+       if($scope.filterDate == "") {
+         return "";
+       }
+       var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY-MM-DD');
+       return convertedDate;
+     };
   }]);
