@@ -53,6 +53,8 @@ module Unisport
         "profile.js",
       ]
 
+    config.assets.paths << Rails.root.join("app", "assets", "images", "sports")
+
     ## Set up the template to use for each controller
     config.to_prepare do
       FeedController.layout                      "feed"
