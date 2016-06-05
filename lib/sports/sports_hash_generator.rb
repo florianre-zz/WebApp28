@@ -7,18 +7,9 @@ module SportsHashGenerator
 
     Dir.glob(sports_list_path) do |sport_logo|
       sport = File.basename(sport_logo, ".png").titleize
-      sports_table[sport] =
-        ActionController::Base.helpers.path_to_image("#{sport_logo}")
+      sports_table[sport.titleize] =
+        ActionController::Base.helpers.path_to_image("#{sport.downcase}.png")
     end
-
-
-    # IO.foreach(sports_list_path) do |line|
-    #   ## Removing space after sport name
-    #   sport = line.chomp
-    #   if !sports_table.has_key?(sport)
-    #     sports_table[sport] = ActionController::Base.helpers.path_to_image("#{sport.downcase}.png")
-    #   end
-    # end
 
     sports_table
   end
