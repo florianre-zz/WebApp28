@@ -34,20 +34,14 @@ feedControllers.controller('filterController', ['$scope', '$http',
       // Manage change in university value in the autocomplete filter for university
       $scope.inputUniversityUpdated = function (userInput) {
         if (userInput == "") {
-          $scope.getFeedScope().filterUniversity = "";
+          $scope.getFeedScope().filterLocation = "";
         }
         // TODO remove hardcoding
         // Check whether the input is the user uni to automatically toggle the button
-        if(userInput != "Imperial College London") {
-          $('#universityToggle').bootstrapToggle('on');
-        } else {
-          $('#universityToggle').bootstrapToggle('off');
-        }
-
       };
       $scope.universitySelected = function (selectedInfo) {
           if(selectedInfo != undefined) {
-            $scope.getFeedScope().filterUniversity = selectedInfo.title;
+            $scope.getFeedScope().filterLocation = selectedInfo.title;
           }
       };
 
@@ -58,10 +52,8 @@ feedControllers.controller('filterController', ['$scope', '$http',
           // If ot already in $digest or $apply
           if(!$scope.$$phase) {
             if($(this).prop("checked")) {
-              $scope.getFeedScope().$broadcast("angucomplete-alt:clearInput", "universitySelection");
               $scope.getFeedScope().filterUniversity = "";
             } else {
-              $scope.getFeedScope().$broadcast("angucomplete-alt:changeInput", "universitySelection", "Imperial College London");
               $scope.getFeedScope().filterUniversity = "Imperial College London";
             }
             $scope.$apply();

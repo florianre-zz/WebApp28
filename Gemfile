@@ -48,7 +48,7 @@ gem 'tzinfo-data'
 ## Gem to visualise database -- add /rails/db to root
 gem 'rails_db'
 
-## Install datepicker to choose datep
+## Install datepicker to choose date
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap-datepicker-rails'
 

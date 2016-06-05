@@ -21,47 +21,47 @@ describe("feedModule Controllers,", function() {
 
         //TODO implement this test when sport retrieval done
         // it("should initialise sport of university by requesting sports from the database", function() {
-        //   expect(scope.filterUniversity).toBe("");
+        //   expect(scope.filterLocation).toBe("");
         // });
 
       });
 
       describe("correctly managed university input,", function() {
 
-          it("should update the filterUniversity value if calling inputUniversityUpdated with empty string", function() {
-            mainScope.filterUniversity = "value";
+          it("should update the filterLocation value if calling inputUniversityUpdated with empty string", function() {
+            mainScope.filterLocation = "value";
             filterScope.inputUniversityUpdated("");
-            expect(mainScope.filterUniversity).toBe("");
+            expect(mainScope.filterLocation).toBe("");
             filterScope.inputUniversityUpdated("");
-            expect(mainScope.filterUniversity).toBe("");
+            expect(mainScope.filterLocation).toBe("");
           });
 
-        it("should not update the filterUniversity value if calling inputUniversityUpdated with non empty string", function() {
-          mainScope.filterUniversity = "value";
+        it("should not update the filterLocation value if calling inputUniversityUpdated with non empty string", function() {
+          mainScope.filterLocation = "value";
           filterScope.inputUniversityUpdated("Imperial");
-          expect(mainScope.filterUniversity).toBe("value");
+          expect(mainScope.filterLocation).toBe("value");
           filterScope.inputUniversityUpdated("UCL");
-          expect(mainScope.filterUniversity).toBe("value");
+          expect(mainScope.filterLocation).toBe("value");
           filterScope.inputUniversityUpdated("Corentin");
-          expect(mainScope.filterUniversity).toBe("value");
+          expect(mainScope.filterLocation).toBe("value");
           filterScope.inputUniversityUpdated("Test");
-          expect(mainScope.filterUniversity).toBe("value");
+          expect(mainScope.filterLocation).toBe("value");
         });
 
-        it("should update the filterUniversity value if calling universitySelected with defined parameter", function() {
-          mainScope.filterUniversity = "value";
+        it("should update the filterLocation value if calling universitySelected with defined parameter", function() {
+          mainScope.filterLocation = "value";
           filterScope.universitySelected({"title":"paul"});
-          expect(mainScope.filterUniversity).toBe("paul");
+          expect(mainScope.filterLocation).toBe("paul");
           filterScope.universitySelected({"title":"le"});
-          expect(mainScope.filterUniversity).toBe("le");
+          expect(mainScope.filterLocation).toBe("le");
           filterScope.universitySelected({"title":"bouffon"});
-          expect(mainScope.filterUniversity).toBe("bouffon");
+          expect(mainScope.filterLocation).toBe("bouffon");
         });
 
-        it("should not update the filterUniversity value if calling universitySelected with undefined parameter", function() {
-          mainScope.filterUniversity = "value";
+        it("should not update the filterLocation value if calling universitySelected with undefined parameter", function() {
+          mainScope.filterLocation = "value";
           filterScope.universitySelected(undefined);
-          expect(mainScope.filterUniversity).toBe("value");
+          expect(mainScope.filterLocation).toBe("value");
         });
 
       });

@@ -22,9 +22,10 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
     $scope.events = [];
     $scope.universities = [];
     // Initialising filters
-    $scope.filterUniversity = "";
+    $scope.filterLocation = "";
     $scope.filterSport = "";
     $scope.filterDate = "";
+    $scope.filterUniversity = "";
 
     // TODO put in a service interaction with database
     // Get all events from database

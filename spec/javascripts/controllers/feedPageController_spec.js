@@ -15,7 +15,7 @@ describe("feedPageController,", function() {
 
     describe("correct initialisation,", function() {
       it("should initialise filter of university to be empty", function() {
-        expect(scope.filterUniversity).toBe("");
+        expect(scope.filterLocation).toBe("");
       });
 
       it("should initialise filter of sport to be empty", function() {
