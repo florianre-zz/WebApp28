@@ -43,4 +43,10 @@ feedControllers.controller('createEventController', ['$scope', '$http',
             $scope.event.sport = selectedInfo.title;
           }
       };
+
+      $scope.creationLocationSelected = function (selectedInfo) {
+          if(selectedInfo != undefined) {
+            $scope.event.university_location = selectedInfo.title;
+          }
+      };
 }]);

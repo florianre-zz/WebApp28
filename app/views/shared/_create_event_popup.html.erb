@@ -37,7 +37,23 @@
               <input type="text" class="form-control" placeholder="End Time" aria-describedby="sizing-addon2" ng-model="event.end_time"></input>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="University Location" aria-describedby="sizing-addon2" ng-model="event.university_location"></input>
+              <angucomplete-alt id="universitySelection"
+                        selected-object="creationLocationSelected"
+                        title-field="university_name"
+                        search-fields="university_name"
+                        placeholder="Choose a sport"
+                        minlength="1"
+                        local-data="universities"
+                        text-searching="Finding matching Universities"
+                        text-no-results="Sorry, university not found"
+                        auto-match="true"
+                        focus-first="true"
+                        input-class="form-control form-control-small"
+                        pause="0"
+                        input-changed=""
+                        quantity="5"
+                        match-class="highlightLetters">
+              </angucomplete-alt>
             </div>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Location" aria-describedby="sizing-addon2" ng-model="event.location"></input>
