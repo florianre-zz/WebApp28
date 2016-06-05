@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # http request redirected to create function in events_controller
   resources :events, only: [:index, :create]
 
-  # http request redirected to create function in university_mails_controller
+  # http request redirected to index function in university_mails_controller
   resources :university_mails, only: [:index]
 
   # http request redirected to create function in event_participants_controller
@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   get 'profile/created_events', to: 'profile#get_created_events'
   get 'profile/joined_events', to: 'profile#get_joined_events'
   get 'profile/event_join_demands', to: 'profile#get_event_join_demands'
+
+  # http requested redirected to index function in sports_controller
+  resources :sports, only: [:index]
 
 end

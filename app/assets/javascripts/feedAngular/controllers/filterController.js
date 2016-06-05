@@ -6,14 +6,6 @@ var feedControllers = angular.module('feedControllers');
 feedControllers.controller('filterController', ['$scope', '$http',
   function($scope, $http) {
 
-    // TODO retrieve from db or put in a json file
-    $scope.sports = [{"name":"All Sport"},
-      {"name":"Dance"},
-      {"name":"Tennis"},
-      {"name":"Football"},
-      {"name":"Running"},
-      {"name":"Baseball"}];
-
       // Bind the clear button from the datepicker to the event list
       $('.date').datepicker().on('clearDate', function(e) {
         $scope.getFeedScope().$apply(function () {$scope.getFeedScope().filterDate = "";});

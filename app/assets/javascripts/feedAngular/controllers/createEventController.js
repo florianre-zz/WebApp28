@@ -37,4 +37,10 @@ feedControllers.controller('createEventController', ['$scope', '$http',
           alert("Failed to add events");
         });
       };
+
+      $scope.creationSportSelected = function (selectedInfo) {
+          if(selectedInfo != undefined) {
+            $scope.event.sport = selectedInfo.title;
+          }
+      };
 }]);

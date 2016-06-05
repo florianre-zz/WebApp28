@@ -9,7 +9,23 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Sport" aria-describedby="sizing-addon2" ng-model="event.sport"></input>
+              <angucomplete-alt id="universitySelection"
+                        selected-object="creationSportSelected"
+                        title-field="name"
+                        search-fields="name"
+                        placeholder="Choose a sport"
+                        minlength="1"
+                        local-data="sports"
+                        text-searching="Finding matching Universities"
+                        text-no-results="Sorry, university not found"
+                        auto-match="true"
+                        focus-first="true"
+                        input-class="form-control form-control-small"
+                        pause="0"
+                        input-changed=""
+                        quantity="8"
+                        match-class="highlightLetters">
+              </angucomplete-alt>
             </div>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Date" aria-describedby="sizing-addon2" ng-model="event.date"></input>

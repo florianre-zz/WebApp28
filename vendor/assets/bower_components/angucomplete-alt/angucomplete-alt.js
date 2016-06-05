@@ -102,7 +102,7 @@
         var revelant = [];
         // Taking only the one which start by the given letter
         for (var i in list) {
-          if((list[i].originalObject.university_name.toUpperCase()).search((scope.searchStr).toUpperCase()) == 0) {
+          if((list[i].originalObject[scope.titleField].toUpperCase()).search((scope.searchStr).toUpperCase()) == 0) {
             revelant.push(list[i]);
           }
         }
