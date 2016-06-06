@@ -217,3 +217,15 @@ $marginBottom: 26px;
   padding-top: 0;
   padding-bottom:0;
 }
+
+// Setting layout when invalid input for autocomplete
+form input.ng-invalid-autocomplete-required,
+form input.ng-invalid-autocomplete-required:focus {
+  border-color: red;
+}
+
+// Setting layout when valid input for autocomplete
+form input.ng-valid-autocomplete-required,
+form input.ng-valid-autocomplete-required:focus {
+  border-color: green;
+}

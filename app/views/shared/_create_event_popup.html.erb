@@ -9,7 +9,7 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <angucomplete-alt id="universitySelection"
+              <angucomplete-alt id="sportCreation"
                         selected-object="creationSportSelected"
                         title-field="name"
                         search-fields="name"
@@ -24,7 +24,9 @@
                         pause="0"
                         input-changed=""
                         quantity="8"
-                        match-class="highlightLetters">
+                        match-class="highlightLetters"
+                        field-required="true"
+                        input-name="sport">
               </angucomplete-alt>
             </div>
             <div class="form-group">
@@ -37,7 +39,7 @@
               <input type="text" class="form-control" placeholder="End Time" aria-describedby="sizing-addon2" ng-model="event.end_time"></input>
             </div>
             <div class="form-group">
-              <angucomplete-alt id="universitySelection"
+              <angucomplete-alt id="locationSelection"
                         selected-object="creationLocationSelected"
                         title-field="university_name"
                         search-fields="university_name"
@@ -52,7 +54,9 @@
                         pause="0"
                         input-changed=""
                         quantity="5"
-                        match-class="highlightLetters">
+                        match-class="highlightLetters"
+                        field-required="true"
+                        input-name="location">
               </angucomplete-alt>
             </div>
             <div class="form-group">

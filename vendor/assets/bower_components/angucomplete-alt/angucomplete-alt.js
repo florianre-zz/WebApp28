@@ -8,7 +8,12 @@
 /*! Copyright (c) 2014 Hidenari Nozaki and contributors | Licensed under the MIT license */
 
 /* Added limit to size list and ordering not working if not in alphabetic order because of the span
-, use function take revelant to filter the uni you want to display*/
+, use function take revelant to filter the uni you want to display
+Added validation update on blur */
+
+/* uncertainties and bugs :
+- Unsure about the use of mouseDownOn == null to check not clicking on dropdown
+- For some reason setValidity must be changed to activate it (put it in the class) */
 
 (function (root, factory) {
   'use strict';
@@ -49,7 +54,7 @@
     // Set the default template for this directive
     $templateCache.put(TEMPLATE_URL,
         '<div class="angucomplete-holder" ng-class="{\'angucomplete-dropdown-visible\': showDropdown}">' +
-        '  <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
+        '  <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event);updateValidityOnBlur()" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' + // Line added
         '  <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">' +
         '    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>' +
         '    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>' +
@@ -83,6 +88,27 @@
       var displaySearching;
       var displayNoResults;
 
+      /* code added to the library */
+      // Function added
+      scope.updateValidityOnBlur = function () {
+        // Unsure about the use of mouseDownOn == null to check not clicking on dropdown
+        if(scope.searchStr == undefined || !scope.fieldRequired || mousedownOn == null) {
+          return;
+        }console.log("mousedownOn");
+
+        var validity = false;
+        for (var i = 0; i < scope.localData.length; i++) {
+          if(((scope.localData[i])[scope.titleField].toUpperCase()) == ((scope.searchStr).toUpperCase())) {
+            validity = true;
+          }
+        }
+        /* For some reason setValidity must be changed to activate it (put it in the class) */
+        handleRequired(true);
+        handleRequired(false);
+        /* this part should be fixed (removed) */
+
+        handleRequired(validity);
+      }
 
       // Function added
       function keysrt(key) {
@@ -112,6 +138,8 @@
         scope.results = revelant.slice();
         return revelant;
       };
+
+      /* code added up to this point */
 
 
       elem.on('mousedown', function(event) {
