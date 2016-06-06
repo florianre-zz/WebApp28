@@ -33,8 +33,8 @@
     </div>
 
     <div class="col-md-2">
-      <div class="input-group date" data-provide="datepicker" data-date-format="DD dd MM yyyy" data-date-autoclose="true"
-          data-date-clear-btn="true" data-date-today-highlight="true" data-date-max-view-mode="0">
+      <div id="dateFilter" class="input-group date" data-provide="datepicker" data-date-format="DD dd MM yyyy" data-date-autoclose="true"
+          data-date-clear-btn="true" data-date-today-highlight="true" data-date-max-view-mode="0" data-date-start-date="today">
         <input type="text" class="form-control" ng-model="getFeedScope().filterDate" id="input-date" readonly>
         <div class="input-group-addon">
           <span class="glyphicon glyphicon-th"></span>

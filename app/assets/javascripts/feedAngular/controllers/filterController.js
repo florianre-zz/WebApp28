@@ -7,7 +7,7 @@ feedControllers.controller('filterController', ['$scope', '$http',
   function($scope, $http) {
 
       // Bind the clear button from the datepicker to the event list
-      $('.date').datepicker().on('clearDate', function(e) {
+      $('#dateFilter').datepicker().on('clearDate', function(e) {
         $scope.getFeedScope().$apply(function () {$scope.getFeedScope().filterDate = "";});
       });
 
