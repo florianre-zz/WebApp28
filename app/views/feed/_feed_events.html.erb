@@ -22,9 +22,19 @@
         <!-- Collapse layout (hidden layout revealed on click) -->
          <div class="collapse" id="info_extra_{{event.id}}">
            <div class="event_info_extra">
-             <p>Additional informations</p>
-             <div class="well">
-               {{event.additional_info}}
+             <div ng-if="hasAdditionalInfos(event.additional_info)">
+               <p>Posted by</p>
+               <div class="well">
+                 {{event.first_name}} {{event.last_name}}, {{event.university_name}}
+               </div>
+               <p>Meet at:</p>
+               <div class="well">
+                 {{event.location}}
+               </div>
+               <p>Additional informations</p>
+               <div class="well">
+                 {{event.additional_info}}
+               </div>
              </div>
              <div class="join_button">
                <button type="button" class="btn btn-success pull-right"

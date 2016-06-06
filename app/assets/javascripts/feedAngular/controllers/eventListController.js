@@ -27,11 +27,18 @@ feedControllers.controller('eventListController', ['$scope', '$http',
     };
 
     // Convert date to be suitable for filtering
-     $scope.convertFilterDate = function () {
-       if($scope.filterDate == "") {
-         return "";
-       }
-       var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY-MM-DD');
-       return convertedDate;
+    $scope.convertFilterDate = function () {
+      if($scope.filterDate == "") {
+        return "";
+      }
+
+      var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY-MM-DD');
+      return convertedDate;
      };
+
+     // Return a boolean telling if the additional info is empty
+     $scope.hasAdditionalInfos = function (additional_info) {
+       return additional_info.length != 0;
+     };
+
   }]);
