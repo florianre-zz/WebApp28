@@ -24,6 +24,7 @@ class EventsController < ApplicationController
                              events.min_participants,
                              events.university_location,
                              events.additional_info,
+                             image_path,
                              users.first_name,
                              users.last_name,
                              university_mails.university_name,
@@ -35,6 +36,7 @@ class EventsController < ApplicationController
               FROM events JOIN users ON events.user_id = users.id
                           JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                           JOIN event_participants ON events.id = event_participants.event_id
+                          JOIN sports ON sports.name = events.sport
              )
              SELECT *
              FROM events_table
@@ -42,7 +44,7 @@ class EventsController < ApplicationController
 
       @events = ActiveRecord::Base.connection.execute(get_all_events_signed_in_query)
 
-    else 
+    else
 
       get_all_events_signed_out_query =
         "WITH events_table AS
@@ -62,6 +64,7 @@ class EventsController < ApplicationController
                            events.min_participants,
                            events.university_location,
                            events.additional_info,
+                           image_path,
                            users.first_name,
                            users.last_name,
                            university_mails.university_name,
@@ -69,6 +72,7 @@ class EventsController < ApplicationController
             FROM events JOIN users ON events.user_id = users.id
                         JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                         JOIN event_participants ON events.id = event_participants.event_id
+                        JOIN sports ON sports.name = events.sport
            )
            SELECT *
            FROM events_table;"

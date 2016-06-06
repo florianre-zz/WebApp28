@@ -40,6 +40,7 @@ class ProfileController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
+                         image_path,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
@@ -47,6 +48,7 @@ class ProfileController < ApplicationController
           FROM events JOIN users ON events.user_id = users.id
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
+                      JOIN sports ON sports.name = events.sport
          )
          SELECT *
          FROM events_table
@@ -79,6 +81,7 @@ class ProfileController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
+                         image_path,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
@@ -88,6 +91,7 @@ class ProfileController < ApplicationController
           FROM events JOIN users ON events.user_id = users.id
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
+                      JOIN sports ON sports.name = events.sport
          )
          SELECT *
          FROM events_table
@@ -105,7 +109,7 @@ class ProfileController < ApplicationController
     event_id = params[:id]
     current_user_id = current_user.id
 
-    get_event_join_demands_query = 
+    get_event_join_demands_query =
       "SELECT users.first_name,
               users.last_name,
               university_mails.university_name,
@@ -121,7 +125,7 @@ class ProfileController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @demands }
-    end    
+    end
   end
 
   # Helper methods
