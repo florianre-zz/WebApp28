@@ -40,6 +40,7 @@ class ProfileController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
+                         image_path,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
@@ -47,6 +48,7 @@ class ProfileController < ApplicationController
           FROM events JOIN users ON events.user_id = users.id
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
+                      JOIN sports ON sports.name = events.sport
          )
          SELECT *
          FROM events_table
@@ -79,6 +81,7 @@ class ProfileController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
+                         image_path,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
@@ -88,6 +91,7 @@ class ProfileController < ApplicationController
           FROM events JOIN users ON events.user_id = users.id
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
+                      JOIN sports ON sports.name = events.sport
          )
          SELECT *
          FROM events_table
