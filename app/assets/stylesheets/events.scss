@@ -218,14 +218,27 @@ $marginBottom: 26px;
   padding-bottom:0;
 }
 
+// Setting layout at the beginning
+form input.ng-invalid.ng-untouched,
+form input.ng-valid.ng-untouched {
+  border-color: #ccc;
+}
+
+// on focus border color is grey
+form input:focus {
+  border-color: #ccc;
+}
+
 // Setting layout when invalid input for autocomplete
-form input.ng-invalid-autocomplete-required,
-form input.ng-invalid-autocomplete-required:focus {
+form input.ng-invalid {
   border-color: red;
 }
 
 // Setting layout when valid input for autocomplete
-form input.ng-valid-autocomplete-required,
-form input.ng-valid-autocomplete-required:focus {
+form input.ng-valid {
   border-color: green;
+}
+
+#creationDate {
+  background: white;
 }

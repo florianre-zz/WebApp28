@@ -13,14 +13,14 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
       // Initialisation of all event characteristics
       $scope.event = {
-        "sport": "Tennis",
-        "date": "06-07-2016",
+        "sport": "",
+        "date": "",
         "start_time": "16:00:00",
         "end_time": "17:00:00",
-        "university_location": "Imperial College London",
+        "university_location": "",
         "location": "Hyde Park Tennis Courts",
         "needed": 1,
-        "additional_info": "Bring a racket and 5 pounds!"
+        "additional_info": "Bring a racket"
       }
 
       // Creating a new event
@@ -49,4 +49,8 @@ feedControllers.controller('createEventController', ['$scope', '$http',
             $scope.event.university_location = selectedInfo.title;
           }
       };
+
+      $('#creationDatePicker').datepicker().on('clearDate', function(e) {console.log("test")
+        $scope.$apply(function () {$scope.event.date = "";});
+      });
 }]);
