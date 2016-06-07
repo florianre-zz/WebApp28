@@ -110,7 +110,8 @@ class ProfileController < ApplicationController
     current_user_id = current_user.id
 
     get_event_join_demands_query =
-      "SELECT users.first_name,
+      "SELECT users.id,
+              users.first_name,
               users.last_name,
               university_mails.university_name,
               event_participants.participants,
