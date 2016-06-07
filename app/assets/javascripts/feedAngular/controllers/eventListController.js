@@ -18,7 +18,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }).then(function(response) {
         // TODO: success message
-        alert("Successfully created events");
+        alert("Successfully joined events");
       },
       function(response) {
         // TODO: Error handling to do

@@ -72,6 +72,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
   function($scope, $http) {
 
     $scope.eventParticipants = [];
+    var currentEventId = "";
 
     $scope.displayEventParticipants = function(event_id) {
       $http({
@@ -81,6 +82,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
           "event_id": event_id
         }
       }).then(function(response) {
+        currentEventId = event_id;
         $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
         $('#select_participants').modal('toggle');
       },
@@ -98,18 +100,38 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
       $scope.eventParticipants = [];
     };
 
-    $scope.selectParticipants = function() {
-      // $http({
-      //   method: 'POST',
-      //   url: '/profile/joined_events.json'
-      // }).then(function(response) {
-      //   $scope.joinedEvents = response.data;
-      // },
-      // function(response) {
-      //   // TODO: Error handling to do
-      //   alert("Failed to retrieve joined events");
-      // });
+    $scope.selectParticipant = function(user_id) {
+      $http({
+        method: 'POST',
+        url: '/profile/joined_events.json'
+      }).then(function(response) {
+        console.log("selected participants done");
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to retrieve joined events");
+      });
     };
 
+    $scope.removeParticipant = function (user_id) {
+      $http({
+        method: 'DELETE',
+        url: '/event_participants/' + currentEventId,
+        params: {
+          "user_id": user_id
+        }
+      }).then(function(response) {
+        console.log("selected participants done");
+        for (var i = 0; i < $scope.eventParticipants.length; i++) {
+          if($scope.eventParticipants[i].id == user_id) {
+            $scope.eventParticipants.splice(i, 1);
+          }
+        }
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to delete joined events");
+      });
+    };
   }
 ]);

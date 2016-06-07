@@ -15,8 +15,8 @@
             <div class="col-md-12 well">
 
               <div class="pull-right">
-              <button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-              <button type="button" class="btn btn-danger btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button>
+              <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="glyphicon glyphicon-ok"></i></button>
+              <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="glyphicon glyphicon-remove"></i></button>
               </div>
 
               <h5>{{participant.first_name}}</h5>
