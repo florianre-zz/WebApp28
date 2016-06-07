@@ -73,12 +73,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
 
     $scope.eventParticipants = [{"first_name": "test"}];
 
-    $scope.$watch('eventParticipants', function (newval) {
-      console.log("changed eventparticipants");
-      console.log(newval);
-    });
-
-    $scope.getEventParticipants = function(event_id) {
+    $scope.displayEventParticipants = function(event_id) {
       $http({
         method: 'GET',
         url: '/profile/event_join_demands.json',
@@ -86,17 +81,14 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
           "event_id": event_id
         }
       }).then(function(response) {
-        $scope.eventParticipants.push(response.data);
+        $scope.eventParticipants = [];
+        $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
+        $('#select_participants').modal('toggle');
       },
       function(response) {
         // TODO: Error handling to do
         alert("Failed to retrieve event participants");
       });
-    };
-
-
-    $scope.clearEventParticipant = function() {
-
     };
 
     $scope.clearEventParticipants = function() {
