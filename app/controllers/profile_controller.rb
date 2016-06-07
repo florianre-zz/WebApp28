@@ -115,11 +115,14 @@ class ProfileController < ApplicationController
               users.last_name,
               university_mails.university_name,
               event_participants.participants,
-              event_participants.message
+              event_participants.message,
+              CASE WHEN event_participants.confirmed = true 
+                   THEN 'confirmed'
+                   ELSE 'pending'
+                   END AS status
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                   JOIN event_participants ON event_participants.user_id = users.id
-       WHERE event_participants.event_id = #{event_id}
-       AND   event_participants.confirmed = false;"
+       WHERE event_participants.event_id = #{event_id};"
 
     @demands = ActiveRecord::Base.connection.execute(get_event_join_demands_query)
 
