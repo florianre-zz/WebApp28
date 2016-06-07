@@ -6,13 +6,16 @@
 
      <ul class="event-list">
        <li class="event-listing"
-           ng-repeat="event in getFeedScope().createdEvents
-           | orderBy: 'date'">
+           ng-repeat="event in createdEvents
+           | orderBy: 'date'"
+           ng-controller="participantSelectionController">
 
         <!-- Event layout -->
-        <div class="event_info" role="button"
+        <div class="event_info"
+             role="button"
              data-toggle="modal"
-             data-target="#select_participants">
+             data-target="#select_participants"
+             ng-click="getEventParticipants(event.id)">
 
           <%= render "shared/event_body" %>
         </div>

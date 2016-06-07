@@ -106,7 +106,7 @@ class ProfileController < ApplicationController
   end
 
   def get_event_join_demands
-    event_id = params[:id]
+    event_id = params[:event_id]
     current_user_id = current_user.id
 
     get_event_join_demands_query =
