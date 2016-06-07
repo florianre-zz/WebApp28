@@ -7,10 +7,6 @@ var profileControllers = angular.module('profileControllers', []);
 profileControllers.controller('createdEventsController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.getFeedScope = function() {
-      return $scope;
-    };
-
     // Initialisation of the page
     $scope.init = function() {
       // Get events created to display on profile
@@ -43,10 +39,6 @@ profileControllers.controller('createdEventsController', ['$scope', '$http',
 profileControllers.controller('joinedEventsController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.getFeedScope = function() {
-      return $scope;
-    };
-
     // Initialisation of the page
     $scope.init = function() {
       // Get events joined to display on profile
@@ -78,6 +70,43 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
 
 profileControllers.controller('participantSelectionController', ['$scope', '$http',
   function($scope, $http) {
+
+    $scope.eventParticipants = [{"first_name": "test"}];
+
+    $scope.displayEventParticipants = function(event_id) {
+      $http({
+        method: 'GET',
+        url: '/profile/event_join_demands.json',
+        params: {
+          "event_id": event_id
+        }
+      }).then(function(response) {
+        $scope.eventParticipants = [];
+        $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
+        $('#select_participants').modal('toggle');
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to retrieve event participants");
+      });
+    };
+
+    $scope.clearEventParticipants = function() {
+      // $scope.eventParticipants = [];
+    };
+
+    $scope.selectParticipants = function() {
+      // $http({
+      //   method: 'POST',
+      //   url: '/profile/joined_events.json'
+      // }).then(function(response) {
+      //   $scope.joinedEvents = response.data;
+      // },
+      // function(response) {
+      //   // TODO: Error handling to do
+      //   alert("Failed to retrieve joined events");
+      // });
+    };
 
   }
 ]);
