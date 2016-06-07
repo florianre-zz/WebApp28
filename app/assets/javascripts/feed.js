@@ -3,6 +3,7 @@
 //= require angucomplete-alt
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.uk.js
+//= require bootstrap-datetimepicker
 //= require bootstrap-sass-official/assets/javascripts/bootstrap/collapse
 //= require bootstrap-sass-official/assets/javascripts/bootstrap/transition
 //= require angular-animate
@@ -16,3 +17,15 @@
 //= require feedAngular/filters.js
 //= require feedAngular/services.js
 //= require_self
+
+$(function () {
+  $('#datetimepickerStart').datetimepicker({
+    format: 'H:mm'
+  });
+});
+
+$(function () {
+  $('#datetimepickerEnd').datetimepicker({
+    format: 'H:mm'
+  });
+});

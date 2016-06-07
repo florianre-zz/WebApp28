@@ -15,13 +15,13 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $scope.event = {
         "sport": "",
         "date": "",
-        "start_time": "16:00:00",
-        "end_time": "17:00:00",
+        "start_time": "16:00",
+        "end_time": "17:00",
         "university_location": "",
         "location": "Hyde Park Tennis Courts",
         "needed": 1,
         "additional_info": "Bring a racket"
-      }
+      };
 
       // Creating a new event
       $scope.createEvent = function() {
