@@ -71,7 +71,7 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
 profileControllers.controller('participantSelectionController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.eventParticipants = [{"first_name": "test"}];
+    $scope.eventParticipants = [];
 
     $scope.displayEventParticipants = function(event_id) {
       $http({
@@ -81,7 +81,6 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
           "event_id": event_id
         }
       }).then(function(response) {
-        $scope.eventParticipants = [];
         $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
         $('#select_participants').modal('toggle');
       },
@@ -91,8 +90,12 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
       });
     };
 
+    $('#select_participants').on('hidden.bs.modal', function (e) {
+      $scope.clearEventParticipants();
+    });
+
     $scope.clearEventParticipants = function() {
-      // $scope.eventParticipants = [];
+      $scope.eventParticipants = [];
     };
 
     $scope.selectParticipants = function() {
