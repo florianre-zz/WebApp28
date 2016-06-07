@@ -12,7 +12,7 @@ class EventParticipantsController < ApplicationController
   end
 
 	def update
-    event_id = params[:event_id]
+    event_id = params[:id]
     user_id = params[:user_id]
 
     event_participation = EventParticipant.find_by(event_id: event_id, user_id: user_id)

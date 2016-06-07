@@ -102,8 +102,11 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
 
     $scope.selectParticipant = function(user_id) {
       $http({
-        method: 'POST',
-        url: '/profile/joined_events.json'
+        method: 'PUT',
+        url: '/event_participants/' + currentEventId,
+        params: {
+          "user_id": user_id
+        }
       }).then(function(response) {
         console.log("selected participants done");
       },
