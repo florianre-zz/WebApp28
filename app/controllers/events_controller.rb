@@ -34,14 +34,14 @@ class EventsController < ApplicationController
                                            WHERE event_participants.user_id = #{current_user.id}
                                            AND   event_participants.event_id = events.id
                                            AND   event_participants.confirmed = 'true')
-                              THEN 'joined' 
+                              THEN 'confimed' 
                               WHEN EXISTS (SELECT *
                                                 FROM event_participants
                                                 WHERE event_participants.user_id = #{current_user.id}
                                                 AND   event_participants.event_id = events.id
                                                 AND   event_participants.confirmed = 'false')
                               THEN 'pending'
-                              ELSE 'possible' END AS status,
+                              ELSE 'unseen' END AS status,
                          CASE WHEN events.user_id = #{current_user.id}
                               THEN 'true' ELSE 'false' END AS created
          FROM events JOIN users ON events.user_id = users.id

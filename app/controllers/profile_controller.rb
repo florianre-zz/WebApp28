@@ -123,7 +123,7 @@ class ProfileController < ApplicationController
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                   JOIN event_participants ON event_participants.user_id = users.id
        WHERE event_participants.event_id = #{event_id}
-       AND   event_participants.user_id = #{current_user_id};"
+       AND   event_participants.user_id <> #{current_user_id};"
 
     @demands = ActiveRecord::Base.connection.execute(get_event_join_demands_query)
 
