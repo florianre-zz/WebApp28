@@ -13,14 +13,6 @@ $marginBottom: 26px;
   }
 }
 
-#profile_created_events {
-
-}
-
-#profile_joined_events {
-
-}
-
 .event-list {
 	list-style: none;
 	font-family: 'Lato', sans-serif;
@@ -128,9 +120,16 @@ $marginBottom: 26px;
     }
   }
 
-  li:nth-child(even) time {
-    color: rgb(255, 255, 255);
-    background-color: #6495ED;
+  .event-confirmed {
+    background-color: #58B957;
+  }
+
+  .event-pending {
+    background-color: #58B957;
+  }
+
+  .event-unseen {
+    background-color: #EDB040;
   }
 }
 
