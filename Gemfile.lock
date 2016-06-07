@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: d61b7069c2ce7226e9b0ea65bafc0a21d2a9c19e
+  specs:
+    paperclip (5.0.0.beta2)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,7 +73,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
     cliver (0.3.2)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     codemirror-rails (5.11)
       railties (>= 3.0, < 5)
     coderay (1.1.1)
@@ -133,6 +148,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     momentjs-rails (2.11.1)
@@ -322,6 +338,7 @@ DEPENDENCIES
   mailcatcher
   momentjs-rails (>= 2.9.0)
   nokogiri (= 1.6.8.rc3)
+  paperclip!
   pg (= 0.18.4)
   poltergeist
   pry-rails
