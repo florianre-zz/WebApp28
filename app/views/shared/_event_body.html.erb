@@ -27,4 +27,10 @@
   <h3 class="title">{{event.sport}}</h3>
   <p class="desc"><i class="fa fa-clock-o" aria-hidden="true"></i> {{event.start_time}} to {{event.end_time}}</p>
   <p class="desc"><i class="fa fa-map-marker" aria-hidden="true"></i> Around {{event.university_location}}</p>
+  <% if user_signed_in? %>
+    <div class="pull-right col-md-2 text-center" ng-if="hasCreatedEvent(event.created)">
+      <p id="created">Created</p>
+    </div>
+  <% end -%>
+
 </div>

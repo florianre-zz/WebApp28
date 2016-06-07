@@ -41,8 +41,14 @@ feedControllers.controller('eventListController', ['$scope', '$http',
        return additional_info.length != 0;
      };
 
+     // Return true if an event has more or the needed number of participant
      $scope.isEventFull = function(e) {
        return e.needed <= e.participants;
+     };
+
+     // Return true if event was created by user
+     $scope.hasCreatedEvent = function (created) {
+       return created == 'true';
      };
 
   }]);
