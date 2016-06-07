@@ -80,7 +80,6 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         method: 'GET',
         url: '/profile.json'
       }).then(function(response) {
-        console.log(response);
       },
       function(response) {
         // TODO: Error handling to do

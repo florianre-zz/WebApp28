@@ -33,6 +33,15 @@ profileControllers.controller('createdEventsController', ['$scope', '$http',
       });
     };
 
+    $scope.eventStatus = function(event) {
+      if(event.status == "confirmed") {
+        return "event_confirmed";
+      } else if (event.status == "pending") {
+        return "event_pending";
+      } else if (event.status == "unseen") {
+        return "event_unseen";
+      }
+    };
   }
 ]);
 
@@ -64,7 +73,16 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
         alert("Failed to retrieve joined events");
       });
     };
-
+    
+    $scope.eventStatus = function(event) {
+      if(event.status == "confirmed") {
+        return "event_confirmed";
+      } else if (event.status == "pending") {
+        return "event_pending";
+      } else if (event.status == "unseen") {
+        return "event_unseen";
+      }
+    };
   }
 ]);
 

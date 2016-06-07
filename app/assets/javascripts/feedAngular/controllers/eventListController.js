@@ -51,4 +51,13 @@ feedControllers.controller('eventListController', ['$scope', '$http',
        return created == 'true';
      };
 
+     $scope.eventStatus = function(event) {
+       if(event.status == "confirmed") {
+         return "event_confirmed";
+       } else if (event.status == "pending") {
+         return "event_pending";
+       } else if (event.status == "unseen") {
+         return "event_unseen";
+       }
+     };
   }]);
