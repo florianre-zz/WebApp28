@@ -120,16 +120,16 @@ $marginBottom: 26px;
     }
   }
 
-  .event-confirmed {
+  .event_confirmed {
     background-color: #58B957;
   }
 
-  .event-pending {
-    background-color: #58B957;
-  }
-
-  .event-unseen {
+  .event_pending {
     background-color: #EDB040;
+  }
+
+  .event_unseen {
+    background-color: #F4423E;
   }
 }
 

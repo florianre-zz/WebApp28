@@ -50,7 +50,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
           }
       };
 
-      $('#creationDatePicker').datepicker().on('clearDate', function(e) {console.log("test")
+      $('#creationDatePicker').datepicker().on('clearDate', function(e) {
         $scope.$apply(function () {$scope.event.date = "";});
       });
 }]);
