@@ -82,6 +82,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
           "event_id": event_id
         }
       }).then(function(response) {
+        console.log(response.data);
         currentEventId = event_id;
         $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
         $('#select_participants').modal('toggle');
@@ -136,5 +137,9 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
         alert("Failed to delete joined events");
       });
     };
+
+    $scope.participantConfirmed = function(participant) {
+      return participant.confirmed == 'true'
+    }
   }
 ]);

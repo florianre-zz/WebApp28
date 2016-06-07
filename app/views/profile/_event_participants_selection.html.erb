@@ -12,9 +12,9 @@
 
           <div class="row"
                ng-repeat="participant in eventParticipants">
-            <div class="col-md-12 well" ng-class="{confirmedParticipant:participant.confirmed}">
+            <div class="col-md-12 well" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
 
-              <div class="pull-right" ng-hide="participant.confirmed">
+              <div class="pull-right" ng-hide="participantConfirmed(participant)">
               <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="glyphicon glyphicon-ok"></i></button>
               <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="glyphicon glyphicon-remove"></i></button>
               </div>
