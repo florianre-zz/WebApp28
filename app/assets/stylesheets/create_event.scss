@@ -1,0 +1,39 @@
+form {
+
+  #creationDate {
+    background: white;
+  }
+
+  // Setting layout at the beginning
+  input.ng-invalid.ng-untouched,
+  input.ng-valid.ng-untouched {
+    border-color: #ccc;
+  }
+
+  // on focus border color is grey
+  input:focus {
+    border-color: #ccc;
+  }
+
+  // Setting layout when invalid input for autocomplete
+  input.ng-invalid {
+    border-color: #F4423E;
+    border-width: 1px;
+  }
+
+  // Setting layout when valid input for autocomplete
+  input.ng-valid {
+    border-color: #58B957;
+    border-width: 1px;
+  }
+
+  textarea {
+    resize: none;
+    height: 100%;
+  }
+
+  .location-text-area {
+    height: 84px;
+  }
+
+}

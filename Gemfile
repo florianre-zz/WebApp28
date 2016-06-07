@@ -51,13 +51,13 @@ gem 'rails_db'
 ## Install datepicker to choose date
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 ## Gem to allow composite primary keys in models
 gem 'composite_primary_keys'
 
 ## Gem for importing font awesome icons
 gem 'font-awesome-sass'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -41,4 +41,8 @@ feedControllers.controller('eventListController', ['$scope', '$http',
        return additional_info.length != 0;
      };
 
+     $scope.isEventFull = function(e) {
+       return e.needed <= e.participants;
+     };
+
   }]);
