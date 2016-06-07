@@ -73,7 +73,10 @@ class EventsController < ApplicationController
                            users.first_name,
                            users.last_name,
                            university_mails.university_name,
-                           SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants
+                           SUM (CASE WHEN event_participants.confirmed 
+                                     THEN event_participants.participants ELSE 0 END) 
+                           OVER (PARTITION BY event_participants.event_id) AS participants,
+                           'unseen' AS status
            FROM events JOIN users ON events.user_id = users.id
                        JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                        JOIN event_participants ON events.id = event_participants.event_id
