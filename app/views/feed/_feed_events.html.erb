@@ -38,7 +38,7 @@
              </div>
              <div class="join_button">
                <button type="button" class="btn btn-success pull-right"
-                   ng-click="joinEvent(event.id)">Ask to join!</button>
+                   ng-click="joinEvent(event.id)" ng-disabled="isEventFull(event)">Ask to join!</button>
              </div>
            </div>
          </div>
