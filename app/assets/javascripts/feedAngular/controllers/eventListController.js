@@ -18,7 +18,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }).then(function(response) {
         // TODO: success message
-        alert("Successfully created events");
+        alert("Successfully joined events");
       },
       function(response) {
         // TODO: Error handling to do
@@ -39,6 +39,10 @@ feedControllers.controller('eventListController', ['$scope', '$http',
      // Return a boolean telling if the additional info is empty
      $scope.hasAdditionalInfos = function (additional_info) {
        return additional_info.length != 0;
+     };
+
+     $scope.isEventFull = function(e) {
+       return e.needed <= e.participants;
      };
 
   }]);

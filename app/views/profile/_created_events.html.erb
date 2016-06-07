@@ -1,28 +1,26 @@
 <div class="row" id="profile_created_events"
     ng-controller="createdEventsController" ng-init="init()">
 
-   <div class="col-md-offset-2 col-md-8">
+   <div class="col-md-offset-2 col-md-8" ng-controller="participantSelectionController">
      <h1 ng-if="hasCreatedEvents()">Created Events</h1>
 
      <ul class="event-list">
        <li class="event-listing"
-           ng-repeat="event in getFeedScope().createdEvents
+           ng-repeat="event in createdEvents
            | orderBy: 'date'">
 
         <!-- Event layout -->
-        <div class="event_info" role="button"
-             data-toggle="modal"
-             data-target="#select_participants">
+        <div class="event_info"
+             role="button"
+             ng-click="displayEventParticipants(event.id)">
 
           <%= render "shared/event_body" %>
         </div>
-
-        <!-- Popup layout for participant selection to event -->
-        <%= render "event_participants_selection" %>
-
       </li>
     </ul>
 
+    <!-- Popup layout for participant selection to event -->
+    <%= render "event_participants_selection" %>
   </div>
 
 </div>
