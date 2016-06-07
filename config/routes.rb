@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :university_mails, only: [:index]
 
   # http request redirected to event_participants_controller
-  resources :event_participants, only: [:create]
+  resources :event_participants, only: [:create, :update, :destroy]
 
   # http requested redirected to profile_controller
   resources :profile, only: [:index]
