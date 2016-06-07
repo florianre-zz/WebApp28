@@ -12,9 +12,9 @@ class ProfileController < ApplicationController
     #           university_mails.university_name
     #    FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
     #    WHERE users.id = #{current_user.id};"
-    
+
     # @profile_info = ActiveRecord::Base.connection.execute(get_profile_info_query)
-    
+
     # respond_to do |format|
     #   format.json { render json: @profile_info }
     # end
@@ -116,7 +116,7 @@ class ProfileController < ApplicationController
               university_mails.university_name,
               event_participants.participants,
               event_participants.message,
-              CASE WHEN event_participants.confirmed = true 
+              CASE WHEN event_participants.confirmed = true
                    THEN 'true'
                    ELSE 'false'
                    END AS confirmed
