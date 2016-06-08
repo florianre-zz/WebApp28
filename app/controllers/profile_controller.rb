@@ -141,6 +141,8 @@ class ProfileController < ApplicationController
     get_user_info_query =
       "SELECT users.first_name,
               users.last_name,
+              users.description,
+              users.image_file_name,
               university_mails.university_name
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
        WHERE users.id = #{current_user.id};"

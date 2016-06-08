@@ -92,6 +92,10 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
     $scope.eventParticipants = [];
     var currentEventId = "";
 
+    $scope.hasEventParticipants = function() {
+      return $scope.eventParticipants.length != 0;
+    }
+
     $scope.displayEventParticipants = function(event_id) {
       $http({
         method: 'GET',
@@ -181,7 +185,7 @@ profileControllers.controller('profileController', ['$scope', '$http',
     $scope.getProfileData = function () {
       $http({
         method: 'GET',
-        url: '/profile/user_info.json' // feed/user_info.json for feed
+        url: '/profile/user_info.json'
       }).then(function(response) {
         $scope.profileData = response.data[0];
       },
