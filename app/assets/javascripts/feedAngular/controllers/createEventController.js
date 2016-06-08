@@ -23,6 +23,13 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "additional_info": "Bring a racket"
       };
 
+      $scope.$watch('event', function(newValue, oldValue) {
+        console.log(newValue);
+        if(parseInt(newValue.needed) < 0) {
+          $scope.event.needed = 0;
+        }
+      }, true);
+
       // Creating a new event
       $scope.createEvent = function() {
         $http({
