@@ -5,21 +5,7 @@ class ProfileController < ApplicationController
   def index
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
-
-    # get_profile_info_query =
-    #   "SELECT users.first_name,
-    #           users.last_name,
-    #           university_mails.university_name
-    #    FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
-    #    WHERE users.id = #{current_user.id};"
-    #
-    # @profile_info = ActiveRecord::Base.connection.execute(get_profile_info_query)
-
     @profile = current_user
-
-    # respond_to do |format|
-    #   format.json { render json: @profile_info }
-    # end
   end
 
   def update
@@ -143,6 +129,22 @@ class ProfileController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @demands }
+    end
+  end
+
+  def get_user_info
+    ## TODO: Add profile pic, description message and favourite sports
+    get_user_info_query =
+      "SELECT users.first_name,
+              users.last_name,
+              university_mails.university_name
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+       WHERE users.id = #{current_user.id};"
+
+    @user_info = ActiveRecord::Base.connection.execute(get_user_info_query)
+
+    respond_to do |format|
+      format.json { render json: @user_info }
     end
   end
 
