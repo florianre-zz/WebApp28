@@ -177,6 +177,7 @@ profileControllers.controller('profileController', ['$scope', '$http',
 
     $scope.profileData = "";
 
+    // Profile data retrieval
     $scope.getProfileData = function () {
       $http({
         method: 'GET',
@@ -186,10 +187,11 @@ profileControllers.controller('profileController', ['$scope', '$http',
       },
       function(response) {
         // TODO: Error handling to do
-        alert("Failed to delete joined events");
+        alert("Failed to retrieve profile data");
       });
     };
 
     // before linking phase
+    // TODO only when connected as a user (do an if)
     $scope.getProfileData();
   }])
