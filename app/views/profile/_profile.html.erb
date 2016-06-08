@@ -1,12 +1,18 @@
-<div class="row">
-   <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10">
-
+  <div class="row" ng-controller="profileController">
+    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10">
       <div class="well panel panel-default">
         <div class="panel-body">
           <div class="row row-eq-height">
             <div class="col-xs-offset-3 col-xs-6 col-sm-offset-0 col-sm-3 text-center">
-              <%= image_tag("bogoss.jpg", class: "center-block img-circle img-thumbnail img-responsive")%>
+              <%= image_tag(current_user.image.url, class: "center-block img-circle img-thumbnail img-responsive") %>
             </div>
+            <div class="col-sm-6">
+              <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>
+                <%= file_field_tag 'image' %>
+                <%= submit_tag 'Change' %>
+              <% end -%>
+            </div>
+
             <div class="col-xs-12 col-sm-9">
               <a href="#" class="navbar-link" data-toggle="modal" data-target="#modifyProfile">
                 <i id="settings" class="fa fa-cog fa-lg pull-right" aria-hidden="true"></i>
@@ -15,7 +21,7 @@
               <p><strong>University: </strong> Imperial College London </p>
               <p><strong>Description: </strong> Hey there ! I am a student fond of sport and would love to meet new people</p>
               <p><strong>Favourites Sports: </strong>
-                <span class="label label-success tags">Rugby</span>
+                <span class="label label-success tags" ng-click="test()">Rugby</span>
                 <span class="label label-success tags">Gym</span>
                 <span class="label label-success tags">Running</span>
               </p>
@@ -37,8 +43,11 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <h4>Sport Information</h4>
+
+                  <h4>FLO met ton code ici (dans la div)</h4>
+                  
                 </div>
+
               </div>
 
             </div>
@@ -54,4 +63,3 @@
     </div>
 
   </div>
-</div>

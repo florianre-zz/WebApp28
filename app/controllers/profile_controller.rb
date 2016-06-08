@@ -12,12 +12,23 @@ class ProfileController < ApplicationController
     #           university_mails.university_name
     #    FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
     #    WHERE users.id = #{current_user.id};"
-
+    #
     # @profile_info = ActiveRecord::Base.connection.execute(get_profile_info_query)
+
+    @profile = current_user
 
     # respond_to do |format|
     #   format.json { render json: @profile_info }
     # end
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    image = params[:image]
+    if !image.nil?
+      @user.update(image: image)
+    end
+    redirect_to '/profile'
   end
 
   def get_created_events
@@ -44,8 +55,8 @@ class ProfileController < ApplicationController
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
-                         SUM (CASE WHEN event_participants.confirmed 
-                                   THEN event_participants.participants ELSE 0 END) 
+                         SUM (CASE WHEN event_participants.confirmed
+                                   THEN event_participants.participants ELSE 0 END)
                               OVER (PARTITION BY event_participants.event_id) AS participants,
                          'confirmed' AS status
           FROM events JOIN users ON events.user_id = users.id
@@ -147,4 +158,5 @@ class ProfileController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
 end
