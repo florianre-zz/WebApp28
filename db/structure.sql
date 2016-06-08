@@ -186,7 +186,9 @@ CREATE TABLE users (
     image_file_name character varying,
     image_content_type character varying,
     image_file_size integer,
-    image_updated_at timestamp without time zone
+    image_updated_at timestamp without time zone,
+    telephone_number character varying,
+    description character varying
 );
 
 
@@ -397,4 +399,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 INSERT INTO schema_migrations (version) VALUES ('20160603213435');
 
 INSERT INTO schema_migrations (version) VALUES ('20160606113611');
+
+INSERT INTO schema_migrations (version) VALUES ('20160608132307');
 
