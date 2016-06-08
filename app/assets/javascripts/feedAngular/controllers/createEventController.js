@@ -32,6 +32,20 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
       // Creating a new event
       $scope.createEvent = function() {
+        var level = $scope.event.level;
+
+        if(level == "All levels") {
+          level = 0;
+        } else if (level == "Beginner") {
+          level = 1;
+        } else if (level == "Intermediate") {
+          level = 2;
+        } else if (level == "Advance") {
+          level = 3;
+        }
+
+        $scope.event.level = level;
+
         $http({
           method: 'POST',
           url: '/events.json',
