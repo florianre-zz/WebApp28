@@ -17,8 +17,8 @@
               <a href="#" class="navbar-link" data-toggle="modal" data-target="#modifyProfile">
                 <i id="settings" class="fa fa-cog fa-lg pull-right" aria-hidden="true"></i>
               </a>
-              <h2>Paul Vidal</h2>
-              <p><strong>University: </strong> Imperial College London </p>
+              <h2>{{profileData.first_name}} {{profileData.last_name}}</h2>
+              <p><strong>University: </strong> {{profileData.university_name}} </p>
               <p><strong>Description: </strong> Hey there ! I am a student fond of sport and would love to meet new people</p>
               <p><strong>Favourites Sports: </strong>
                 <span class="label label-success tags" ng-click="test()">Rugby</span>
@@ -45,7 +45,7 @@
                 <div class="col-md-12">
 
                   <h4>FLO met ton code ici (dans la div)</h4>
-                  
+
                 </div>
 
               </div>

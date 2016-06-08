@@ -175,12 +175,14 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
 profileControllers.controller('profileController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.test = function () {
+    $scope.profileData = "";
+
+    $scope.getProfileData = function () {
       $http({
         method: 'GET',
-        url: '/profile/user_info.json'//feed/user_info.json
+        url: '/profile/user_info.json' // feed/user_info.json for feed
       }).then(function(response) {
-        console.log(response.data);
+        $scope.profileData = response.data[0];
       },
       function(response) {
         // TODO: Error handling to do
@@ -188,4 +190,6 @@ profileControllers.controller('profileController', ['$scope', '$http',
       });
     };
 
+    // before linking phase
+    $scope.getProfileData();
   }])
