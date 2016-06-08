@@ -1,6 +1,6 @@
 class FeedController < ApplicationController
   # No authentification needed to go on feed
-  skip_before_action :authenticate_user!, :only => [:index]
+  skip_before_action :authenticate_user!, :only => [:index, :get_user_info]
 
   helper_method :resource_name, :resource, :devise_mapping
 
@@ -20,23 +20,34 @@ class FeedController < ApplicationController
     ## TODO: Add profile pic, description message and favourite sports
 
     if user_signed_in?
-      get_profile_info_query =
-        "SELECT users.first_name,
-                users.last_name,
-                university_mails.university_name
-         FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
-         WHERE users.id = #{current_user.id};"
+      get_user_info_query =
+      "SELECT users.first_name,
+              users.last_name,
+              users.description,
+              users.image_file_name,
+              university_mails.university_name
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+       WHERE users.id = #{current_user.id};"
 
-      @profile_info = ActiveRecord::Base.connection.execute(get_profile_info_query)
+      @user_info = ActiveRecord::Base.connection.execute(get_user_info_query)
 
       respond_to do |format|
         format.json { render json: @profile_info }
       end
 
     else 
-      render :nothing => true
+      get_user_info_query =
+      "SELECT '' AS university_name
+       FROM users;"
+
+       @user_info = ActiveRecord::Base.connection.execute(get_user_info_query)
+
+      respond_to do |format|
+        format.json { render json: @profile_info }
+      end
+
     end
-    
+
   end
 
   # Helper methods
