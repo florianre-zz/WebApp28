@@ -26,6 +26,7 @@
         {{selectedSport}} </span>
       </button>
       <ul class="dropdown-menu col-md-2">
+        <div class="dropdown-item" ng-click="updateSport('All Sports')">All Sports</div>
         <li ng-repeat="sport in sports">
           <div class="dropdown-item" ng-click="$parent.updateSport(sport.name)">{{sport.name}}</div>
         </li>

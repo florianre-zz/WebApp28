@@ -66,7 +66,7 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         method: 'GET',
         url: '/sports.json'
       }).then(function(response) {
-        $scope.sports = ([{name:"All Sports"}].concat(response.data));
+        $scope.sports = response.data;
       },
       function(response) {
         // TODO: Error handling to do
