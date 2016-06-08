@@ -22,7 +22,10 @@ class EventsController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
-                         events.level,
+                         (CASE WHEN events.level=1 THEN 'Beginner'
+                              WHEN events.level=2 THEN 'Intermediate'
+                              WHEN events.level=3 THEN 'Advanced'
+                              ELSE 'All levels' END) AS level,
                          sports.image_path,
                          users.first_name,
                          users.last_name,
@@ -70,7 +73,10 @@ class EventsController < ApplicationController
                            events.min_participants,
                            events.university_location,
                            events.additional_info,
-                           events.level,
+                           (CASE WHEN events.level=1 THEN 'Beginner'
+                                WHEN events.level=2 THEN 'Intermediate'
+                                WHEN events.level=3 THEN 'Advanced'
+                                ELSE 'All levels' END) AS level,
                            sports.image_path,
                            users.first_name,
                            users.last_name,
