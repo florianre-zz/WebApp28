@@ -120,6 +120,9 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
       if(createdEvent == undefined) {
         return -1;
       }
+      if (parseInt(createdEvent.needed) - parseInt(createdEvent.participants) == 0) {
+        return "no";
+      }
       return createdEvent.needed - createdEvent.participants;
     }
 
