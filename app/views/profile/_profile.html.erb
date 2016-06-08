@@ -5,7 +5,7 @@
         <div class="panel-body">
           <div class="row row-eq-height">
             <div class="col-xs-offset-3 col-xs-6 col-sm-offset-0 col-sm-3 text-center">
-              <%= image_tag(current_user.image.url(:medium), class: "center-block img-circle img-thumbnail img-responsive") %>
+              <%= image_tag(current_user.image.url, class: "center-block img-circle img-thumbnail img-responsive") %>
             </div>
             <div class="col-sm-6">
               <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>

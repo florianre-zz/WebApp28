@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   ## If user is destroyed, his events are also destroyed
   has_many :events, dependent: :destroy
 
-  has_attached_file :image, :styles => { :medium => "400x400" },
+  has_attached_file :image,
                     :default_url => "profiles/default/:style/missing.png",
                     :url => "profiles/:id/:style/:basename.:extension",
                     :path => ":rails_root/app/assets/images/profiles/:id/:style/:basename.:extension"
