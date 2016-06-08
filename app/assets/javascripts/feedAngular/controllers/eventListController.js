@@ -10,10 +10,8 @@ feedControllers.controller('eventListController', ['$scope', '$http',
     function eventJoinedupdateView(event_id) {
       for (var i = 0; i < $scope.events.length; i++) {
         if($scope.events[i].id == event_id) {
-          console.log("found correct event");
           $scope.events[i].status = "pending";
           if(parseInt($scope.events[i].needed) > parseInt($scope.events[i].participants)) {
-            console.log("ok ca marche");
             $scope.events[i].participants = String(parseInt($scope.events[i].participants) + 1);
           }
         }

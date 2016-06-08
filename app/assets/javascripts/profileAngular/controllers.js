@@ -178,7 +178,7 @@ profileControllers.controller('profileController', ['$scope', '$http',
     $scope.test = function () {
       $http({
         method: 'GET',
-        url: '/profile.json'
+        url: '/profile/user_info.json'//feed/user_info.json
       }).then(function(response) {
         console.log(response.data);
       },

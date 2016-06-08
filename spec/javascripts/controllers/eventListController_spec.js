@@ -2,19 +2,25 @@
 describe("Testing Jasmine", function() {
 
   beforeEach(module('feedModule'));
-  var scope, eventListController;
+  var mainScope, eventListScope, eventListController;
 
   beforeEach(inject(function ($controller, $rootScope) {
-        scope = $rootScope.$new();
+        mainScope = $rootScope.$new();
+        $controller('feedPageController', {$scope: mainScope});
+        eventListScope = mainScope.$new();
         eventListController = $controller('eventListController', {
-            $scope: scope
+            $scope: eventListScope
         });
+        eventListScope.init();
     }));
 
   describe("correctly interact with database,", function() {
       var $httpBackend;
       beforeEach(inject(function (_$httpBackend_) {
         $httpBackend = _$httpBackend_;
+        $httpBackend.expectGET('/events.json').respond([{test: 'fakeData'}]);
+        $httpBackend.expectGET('/university_mails.json').respond();
+        $httpBackend.expectGET('/sports.json').respond();
       }));
 
       afterEach (function () {
@@ -24,7 +30,7 @@ describe("Testing Jasmine", function() {
 
       it("should post to database when joinEvent is called", function() {
         $httpBackend.expectPOST('/event_participants.json').respond();
-        scope.joinEvent();
+        eventListScope.joinEvent();
         $httpBackend.flush();
       });
 
