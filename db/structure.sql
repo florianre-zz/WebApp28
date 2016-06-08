@@ -40,7 +40,34 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid email';
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
+--
+-- Name: check_participants_is_valid(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_participants_is_valid() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF EXISTS
+                    (WITH helper AS
+                      (SELECT SUM (CASE WHEN event_participants.confirmed
+                                        THEN event_participants.participants ELSE 0 END)
+                              OVER (PARTITION BY event_participants.event_id) AS confirmed_participants,
+                              events.needed AS needed,
+                              events.id AS event_id
+                       FROM events JOIN event_participants ON events.id = event_participants.event_id)
+                     SELECT *
+                     FROM helper
+                     WHERE helper.confirmed_participants > helper.needed
+                     AND   helper.event_id = NEW.event_id)
+                 THEN RAISE EXCEPTION 'Too many participants';
                  END IF;
                  RETURN NEW;
                END;
@@ -57,7 +84,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid university';
                  END IF;
                  RETURN NEW;
                END;
@@ -330,6 +357,13 @@ CREATE CONSTRAINT TRIGGER existing_university AFTER INSERT OR UPDATE ON events N
 
 
 --
+-- Name: valid_participants; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER valid_participants AFTER INSERT OR UPDATE ON event_participants NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_participants_is_valid();
+
+
+--
 -- Name: event_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -400,6 +434,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 INSERT INTO schema_migrations (version) VALUES ('20160603213435');
 
 INSERT INTO schema_migrations (version) VALUES ('20160606113611');
+
+INSERT INTO schema_migrations (version) VALUES ('20160608104417');
 
 INSERT INTO schema_migrations (version) VALUES ('20160608132307');
 

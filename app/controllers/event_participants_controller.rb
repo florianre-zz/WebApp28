@@ -18,6 +18,8 @@ class EventParticipantsController < ApplicationController
     event_participation = EventParticipant.find_by(event_id: event_id, user_id: user_id)
     event_participation.update(confirmed: true)
 
+    puts 
+
     render :nothing => true
   end
 
