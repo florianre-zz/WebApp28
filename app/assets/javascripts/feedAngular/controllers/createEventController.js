@@ -20,7 +20,8 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "university_location": "",
         "location": "Hyde Park Tennis Courts",
         "needed": 1,
-        "additional_info": "Bring a racket"
+        "additional_info": "Bring a racket",
+        "level": "0"
       };
 
       $scope.$watch('event', function(newValue, oldValue) {
