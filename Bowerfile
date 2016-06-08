@@ -21,10 +21,6 @@ asset 'angular-route'
 
 asset 'angular-resource'
 
-# Add angucomplete alt
-
-asset 'angucomplete-alt'
-
 # Add angular animate
 
 asset 'angular-animate'
