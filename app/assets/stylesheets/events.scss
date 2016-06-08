@@ -4,6 +4,14 @@ $marginBottom: 26px;
 
 #feed_events {
   padding-top: 26px;
+
+  textarea {
+    resize: none;
+  }
+
+  h4 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 }
 
 #profile_joined_events,
@@ -114,7 +122,6 @@ $marginBottom: 26px;
     }
 
     // progress bar
-
     .progress {
       padding: 0px;
     }
@@ -124,6 +131,15 @@ $marginBottom: 26px;
       border-width: 1px;
       border-style: solid;;
       border-radius: 16px;
+    }
+
+    .fa {
+      padding-right: 2px;
+    }
+
+    .fa-map-marker {
+      padding-left: 2px;
+      padding-right: 5px;
     }
   }
 

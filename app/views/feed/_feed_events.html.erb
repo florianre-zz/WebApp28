@@ -22,26 +22,100 @@
         <!-- Collapse layout (hidden layout revealed on click) -->
          <div class="collapse" id="info_extra_{{event.id}}">
            <div class="event_info_extra">
-             <div ng-if="hasAdditionalInfos(event.additional_info)">
-               <p>Posted by</p>
+             <div>
+               <p>Additional information</p>
                <div class="well">
-                 {{event.first_name}} {{event.last_name}}, {{event.university_name}}
-               </div>
-               <p>Meet at:</p>
-               <div class="well">
-                 {{event.location}}
-               </div>
-               <p>Additional informations</p>
-               <div class="well">
-                 {{event.additional_info}}
+                 <p ng-if="hasAdditionalInfos(event.additional_info)">
+                   <i class="fa fa-info-circle" aria-hidden="true"></i> {{event.additional_info}}</p>
+                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> Meet at {{event.location}}</p>
+                 <p class="text-right"><i class="fa fa-user" aria-hidden="true"></i> Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
                </div>
              </div>
+
              <div class="join_button">
                <button type="button" class="btn btn-success pull-right"
-                   ng-click="joinEvent(event.id)" ng-disabled="isNotEventAccessible(event)">Ask to join!</button>
+                 data-toggle="modal"
+                 data-target="#join_event">Ask to join!
+                 <!-- ng-disabled="isNotEventAccessible(event)" -->
+               </button>
              </div>
+
            </div>
          </div>
+
+         <!-- Join event modal (pop up) -->
+          <div class="modal fade" id="join_event" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Join Event Information</h4>
+                </div>
+
+                <div class="modal-body">
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Number of people coming</h4>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <input type="number"
+                        class="form-control"
+                        placeholder="Number of people coming">
+                      </input>
+                    </div>
+
+                  </div>
+
+                  <!-- Ask for phone number only if phone number not already given -->
+                  <% if @has_phone_number %>
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <h4>Phone Number</h4>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <input type="tel"
+                        class="form-control"
+                        placeholder="07904562185">
+                      </input>
+                    </div>
+
+                  </div>
+
+                  <% end %>
+
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <h4>Message</h4>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <textarea type="text"
+                          rows="6"
+                          class="form-control"
+                          placeholder="Give any information you want to the event creator"></textarea>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success" data-dismiss="modal"
+                    ng-click="joinEvent(event.id)">Send</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
        </li>
      </ul>
