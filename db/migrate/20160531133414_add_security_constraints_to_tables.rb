@@ -53,11 +53,11 @@ class AddSecurityConstraintsToTables < ActiveRecord::Migration
     remove_foreign_key :events, :users
   	execute "ALTER TABLE events REMOVE CONSTRAINT needed_gteq_zero;"
   	execute "ALTER TABLE events REMOVE CONSTRAINT logical_times;"
-    execute "ALTER TABLE events REMOVE CONSTRAINT min_participants_gteq_two"
-    execute "DROP FUNCTION check_university_is_valid"
-    execute "DROP TRIGGER existing_university"
+    execute "ALTER TABLE events REMOVE CONSTRAINT min_participants_gteq_two;"
+    execute "DROP TRIGGER existing_university ON events;"
+    execute "DROP FUNCTION check_university_is_valid();"
     execute "ALTER TABLE event_participants REMOVE CONSTRAINT participants_gteq_one;"
-    execute "DROP FUNCTION check_email_is_valid"
-    execute "DROP TRIGGER existing_email"
+    execute "DROP TRIGGER existing_email ON users;"
+    execute "DROP FUNCTION check_email_is_valid();"
   end
 end
