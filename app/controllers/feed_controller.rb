@@ -16,6 +16,29 @@ class FeedController < ApplicationController
 
   end
 
+  def get_user_info
+    ## TODO: Add profile pic, description message and favourite sports
+
+    if user_signed_in?
+      get_profile_info_query =
+        "SELECT users.first_name,
+                users.last_name,
+                university_mails.university_name
+         FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+         WHERE users.id = #{current_user.id};"
+
+      @profile_info = ActiveRecord::Base.connection.execute(get_profile_info_query)
+
+      respond_to do |format|
+        format.json { render json: @profile_info }
+      end
+
+    else 
+      render :nothing => true
+    end
+    
+  end
+
   # Helper methods
   def resource_name
     :user
