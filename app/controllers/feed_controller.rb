@@ -9,9 +9,11 @@ class FeedController < ApplicationController
     if user_signed_in?
       @new_event_link = "#"
       @dropdown_partial = "shared/logged_in_dropdown"
+      @has_phone_number = User.find_by(id: current_user.id).telephone_number.nil?
     else
       @new_event_link = "users/sign_in"
       @dropdown_partial = "shared/login_dropdown"
+      @has_phone_number = false
     end
 
   end
@@ -35,7 +37,7 @@ class FeedController < ApplicationController
         format.json { render json: @profile_info }
       end
 
-    else 
+    else
       get_user_info_query =
       "SELECT '' AS university_name
        FROM users;"
