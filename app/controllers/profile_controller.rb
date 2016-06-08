@@ -10,14 +10,32 @@ class ProfileController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
+
+    first_name = params[:first_name]
+    if !first_name.blank?
+      @user.update(first_name: first_name)
+    end
+
+    last_name = params[:last_name]
+    if !last_name.blank?
+      @user.update(last_name: last_name)
+    end
+
     image = params[:image]
     if !image.nil?
       @user.update(image: image)
     end
+
     telephone_number = params[:telephone_number]
-    if !telephone_number.nil?
+    if !telephone_number.blank?
       @user.update(telephone_number: telephone_number)
     end
+
+    description = params[:description]
+    if !description.blank?
+      @user.update(description: description)
+    end
+
     redirect_to '/profile'
   end
 
