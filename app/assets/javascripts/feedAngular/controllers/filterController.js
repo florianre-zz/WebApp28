@@ -16,7 +16,7 @@ feedControllers.controller('filterController', ['$scope', '$http',
       $scope.selectedSport = "All Sports";
       $scope.updateSport = function(name) {
         $scope.selectedSport = name;
-        if(name == "All Sport")  {
+        if(name == "All Sports")  {
           $scope.getFeedScope().filterSport = "";
         } else {
           $scope.getFeedScope().filterSport = name;

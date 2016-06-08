@@ -71,16 +71,4 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         // Close manually the dateTimePicker because it is not automatic (bug)
         $('#creationDatePicker').datepicker('hide');
       });
-
-      // Retun sport that can be selected (not All sport)
-      // TODO don't put all sport in sports
-      $scope.retrieveSelectableSports = function() {
-        var allSports = $scope.getFeedScope().sports;
-        for (var i = 0; i < allSports.length; i++) {
-          if(allSports[i].name == "All Sports") {
-            allSports.splice(i, 1);
-          }
-        }
-        return allSports;
-      }
 }]);
