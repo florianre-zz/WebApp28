@@ -168,6 +168,7 @@ class ProfileController < ApplicationController
       "SELECT users.first_name,
               users.last_name,
               users.description,
+              users.telephone_number,
               university_mails.university_name
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
        WHERE users.id = #{current_user.id};"

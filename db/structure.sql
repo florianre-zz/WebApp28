@@ -91,6 +91,32 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
              $$;
 
 
+--
+-- Name: check_user_has_phone_number(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_user_has_phone_number() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF NOT EXISTS
+                    (WITH helper AS
+                       (SELECT users.telephone_number,
+                               event_participants.user_id,
+                               event_participants.event_id
+                        FROM users JOIN event_participants ON users.id = event_participants.user_id)
+                     SELECT *
+                     FROM helper
+                     WHERE helper.user_id = NEW.user_id
+                     AND   helper.event_id = NEW.event_id
+                     AND   helper.telephone_number IS NOT NULL)
+                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -357,6 +383,13 @@ CREATE CONSTRAINT TRIGGER existing_university AFTER INSERT OR UPDATE ON events N
 
 
 --
+-- Name: phone_number_given; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER phone_number_given AFTER INSERT OR UPDATE ON event_participants NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_user_has_phone_number();
+
+
+--
 -- Name: valid_participants; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -440,4 +473,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608104417');
 INSERT INTO schema_migrations (version) VALUES ('20160608132307');
 
 INSERT INTO schema_migrations (version) VALUES ('20160608174612');
+
+INSERT INTO schema_migrations (version) VALUES ('20160608214727');
 
