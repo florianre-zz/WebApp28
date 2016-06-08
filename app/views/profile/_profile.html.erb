@@ -13,12 +13,15 @@
               </a>
               <h2>{{profileData.first_name}} {{profileData.last_name}}</h2>
               <p><strong>University: </strong> {{profileData.university_name}} </p>
-              <p><strong>Description: </strong> Hey there ! I am a student fond of sport and would love to meet new people</p>
+              <p><strong>Description: </strong> {{profileData.description}}</p>
+              <!-- <p><strong>Favourites Sports: </strong>
+              <p><strong>University: </strong>{{profileData.university_name}}</p>
+              <p><strong>Description: </strong>{{profileData.description}}</p>
               <p><strong>Favourites Sports: </strong>
                 <span class="label label-success tags" ng-click="test()">Rugby</span>
                 <span class="label label-success tags">Gym</span>
                 <span class="label label-success tags">Running</span>
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -39,13 +42,15 @@
                 <div class="row">
                   <div class="col-md-12">
 
-                    <h4>
-                      <div class="col-sm-6">
-                        <%= file_field_tag 'image' %>
-                        <%= text_field_tag 'telephone_number'%>
-                        <%= text_field_tag 'description'%>
-                      </div>
-                    </h4>
+                  <h4>
+                    <div class="col-sm-6">
+                      <%= text_field_tag 'first_name', nil, placeholder:'First Name'%>
+                      <%= text_field_tag 'last_name', nil, placeholder: 'Last Name'%>
+                      <%= file_field_tag 'image' %>
+                      <%= text_field_tag 'telephone_number', nil, placeholder: 'Telephone Number'%>
+                      <%= text_field_tag 'description', nil, placeholder: 'Description'%>
+                    </div>
+                  </h4>
 
                   </div>
                 </div>
@@ -58,7 +63,6 @@
               </div>
 
             <% end %>
-
           </div>
 
         </div>

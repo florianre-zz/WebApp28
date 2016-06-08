@@ -3,7 +3,7 @@
 
    <div class="col-md-offset-2 col-md-8">
      <h1>Joined Events</h1>
-     <div ng-if="!hasJoinedEvents()">No joined events yet</div>
+     <div ng-if="!hasJoinedEvents()" ng-cloak>No joined events yet</div>
 
      <ul class="event-list">
        <li class="event-listing"

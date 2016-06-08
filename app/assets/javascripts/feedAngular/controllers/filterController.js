@@ -72,4 +72,9 @@ feedControllers.controller('filterController', ['$scope', '$http',
 
       // before linking phase
       $scope.getProfileData();
+
+      // Decide if toggle should be shown
+      $scope.showToggle = function() {
+        return $scope.profileData.university_name != "";
+      };
 }]);

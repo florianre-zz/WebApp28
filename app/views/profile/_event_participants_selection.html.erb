@@ -4,11 +4,11 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">List of people joining your event ({{event.needed - event.participants + 1}} space(s) remaining)</h4>
+        <h4 class="modal-title" id="myModalLabel">List of people joining your event ({{getSpaceLeft()}} space{{getPlurial()}} remaining)</h4>
       </div>
 
       <div class="modal-body">
-        <div ng-if="!hasEventParticipants()">Sorry, no-one joined your event yet</div>
+        <div ng-if="!hasEventParticipants()" ng-cloak>Sorry, no-one joined your event yet</div>
         <div class="container-fluid">
 
           <div class="row"

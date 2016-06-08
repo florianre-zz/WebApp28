@@ -20,7 +20,8 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "university_location": "",
         "location": "Hyde Park Tennis Courts",
         "needed": 1,
-        "additional_info": "Bring a racket"
+        "additional_info": "Bring a racket",
+        "level": "0"
       };
 
       $scope.$watch('event', function(newValue, oldValue) {
@@ -71,4 +72,16 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         // Close manually the dateTimePicker because it is not automatic (bug)
         $('#creationDatePicker').datepicker('hide');
       });
+
+      // Retun sport that can be selected (not All sport)
+      // TODO don't put all sport in sports
+      $scope.retrieveSelectableSports = function() {
+        var allSports = $scope.getFeedScope().sports;
+        for (var i = 0; i < allSports.length; i++) {
+          if(allSports[i].name == "All Sports") {
+            allSports.splice(i, 1);
+          }
+        }
+        return allSports;
+      }
 }]);

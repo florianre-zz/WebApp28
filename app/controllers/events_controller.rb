@@ -22,6 +22,7 @@ class EventsController < ApplicationController
                          events.min_participants,
                          events.university_location,
                          events.additional_info,
+                         events.level,
                          sports.image_path,
                          users.first_name,
                          users.last_name,
@@ -34,7 +35,7 @@ class EventsController < ApplicationController
                                            WHERE event_participants.user_id = #{current_user.id}
                                            AND   event_participants.event_id = events.id
                                            AND   event_participants.confirmed = 'true')
-                              THEN 'confirmed' 
+                              THEN 'confirmed'
                               WHEN EXISTS (SELECT *
                                                 FROM event_participants
                                                 WHERE event_participants.user_id = #{current_user.id}
@@ -69,12 +70,13 @@ class EventsController < ApplicationController
                            events.min_participants,
                            events.university_location,
                            events.additional_info,
+                           events.level,
                            sports.image_path,
                            users.first_name,
                            users.last_name,
                            university_mails.university_name,
-                           SUM (CASE WHEN event_participants.confirmed 
-                                     THEN event_participants.participants ELSE 0 END) 
+                           SUM (CASE WHEN event_participants.confirmed
+                                     THEN event_participants.participants ELSE 0 END)
                            OVER (PARTITION BY event_participants.event_id) AS participants,
                            'unseen' AS status
            FROM events JOIN users ON events.user_id = users.id
@@ -105,7 +107,8 @@ class EventsController < ApplicationController
                    :needed => params[:needed] + 1,
                    :min_participants => params[:needed] + 1,
                    :additional_info => params[:additional_info],
-                   :user_id => current_user_id)
+                   :user_id => current_user_id,
+                   :level => params[:level])
 
     # Create new event participant and store it in the event_participants
     # table of the database

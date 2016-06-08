@@ -34,7 +34,7 @@ class FeedController < ApplicationController
       @user_info = ActiveRecord::Base.connection.execute(get_user_info_query)
 
       respond_to do |format|
-        format.json { render json: @profile_info }
+        format.json { render json: @user_info }
       end
 
     else
@@ -45,7 +45,7 @@ class FeedController < ApplicationController
        @user_info = ActiveRecord::Base.connection.execute(get_user_info_query)
 
       respond_to do |format|
-        format.json { render json: @profile_info }
+        format.json { render json: @user_info }
       end
 
     end
