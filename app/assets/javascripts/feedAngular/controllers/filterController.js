@@ -46,10 +46,30 @@ feedControllers.controller('filterController', ['$scope', '$http',
             if($(this).prop("checked")) {
               $scope.getFeedScope().filterUniversity = "";
             } else {
-              $scope.getFeedScope().filterUniversity = "Imperial College London";
+              $scope.getFeedScope().filterUniversity = $scope.profileData.university_name;
             }
             $scope.$apply();
           }
         })
       })
+
+      // Profile data retrieval
+      $scope.profileData = "";
+
+      // TODO only when connected as a user (do an if)
+      $scope.getProfileData = function () {
+        $http({
+          method: 'GET',
+          url: '/feed/user_info.json' // feed/user_info.json for feed
+        }).then(function(response) {
+          $scope.profileData = response.data[0];
+        },
+        function(response) {
+          // TODO: Error handling to do
+          alert("Failed to retrieve profile data");
+        });
+      };
+
+      // before linking phase
+      $scope.getProfileData();
 }]);

@@ -23,6 +23,12 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "additional_info": "Bring a racket"
       };
 
+      $scope.$watch('event', function(newValue, oldValue) {
+        if(parseInt(newValue.needed) < 0) {
+          $scope.event.needed = 0;
+        }
+      }, true);
+
       // Creating a new event
       $scope.createEvent = function() {
         $http({
@@ -52,5 +58,17 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
       $('#creationDatePicker').datepicker().on('clearDate', function(e) {
         $scope.$apply(function () {$scope.event.date = "";});
+      });
+
+      // Event when opened start time selaction
+      $('#datetimepickerStart').on('dp.show', function(e) {
+        // Close manually the dateTimePicker because it is not automatic (bug)
+        $('#creationDatePicker').datepicker('hide');
+      });
+
+      // Event when opened start time selaction
+      $('#datetimepickerEnd').on('dp.show', function(e) {
+        // Close manually the dateTimePicker because it is not automatic (bug)
+        $('#creationDatePicker').datepicker('hide');
       });
 }]);

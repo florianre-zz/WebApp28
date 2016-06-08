@@ -175,17 +175,23 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
 profileControllers.controller('profileController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.test = function () {
+    $scope.profileData = "";
+
+    // Profile data retrieval
+    $scope.getProfileData = function () {
       $http({
         method: 'GET',
-        url: '/profile/user_info.json'//feed/user_info.json
+        url: '/profile/user_info.json' // feed/user_info.json for feed
       }).then(function(response) {
-        console.log(response.data);
+        $scope.profileData = response.data[0];
       },
       function(response) {
         // TODO: Error handling to do
-        alert("Failed to delete joined events");
+        alert("Failed to retrieve profile data");
       });
     };
 
+    // before linking phase
+    // TODO only when connected as a user (do an if)
+    $scope.getProfileData();
   }])
