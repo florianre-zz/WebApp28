@@ -60,7 +60,7 @@ feedControllers.controller('filterController', ['$scope', '$http',
       $scope.getProfileData = function () {
         $http({
           method: 'GET',
-          url: '/feed/user_info.json' // feed/user_info.json for feed
+          url: '/feed/user_info.json'
         }).then(function(response) {
           $scope.profileData = response.data[0];
         },
