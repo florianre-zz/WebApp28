@@ -27,7 +27,7 @@
       <div class="modal fade" id="modifyProfile" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-
+            <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="myModalLabel">Modify Profile</h4>
@@ -40,11 +40,9 @@
 
                   <h4>
                     <div class="col-sm-6">
-                      <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>
                         <%= file_field_tag 'image' %>
                         <%= text_field_tag 'telephone_number'%>
-                        <%= submit_tag 'Change' %>
-                      <% end -%>
+                        <%= text_field_tag 'description'%>
                     </div>
                   </h4>
 
@@ -56,8 +54,9 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              <div class="form-group" class="btn btn-default"> <%= submit_tag "Save" %> </div>
             </div>
+            <% end -%>
           </div>
 
         </div>
