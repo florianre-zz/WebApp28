@@ -7,6 +7,18 @@ feedControllers.controller('eventListController', ['$scope', '$http',
   function($scope, $http) {
 
     // Person join an event
+    function eventJoinedupdateView(event_id) {
+      for (var i = 0; i < $scope.events.length; i++) {
+        if($scope.events[i].id == event_id) {
+          console.log("found correct event");
+          $scope.events[i].status = "pending";
+          if(parseInt($scope.events[i].needed) > parseInt($scope.events[i].participants)) {
+            console.log("ok ca marche");
+            $scope.events[i].participants = String(parseInt($scope.events[i].participants) + 1);
+          }
+        }
+      }
+    };
     $scope.joinEvent = function(event_id) {
       $http({
         method: 'POST',
@@ -19,6 +31,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       }).then(function(response) {
         // TODO: success message
         alert("Successfully joined events");
+        eventJoinedupdateView(event_id);
       },
       function(response) {
         // TODO: Error handling to do
@@ -42,8 +55,8 @@ feedControllers.controller('eventListController', ['$scope', '$http',
      };
 
      // Return true if an event has more or the needed number of participant
-     $scope.isEventFull = function(e) {
-       return e.needed <= e.participants;
+     $scope.isNotEventAccessible = function(e) {
+       return e.needed <= e.participants || e.status != "unseen";
      };
 
      // Return true if event was created by user

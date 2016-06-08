@@ -15,3 +15,7 @@ log/
 
 spec/examples.txt
 .idea
+
+# Ignore all profiles pic except default
+/app/assets/images/profiles/*
+!/app/assets/images/profiles/default

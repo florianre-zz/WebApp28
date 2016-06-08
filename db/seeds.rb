@@ -18,12 +18,9 @@ universities_hash.each do |ext, name|
   end
 end
 
+
+Sport.delete_all
 sports_hash = SportsHashGenerator.generate_sports_hash()
 sports_hash.each do |name, image_path|
-  sport = Sport.find_by name: name
-  if sport == nil
-    Sport.create(name: name, image_path: image_path)
-  elsif
-    sport.update(image_path: image_path)
-  end
+  Sport.create(name: name, image_path: image_path)
 end

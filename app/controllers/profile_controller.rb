@@ -5,6 +5,16 @@ class ProfileController < ApplicationController
   def index
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
+    @profile = current_user
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    image = params[:image]
+    if !image.nil?
+      @user.update(image: image)
+    end
+    redirect_to '/profile'
   end
 
   def get_created_events
@@ -150,4 +160,5 @@ class ProfileController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
 end

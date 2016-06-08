@@ -73,7 +73,7 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
         alert("Failed to retrieve joined events");
       });
     };
-    
+
     $scope.eventStatus = function(event) {
       if(event.status == "confirmed") {
         return "event_confirmed";
@@ -171,3 +171,21 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
     };
   }
 ]);
+
+profileControllers.controller('profileController', ['$scope', '$http',
+  function($scope, $http) {
+
+    $scope.test = function () {
+      $http({
+        method: 'GET',
+        url: '/profile.json'
+      }).then(function(response) {
+        console.log(response.data);
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to delete joined events");
+      });
+    };
+
+  }])

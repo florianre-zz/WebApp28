@@ -48,6 +48,32 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
 
 
 --
+-- Name: check_participants_is_valid(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_participants_is_valid() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF NOT EXISTS
+                    (WITH helper_table AS
+                      (SELECT SUM (CASE WHEN event_participants.confirmed
+                                        THEN event_participants.participants ELSE 0 END)
+                              OVER (PARTITION BY event_participants.event_id) AS participants,
+                              events.needed AS needed
+                       FROM events JOIN event_participants ON events.id = event_participants.event_id
+                       WHERE events.id = NEW.event_id)
+                     SELECT *
+                     FROM helper_table
+                     WHERE participants < needed)
+                 THEN RETURN NULL;
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
+--
 -- Name: check_university_is_valid(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -323,6 +349,13 @@ CREATE CONSTRAINT TRIGGER existing_university AFTER INSERT OR UPDATE ON events N
 
 
 --
+-- Name: valid_participants; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER valid_participants AFTER INSERT OR UPDATE ON event_participants NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_participants_is_valid();
+
+
+--
 -- Name: event_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -391,4 +424,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160531223133');
 INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 
 INSERT INTO schema_migrations (version) VALUES ('20160603213435');
+
+INSERT INTO schema_migrations (version) VALUES ('20160608104417');
 
