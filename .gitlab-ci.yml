@@ -26,7 +26,8 @@ test_frontend:
   stage: test
 
   script:
-    - bundle exec rake teaspoon RAILS_ENV=development
+    - bundle exec rake db:migrate RAILS_ENV=development
+    - bundle exec rake teaspoon 
 
 
 test_backend:
