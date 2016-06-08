@@ -2,7 +2,8 @@
     ng-controller="joinedEventsController" ng-init="init()">
 
    <div class="col-md-offset-2 col-md-8">
-     <h1 ng-if="hasJoinedEvents()">Joined Events</h1>
+     <h1>Joined Events</h1>
+     <div ng-if="!hasJoinedEvents()">No joined events yet</div>
 
      <ul class="event-list">
        <li class="event-listing"
