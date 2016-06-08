@@ -90,10 +90,48 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
   function($scope, $http) {
 
     $scope.eventParticipants = [];
-    var currentEventId = "";
+    var currentCreatedEventId = "";
+    function getCreatedEventById(event_id) {
+      for (var i = 0; i < $scope.createdEvents.length; i++) {
+        if($scope.createdEvents[i].id == event_id) {
+          return $scope.createdEvents[i];
+        }
+      };
+    }
+
+    function getParticipantsById(user_id) {
+      for (var i = 0; i < $scope.eventParticipants.length; i++) {
+        if($scope.eventParticipants[i].id == user_id) {
+          return $scope.eventParticipants[i];
+        }
+      };
+    }
+
+    function getParticipantsIndex(user_id) {
+      for (var i = 0; i < $scope.eventParticipants.length; i++) {
+        if($scope.eventParticipants[i].id == user_id) {
+          return i;
+        }
+      };
+    }
+
+    $scope.getSpaceLeft = function() {
+      var createdEvent = getCreatedEventById(currentCreatedEventId);
+      if(createdEvent == undefined) {
+        return -1;
+      }
+      if (parseInt(createdEvent.needed) - parseInt(createdEvent.participants) == 0) {
+        return "no";
+      }
+      return createdEvent.needed - createdEvent.participants;
+    }
 
     $scope.hasEventParticipants = function() {
       return $scope.eventParticipants.length != 0;
+    }
+
+    $scope.getPlurial = function() {
+      return $scope.getSpaceLeft() > 1 ? "s": "";
     }
 
     $scope.displayEventParticipants = function(event_id) {
@@ -104,7 +142,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
           "event_id": event_id
         }
       }).then(function(response) {
-        currentEventId = event_id;
+        currentCreatedEventId = event_id;
         $scope.clearEventParticipants();
         $scope.eventParticipants = $scope.eventParticipants.concat(response.data);
         $('#select_participants').modal('toggle');
@@ -126,23 +164,17 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
     $scope.selectParticipant = function(user_id) {
       $http({
         method: 'PUT',
-        url: '/event_participants/' + currentEventId,
+        url: '/event_participants/' + currentCreatedEventId,
         params: {
           "user_id": user_id
         }
       }).then(function(response) {
-        for (var i = 0; i < $scope.eventParticipants.length; i++) {
-          if($scope.eventParticipants[i].id == user_id) {
-            $scope.eventParticipants[i].confirmed = 'true';
-          }
-        };
-        for (var i = 0; i < $scope.createdEvents.length; i++) {
-          if($scope.createdEvents[i].id == currentEventId) {
-            if(parseInt($scope.createdEvents[i].needed) > parseInt($scope.createdEvents[i].participants)) {
-              $scope.createdEvents[i].participants = String(parseInt($scope.createdEvents[i].participants) + 1);
-            }
-          }
-        };
+        var participant = getParticipantsById(user_id);
+        participant.confirmed = 'true';
+        var createdEvent = getCreatedEventById(currentCreatedEventId);
+        if(parseInt(createdEvent.needed) > parseInt(createdEvent.participants)) {
+          createdEvent.participants = String(parseInt(createdEvent.participants) + 1);
+        }
       },
       function(response) {
         // TODO: Error handling to do
@@ -153,16 +185,13 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
     $scope.removeParticipant = function (user_id) {
       $http({
         method: 'DELETE',
-        url: '/event_participants/' + currentEventId,
+        url: '/event_participants/' + currentCreatedEventId,
         params: {
           "user_id": user_id
         }
       }).then(function(response) {
-        for (var i = 0; i < $scope.eventParticipants.length; i++) {
-          if($scope.eventParticipants[i].id == user_id) {
-            $scope.eventParticipants.splice(i, 1);
-          }
-        }
+        var participantIndex = getParticipantsIndex(user_id);
+        $scope.eventParticipants.splice(participantIndex, 1);
       },
       function(response) {
         // TODO: Error handling to do
