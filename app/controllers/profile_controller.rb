@@ -14,6 +14,10 @@ class ProfileController < ApplicationController
     if !image.nil?
       @user.update(image: image)
     end
+    telephone_number = params[:telephone_number]
+    if !telephone_number.nil?
+      @user.update(telephone_number: telephone_number)
+    end
     redirect_to '/profile'
   end
 
