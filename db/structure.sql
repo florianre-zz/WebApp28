@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RAISE EXCEPTION 'Not a valid email';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -137,7 +137,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RAISE EXCEPTION 'Not a valid university';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -209,6 +209,7 @@ CREATE TABLE events (
     updated_at timestamp without time zone NOT NULL,
     university_location character varying NOT NULL,
     level integer DEFAULT 0,
+    CONSTRAINT level_between_zero_and_three CHECK (((level >= 0) AND (level <= 3))),
     CONSTRAINT logical_times CHECK ((start_time < end_time)),
     CONSTRAINT min_participants_gteq_two CHECK (((min_participants < 2) IS NOT TRUE)),
     CONSTRAINT needed_gteq_zero CHECK ((needed >= 1))
@@ -574,4 +575,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 INSERT INTO schema_migrations (version) VALUES ('20160609112605');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609124907');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609134816');
 

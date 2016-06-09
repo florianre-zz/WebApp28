@@ -5,7 +5,32 @@ class ProfileController < ApplicationController
   def index
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
+
     @profile = current_user
+  end
+
+  def show
+
+    # Html
+    @new_event_link = "#"
+    @dropdown_partial = "shared/logged_in_dropdown"
+
+    # id of profile to show
+    user_id = params[:id]
+
+    user = User.find_by(:id => user_id)
+
+    if user.nil?
+      # raise error 404 if no user found
+      raise ActiveRecord::RecordNotFound
+    end
+
+    @user_picture = user.image.url
+
+    @user_first_name = ""
+    @user_last_name = ""
+    @user_university = ""
+    @user_description = ""
   end
 
   def update
