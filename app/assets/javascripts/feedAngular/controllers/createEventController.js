@@ -86,4 +86,14 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         // Close manually the dateTimePicker because it is not automatic (bug)
         $('#creationDatePicker').datepicker('hide');
       });
+
+      // Update start time when change input start time
+      $('#datetimepickerStart').on('dp.change', function(e) {
+        $scope.event.start_time = e.date.format("HH:mm");
+      });
+
+      // Update end time when change input end time
+      $('#datetimepickerEnd').on('dp.change', function(e) {
+        $scope.event.end_time = e.date.format("HH:mm");
+      });
 }]);

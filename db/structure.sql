@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RAISE EXCEPTION 'Not a valid email';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -137,7 +137,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RAISE EXCEPTION 'Not a valid university';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -239,8 +239,8 @@ ALTER SEQUENCE events_id_seq OWNED BY events.id;
 --
 
 CREATE TABLE favourite_sports (
-    user_id integer,
-    sport character varying
+    user_id integer NOT NULL,
+    sport character varying NOT NULL
 );
 
 
