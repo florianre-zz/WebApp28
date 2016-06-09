@@ -24,11 +24,12 @@ Rails.application.routes.draw do
   resources :event_participants, only: [:create, :update, :destroy]
 
   # http requested redirected to profile_controller
-  resources :profile, only: [:index, :update]
   get 'profile/created_events', to: 'profile#get_created_events'
   get 'profile/joined_events', to: 'profile#get_joined_events'
   get 'profile/event_join_demands', to: 'profile#get_event_join_demands'
   get 'profile/user_info', to: 'profile#get_user_info'
+
+  resources :profile, only: [:index, :update, :show]
 
   # http requested redirected to index function in sports_controller
   resources :sports, only: [:index]

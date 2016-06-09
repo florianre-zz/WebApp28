@@ -4,7 +4,39 @@ class ProfileController < ApplicationController
   def index
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
+
     @profile = current_user
+    @profile_picture = current_user.filename.nil? ? 'missing.png' : current_user.filename
+  end
+
+  def show
+    
+    @new_event_link = "#"
+    @dropdown_partial = "shared/logged_in_dropdown"
+
+    # id of profile to show
+    user_id = params[:id]
+
+    user = User.find_by(:id => user_id)
+
+    if user.nil?
+      # raise error 404 if no user found
+      raise ActiveRecord::RecordNotFound
+    end
+
+    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
+
+    @user_first_name = user.first_name
+    @user_last_name = user.last_name
+    @user_description = user.description
+
+    get_user_university =
+      "SELECT university_mails.university_name
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+       WHERE users.id = #{user_id};"
+
+    @user_university_helper = ActiveRecord::Base.connection.execute(get_user_university)
+    @user_university = @user_university_helper[0]["university_name"]
   end
 
   def update

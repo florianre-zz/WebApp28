@@ -60,7 +60,13 @@
               <div class="modal-content">
        </li>
 
-       <div ng-if="result.length == 0" >Sorry, could not find any events</div>
+       <li ng-if="result.length == 0" class="event-listing panel">
+
+         <div class="event_info">
+           <p id="no_event_msg">Sorry, we could not find any events</p>
+         </div>
+
+       </li>
 
      </ul>
 
@@ -96,7 +102,7 @@
               <div class="row" ng-show="askForTelephone()">
 
                 <div class="col-md-12">
-                  <h4>Phone Number</h4>
+                  <h4>Register Phone Number</h4>
                 </div>
 
                 <div class="form-group col-md-12">
