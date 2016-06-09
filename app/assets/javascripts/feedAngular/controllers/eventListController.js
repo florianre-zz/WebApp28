@@ -6,6 +6,12 @@ var feedControllers = angular.module('feedControllers');
 feedControllers.controller('eventListController', ['$scope', '$http',
   function($scope, $http) {
 
+    $scope.eventCreatedInfo = {
+      "participants":1,
+      "message":"",
+      "phone":""
+    }
+
     var currentEventId = "";
     $scope.setEventId = function(event_id) {
       currentEventId = event_id;
@@ -26,8 +32,9 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         url: '/event_participants.json',
         data: {
           "event_id": currentEventId,
-          "participants": 1,
-          "message": ""
+          "participants": $scope.eventCreatedInfo.participants,
+          "message": $scope.eventCreatedInfo.message,
+          "telephone_number": $scope.eventCreatedInfo.phone
         }
       }).then(function(response) {
         // TODO: success message

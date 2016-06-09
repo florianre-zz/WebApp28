@@ -69,7 +69,8 @@
                 <div class="form-group col-md-12">
                   <input type="number"
                     class="form-control"
-                    placeholder="Number of people coming">
+                    placeholder="Number of people coming"
+                    ng-model="eventCreatedInfo.participants">
                   </input>
                 </div>
 
@@ -87,7 +88,8 @@
                 <div class="form-group col-md-12">
                   <input type="tel"
                     class="form-control"
-                    placeholder="eg: 07904562185">
+                    placeholder="eg: 07904562185"
+                    ng-model="eventCreatedInfo.phone">
                   </input>
                 </div>
 
@@ -106,7 +108,8 @@
                   <textarea type="text"
                       rows="6"
                       class="form-control"
-                      placeholder="Give any information you want to the event creator"></textarea>
+                      placeholder="Give any information you want to the event creator"
+                      ng-model="eventCreatedInfo.message"></textarea>
                 </div>
 
               </div>
