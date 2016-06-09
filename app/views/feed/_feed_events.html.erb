@@ -1,16 +1,14 @@
 <div class="row" id="feed_events" ng-controller="eventListController">
    <div class="col-md-offset-2 col-md-8">
 
-     <div ng-if="getFeedScope().events == []" >Sorry, could not find any events</div>
      <ul class="event-list" id="accordion">
       <li class="event-listing panel"
-          ng-repeat="event in getFeedScope().events
+          ng-repeat="event in result = (getFeedScope().events
           | filter: {university_location: filterLocation,
                      sport: filterSport,
                      date: convertFilterDate(),
                      university_name: filterUniversity}
-          | orderBy: 'date'">
-
+          | orderBy: 'date')">
         <!-- Event layout -->
         <div class="event_info" role="button" data-toggle="collapse"
             data-parent="#accordion"
@@ -119,6 +117,7 @@
           </div>
 
        </li>
+       <div ng-if="result.length == 0" >Sorry, could not find any events</div>
      </ul>
 
    </div>
