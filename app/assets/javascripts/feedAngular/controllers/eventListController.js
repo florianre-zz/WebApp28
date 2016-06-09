@@ -11,9 +11,6 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       for (var i = 0; i < $scope.events.length; i++) {
         if($scope.events[i].id == event_id) {
           $scope.events[i].status = "pending";
-          if(parseInt($scope.events[i].needed) > parseInt($scope.events[i].participants)) {
-            $scope.events[i].participants = String(parseInt($scope.events[i].participants) + 1);
-          }
         }
       }
     };
