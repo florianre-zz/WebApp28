@@ -21,8 +21,22 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "location": "Hyde Park Tennis Courts",
         "needed": 1,
         "additional_info": "Bring a racket",
-        "level": "All levels"
+        "level": "0"
       };
+      $scope.selectedLevelString = "All levels";
+      $scope.updateLevelValue = function () {
+        var levelValue = 0;
+        if($scope.selectedLevelString == "All levels") {
+          levelValue = 0;
+        } else if ($scope.selectedLevelString == "Beginner") {
+          levelValue = 1;
+        } else if ($scope.selectedLevelString == "Intermediate") {
+          levelValue = 2;
+        } else if ($scope.selectedLevelString == "Advanced") {
+          levelValue = 3;
+        }
+        $scope.event.level = levelValue;
+      }
 
       $scope.$watch('event', function(newValue, oldValue) {
         if(parseInt(newValue.needed) < 1) {
@@ -32,20 +46,6 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
       // Creating a new event
       $scope.createEvent = function() {
-        var level = $scope.event.level;
-
-        if(level == "All levels") {
-          level = 0;
-        } else if (level == "Beginner") {
-          level = 1;
-        } else if (level == "Intermediate") {
-          level = 2;
-        } else if (level == "Advanced") {
-          level = 3;
-        }
-
-        $scope.event.level = level;
-
         $http({
           method: 'POST',
           url: '/events.json',

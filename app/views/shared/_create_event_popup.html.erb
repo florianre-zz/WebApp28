@@ -143,8 +143,8 @@
             </div>
 
             <div class="form-group">
-              <select ng-model="event.level">
-                <option>All levels</option>
+              <select ng-model="selectedLevelString" ng-change="updateLevelValue()">
+                <option selected="selected">All levels</option>
                 <option>Beginner</option>
                 <option>Intermediate</option>
                 <option>Advanced</option>
