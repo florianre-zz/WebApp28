@@ -6,7 +6,7 @@ class ProfileController < ApplicationController
     @dropdown_partial = "shared/logged_in_dropdown"
 
     @profile = current_user
-    @profile_picture = current_user.filename.nil? ? 'missing.png' : current_user.filename
+    @profile_picture = current_user.filename.nil? ? 'missing.png' : url_for(:controller => "profile", :action => "show_avatar", :id => @profile.id)
   end
 
   def show
@@ -58,11 +58,6 @@ class ProfileController < ApplicationController
     end
 
     image = params[:image]
-    puts
-    puts image.original_filename
-    puts image.content_type
-    puts
-    puts
     if !image.nil?
       @user.update(filename: image.original_filename)
       @user.update(content_type: image.content_type)

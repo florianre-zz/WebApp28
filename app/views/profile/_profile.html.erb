@@ -4,7 +4,7 @@
         <div class="panel-body">
           <div class="row row-eq-height">
             <div class="col-xs-offset-3 col-xs-6 col-sm-offset-0 col-sm-3 text-center">
-              <%= image_tag(url_for(:controller => "profile", :action => "show_avatar", :id => current_user.id), class: "center-block img-circle img-thumbnail img-responsive") %>
+              <%= image_tag(@profile_picture, class: "center-block img-circle img-thumbnail img-responsive") %>
             </div>
 
             <div class="col-xs-12 col-sm-9">
