@@ -10,6 +10,13 @@ feedControllers.controller('createEventController', ['$scope', '$http',
     $scope.getFeedScope = function() {
          return $scope.$parent.getFeedScope();
     };
+    $scope.$test = "";
+        $scope.$tests = function() {
+          return $scope;
+        };
+        $scope.$watch('test', function(newValue, oldValue) {
+          console.log($scope.test);
+        }, true);
 
       // Initialisation of all event characteristics
       $scope.event = {
