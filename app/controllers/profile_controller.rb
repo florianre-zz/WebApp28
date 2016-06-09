@@ -1,5 +1,4 @@
 class ProfileController < ApplicationController
-
   helper_method :resource_name, :resource, :devise_mapping
 
   def index
@@ -48,7 +47,9 @@ class ProfileController < ApplicationController
 
     image = params[:image]
     if !image.nil?
-      @user.update(image: image)
+      @user.update(filename: image.original_filename)
+      @user.update(content_type: image.content_type)
+      @user.update(file_contents: image.read)
     end
 
     telephone_number = params[:telephone_number]
@@ -63,6 +64,12 @@ class ProfileController < ApplicationController
 
     redirect_to '/profile'
   end
+
+  # def show_image
+  #   send_data(current_user.file_contents,
+  #             type: current_user.content_type,
+  #             filename: current_user.filename)
+  # end
 
   def get_created_events
 
@@ -192,7 +199,6 @@ class ProfileController < ApplicationController
   end
 
   def get_user_info
-    ## TODO: Add profile pic, description message and favourite sports
     get_user_info_query =
       "SELECT users.first_name,
               users.last_name,
@@ -221,5 +227,4 @@ class ProfileController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
 end
