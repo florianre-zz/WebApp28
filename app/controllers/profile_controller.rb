@@ -10,7 +10,7 @@ class ProfileController < ApplicationController
   end
 
   def show
-    
+
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
 
@@ -39,6 +39,11 @@ class ProfileController < ApplicationController
     @user_university = @user_university_helper[0]["university_name"]
   end
 
+  def show_avatar
+    user = User.find(params[:id])
+    send_data user.file_contents, type: user.content_type, disposition:'inline'
+  end
+
   def update
     @user = User.find_by(id: params[:id])
 
@@ -53,6 +58,11 @@ class ProfileController < ApplicationController
     end
 
     image = params[:image]
+    puts
+    puts image.original_filename
+    puts image.content_type
+    puts
+    puts
     if !image.nil?
       @user.update(filename: image.original_filename)
       @user.update(content_type: image.content_type)
