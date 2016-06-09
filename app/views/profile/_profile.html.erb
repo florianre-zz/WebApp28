@@ -14,6 +14,8 @@
               <h2>{{profileData.first_name}} {{profileData.last_name}}</h2>
               <p><strong>University: </strong> {{profileData.university_name}} </p>
               <p><strong>Description: </strong> {{profileData.description}}</p>
+              <p><strong>Telephone number: </strong> {{profileData.telephone_number}}</p>
+
               <!-- <p><strong>Favourites Sports: </strong>
               <p><strong>University: </strong>{{profileData.university_name}}</p>
               <p><strong>Description: </strong>{{profileData.description}}</p>
@@ -22,6 +24,7 @@
                 <span class="label label-success tags">Gym</span>
                 <span class="label label-success tags">Running</span>
               </p> -->
+
             </div>
           </div>
         </div>
@@ -34,26 +37,36 @@
             <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modify Profile</h4>
+                <h4 class="modal-title" id="myModalLabel">Modify Profile Information</h4>
               </div>
 
               <div class="modal-body">
 
                 <div class="row">
-                  <div class="col-md-12">
-
-                  <h4>
-                    <div class="col-sm-6">
-                      <%= text_field_tag 'first_name', nil, placeholder:'First Name'%>
-                      <%= text_field_tag 'last_name', nil, placeholder: 'Last Name'%>
-                      <%= file_field_tag 'image' %>
-                      <%= text_field_tag 'telephone_number', nil, placeholder: 'Telephone Number'%>
-                      <%= text_field_tag 'description', nil, placeholder: 'Description'%>
-                    </div>
-                  </h4>
-
+                  <div class="form-group col-md-12">
+                    <%= text_field_tag 'first_name', nil, placeholder:'First Name', :class => "form-control"%>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <%= text_field_tag 'last_name', nil, placeholder: 'Last Name', :class => "form-control"%>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <%= text_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control"%>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <%= text_field_tag 'description', nil, placeholder: 'Description', :class => "form-control"%>
+                  </div>
+                </div>
+
+                <%= file_field_tag 'image', placeholder: 'Profile picture' %>
 
               </div>
 

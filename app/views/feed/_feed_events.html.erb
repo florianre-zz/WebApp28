@@ -35,8 +35,8 @@
              <div class="join_button">
                <button type="button" class="btn btn-success pull-right"
                  data-toggle="modal"
-                 data-target="#join_event_{{event.id}}">Ask to join!
-                 <!-- ng-disabled="isNotEventAccessible(event)" -->
+                 data-target="#join_event_{{event.id}}"
+                 ng-disabled="isNotEventAccessible(event)">Ask to join!
                </button>
              </div>
 
@@ -81,7 +81,7 @@
                     <div class="form-group col-md-12">
                       <input type="tel"
                         class="form-control"
-                        placeholder="07904562185">
+                        placeholder="eg: 07904562185">
                       </input>
                     </div>
 

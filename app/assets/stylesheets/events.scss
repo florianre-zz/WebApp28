@@ -19,6 +19,13 @@ $marginBottom: 26px;
   h1 {
     margin-top: 10px;
   }
+
+  #no_event_msg {
+    font-size: 20px;
+    position: relative;
+    top: 36%;
+    text-align: center;
+  }
 }
 
 .event-list {
