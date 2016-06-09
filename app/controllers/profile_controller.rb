@@ -75,6 +75,7 @@ class ProfileController < ApplicationController
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
                       JOIN sports ON sports.name = events.sport
+          WHERE (NOT events.date < current_date)
          )
          SELECT *
          FROM events_table
@@ -114,6 +115,7 @@ class ProfileController < ApplicationController
                          sports.image_path,
                          users.first_name,
                          users.last_name,
+                         users.telephone_number,
                          university_mails.university_name,
                          SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants,
                          event_participants.user_id,
@@ -122,11 +124,12 @@ class ProfileController < ApplicationController
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
                       JOIN sports ON sports.name = events.sport
+          WHERE (NOT events.date < current_date)
          )
          SELECT *
          FROM events_table
          WHERE events_table.user_id = #{current_user.id}
-         AND events_table.creator_id <> #{current_user.id};"
+         AND   events_table.creator_id <> #{current_user.id};"
 
     @joined_events = ActiveRecord::Base.connection.execute(get_joined_events_query)
 
@@ -143,6 +146,7 @@ class ProfileController < ApplicationController
       "SELECT users.id,
               users.first_name,
               users.last_name,
+              users.telephone_number,
               university_mails.university_name,
               event_participants.participants,
               event_participants.message,
