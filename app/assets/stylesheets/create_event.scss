@@ -6,17 +6,23 @@ form {
 
   // Setting layout at the beginning
   // on focus border color is grey
-  input.ng-empty,
+
   input:focus,
   input:focus.ng-valid,
   input:focus.ng-valid.ng-empty,
   input:focus.ng-invalid,
-  textarea.ng-empty,
   textarea:focus,
   textarea:focus.ng-valid,
   textarea:focus.ng-valid.ng-empty,
   textarea:focus.ng-invalid, {
     border-color: #66afe9;
+  }
+
+  input.ng-empty.ng-invalid,
+  input.ng-empty.ng-valid,
+  textarea.ng-empty.ng-invalid,
+  textarea.ng-empty.ng-valid {
+    border-color: #ccc;
   }
 
   // Setting layout when invalid input for autocomplete
