@@ -90,11 +90,16 @@
 
                    <div class="form-group col-md-12">
                      <input type="number"
+                       name="numberOfPeople"
                        class="form-control"
                        placeholder="Number of people coming"
                        ng-model="eventCreatedInfo.participants"
                        ng-required="true">
                      </input>
+                   </div>
+
+                   <div class="col-md-12" ng-show="joinEventForm.numberOfPeople.$touched">
+                      <div ng-show="joinEventForm.numberOfPeople.$error.required">Number of people coming required</div>
                    </div>
 
                  </div>
@@ -109,6 +114,7 @@
 
                    <div class="form-group col-md-12">
                      <input type="tel"
+                       name="phoneNumber"
                        class="form-control"
                        placeholder="eg: 07904562185"
                        ng-model="eventCreatedInfo.phone"
@@ -116,6 +122,14 @@
                        ng-minlength="5"
                        ng-maxlength="20">
                      </input>
+                   </div>
+
+                   <div class="col-md-12" ng-show="joinEventForm.phoneNumber.$touched">
+                      <div ng-show="joinEventForm.phoneNumber.$error.required">Number of people coming required</div>
+                      <div class="col-md-12" ng-show="!joinEventForm.phoneNumber.$error.required">
+                        <div ng-show="joinEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least characters long</div>
+                        <div ng-show="joinEventForm.phoneNumber.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</div>
+                      </div>
                    </div>
 
                  </div>
@@ -129,7 +143,7 @@
                    <div class="form-group col-md-12">
                      <textarea type="text"
                          rows="6"
-                         class="form-control"
+                         class="form-control optionalForm"
                          placeholder="Give any information you want to the event creator"
                          ng-model="eventCreatedInfo.message"
                          ng-required="false"></textarea>
