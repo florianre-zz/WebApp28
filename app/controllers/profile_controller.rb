@@ -21,10 +21,10 @@ class ProfileController < ApplicationController
       @user.update(last_name: last_name)
     end
 
-    image = params[:image]
-    if !image.nil?
-      @user.update(image: image)
-    end
+    # image = params[:image]
+    # if !image.nil?
+    #   @user.update(image: image)
+    # end
 
     telephone_number = params[:telephone_number]
     if !telephone_number.blank?
