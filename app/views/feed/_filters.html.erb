@@ -1,7 +1,11 @@
 <div ng-controller="filterController">
   <div class="row">
 
+    <% if user_signed_in? %>
     <div class="col-md-offset-2 col-md-2">
+    <% else %>
+    <div class="col-md-offset-2 col-md-3">
+    <% end %>
       <angucomplete-alt id="universitySelection"
                 selected-object="universitySelected"
                 title-field="university_name"
@@ -21,7 +25,11 @@
       </angucomplete-alt>
     </div>
 
+    <% if user_signed_in? %>
     <div class="btn-group col-md-2 dropdown">
+    <% else %>
+    <div class="btn-group col-md-3 dropdown">
+    <% end %>
       <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         {{selectedSport}} </span>
       </button>
@@ -43,11 +51,12 @@
       </div>
     </div>
 
-    <!--TODO make this slide faster-->
+    <% if user_signed_in? %>
     <div class="btn-group col-md-2" id="uni_toggle_checkbox" ng-show="showToggle()">
       <input id="universityToggle" type="checkbox" checked data-toggle="toggle" data-off="Only my University" data-on="All universities"
           data-style="slow" data-width="100%" data-onstyle="default" data-offstyle="default">
     </div>
+    <% end %>
 
   </div>
 </div>

@@ -17,6 +17,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }
     };
+    
     $scope.joinEvent = function(event_id) {
       $http({
         method: 'POST',
