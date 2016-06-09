@@ -48,7 +48,7 @@ CREATE FUNCTION check_creator_has_phone_number() RETURNS trigger
                      WHERE helper.user_id = NEW.user_id
                      AND   helper.event_id = NEW.id
                      AND   helper.telephone_number IS NOT NULL)
-                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
+                 THEN RAISE EXCEPTION 'Creator has not given his telephone number.';
                  END IF;
                  RETURN NEW;
                END;
@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid email';
                  END IF;
                  RETURN NEW;
                END;
@@ -137,7 +137,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid university';
                  END IF;
                  RETURN NEW;
                END;
@@ -571,4 +571,9 @@ INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609112605');
 
+INSERT INTO schema_migrations (version) VALUES ('20160609124907');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609134816');
+
 INSERT INTO schema_migrations (version) VALUES ('20160609135959');
+
