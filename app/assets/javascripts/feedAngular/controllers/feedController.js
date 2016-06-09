@@ -91,4 +91,8 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
         alert("Failed to retrieve profile data");
       });
     };
+
+    $scope.askForTelephone = function() {
+      return $scope.profileData.telephone_number == undefined;
+    }
   }]);

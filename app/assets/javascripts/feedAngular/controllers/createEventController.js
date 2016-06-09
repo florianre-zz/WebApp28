@@ -15,13 +15,14 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $scope.event = {
         "sport": "",
         "date": "",
-        "start_time": "16:00",
-        "end_time": "17:00",
+        "start_time": "",
+        "end_time": "",
         "university_location": "",
-        "location": "Hyde Park Tennis Courts",
+        "location": "",
         "needed": 1,
-        "additional_info": "Bring a racket",
-        "level": "0"
+        "additional_info": "",
+        "level": "0",
+        "phone": ""
       };
       $scope.selectedLevelString = "Any level";
       $scope.updateLevelValue = function () {
@@ -59,11 +60,23 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         });
       };
 
+      $scope.creationSportUpdated = function (userInput) {
+        if (userInput != undefined) {
+          $scope.event.sport = userInput;
+        }
+      }
+
       $scope.creationSportSelected = function (selectedInfo) {
           if(selectedInfo != undefined) {
             $scope.event.sport = selectedInfo.title;
           }
       };
+
+      $scope.creationLocationUpdated = function (userInput) {
+        if (userInput != undefined) {
+          $scope.event.university_location = userInput;
+        }
+      }
 
       $scope.creationLocationSelected = function (selectedInfo) {
           if(selectedInfo != undefined) {

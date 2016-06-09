@@ -87,8 +87,4 @@ feedControllers.controller('eventListController', ['$scope', '$http',
          return "event_unseen";
        }
      };
-
-     $scope.askForTelephone = function() {
-       return $scope.getFeedScope().profileData.telephone_number == undefined;
-     }
   }]);
