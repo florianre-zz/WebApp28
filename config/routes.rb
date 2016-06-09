@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'profile/joined_events', to: 'profile#get_joined_events'
   get 'profile/event_join_demands', to: 'profile#get_event_join_demands'
   get 'profile/user_info', to: 'profile#get_user_info'
+  get 'profile/show_avatar',to: 'profile#show_avatar'
 
   resources :profile, only: [:index, :update, :show]
 

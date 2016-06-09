@@ -6,11 +6,11 @@ class ProfileController < ApplicationController
     @dropdown_partial = "shared/logged_in_dropdown"
 
     @profile = current_user
+    @profile_picture = current_user.filename.nil? ? 'missing.png' : url_for(controller: "profile", action: "show_avatar", id: @profile.id)
   end
 
   def show
 
-    # Html
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
 
@@ -24,12 +24,24 @@ class ProfileController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    @user_picture = user.image.url
+    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
 
-    @user_first_name = ""
-    @user_last_name = ""
-    @user_university = ""
-    @user_description = ""
+    @user_first_name = user.first_name
+    @user_last_name = user.last_name
+    @user_description = user.description
+
+    get_user_university =
+      "SELECT university_mails.university_name
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+       WHERE users.id = #{user_id};"
+
+    @user_university_helper = ActiveRecord::Base.connection.execute(get_user_university)
+    @user_university = @user_university_helper[0]["university_name"]
+  end
+
+  def show_avatar
+    user = User.find(params[:id])
+    send_data user.file_contents, type: user.content_type, disposition:'inline'
   end
 
   def update
