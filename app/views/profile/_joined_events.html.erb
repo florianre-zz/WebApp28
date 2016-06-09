@@ -38,6 +38,8 @@
                  <p ng-if="hasAdditionalInfos(event.additional_info)">
                    <i class="fa fa-info-circle" aria-hidden="true"></i> {{event.additional_info}}</p>
                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> Meet at {{event.location}}</p>
+                 <p ng-if="hasBeenConfirmed(event.status)">
+                   <i class="fa fa-phone" aria-hidden="true"></i> Event organiser's number: {{event.telephone_number}}</p>
                  <p class="text-right"><i class="fa fa-user" aria-hidden="true"></i> Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
                </div>
              </div>

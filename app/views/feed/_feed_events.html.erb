@@ -9,6 +9,9 @@
                      date: convertFilterDate(),
                      university_name: filterUniversity}
           | orderBy: 'date')">
+
+        <% if user_signed_in? %>
+
         <!-- Event layout -->
         <div class="event_info" role="button" data-toggle="collapse"
             data-parent="#accordion"
@@ -43,6 +46,18 @@
            </div>
          </div>
 
+         <% else %>
+
+         <div class="event_info">
+           <%= render "shared/event_body" %>
+         </div>
+
+         <% end %>
+
+         <!-- Join event modal (pop up) -->
+          <div class="modal fade" id="join_event_{{event.id}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
        </li>
 
        <div ng-if="result.length == 0" >Sorry, could not find any events</div>
