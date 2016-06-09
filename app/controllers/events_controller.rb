@@ -51,7 +51,8 @@ class EventsController < ApplicationController
          FROM events JOIN users ON events.user_id = users.id
                      JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                      JOIN event_participants ON events.id = event_participants.event_id
-                     JOIN sports ON sports.name = events.sport;"
+                     JOIN sports ON sports.name = events.sport
+         WHERE (NOT events.date < current_date);"
 
       @events = ActiveRecord::Base.connection.execute(get_all_events_signed_in_query)
 
@@ -88,7 +89,8 @@ class EventsController < ApplicationController
            FROM events JOIN users ON events.user_id = users.id
                        JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                        JOIN event_participants ON events.id = event_participants.event_id
-                       JOIN sports ON sports.name = events.sport;"
+                       JOIN sports ON sports.name = events.sport
+           WHERE (NOT events.date < current_date);"
 
       @events = ActiveRecord::Base.connection.execute(get_all_events_signed_out_query)
     end
