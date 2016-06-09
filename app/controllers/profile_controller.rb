@@ -1,5 +1,4 @@
 class ProfileController < ApplicationController
-
   helper_method :resource_name, :resource, :devise_mapping
 
   def index
@@ -21,9 +20,15 @@ class ProfileController < ApplicationController
       @user.update(last_name: last_name)
     end
 
-    # image = params[:image]
+    image = params[:image]
+    puts
+    puts 'Image data...'
+    puts image.original_filename
+    puts '...no more'
+    puts
+    puts
     # if !image.nil?
-    #   @user.update(image: image)
+    #   @user.update(file: image)
     # end
 
     telephone_number = params[:telephone_number]
@@ -196,5 +201,4 @@ class ProfileController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
 end
