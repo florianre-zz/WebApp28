@@ -12,6 +12,12 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       "phone":""
     }
 
+    $scope.$watch('eventCreatedInfo', function(newValue) {
+      if(parseInt(newValue.participants) < 1) {
+        $scope.eventCreatedInfo.participants = 1;
+      }
+    }, true);
+
     var currentEventId = "";
     $scope.setEventId = function(event_id) {
       currentEventId = event_id;
