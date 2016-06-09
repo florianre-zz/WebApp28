@@ -77,9 +77,8 @@
               </div>
 
               <!-- Ask for phone number only if phone number not already given -->
-              <% if @has_phone_number %>
 
-              <div class="row">
+              <div class="row" ng-show="askForTelephone()">
 
                 <div class="col-md-12">
                   <h4>Phone Number</h4>
@@ -94,9 +93,6 @@
                 </div>
 
               </div>
-
-              <% end %>
-
 
               <div class="row">
 

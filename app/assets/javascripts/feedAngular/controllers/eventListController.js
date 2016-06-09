@@ -24,6 +24,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
           $scope.events[i].status = "pending";
         }
       }
+      $scope.getFeedScope().profileData.telephone_number = $scope.eventCreatedInfo.phone;
     };
 
     $scope.joinEvent = function() {
@@ -80,4 +81,8 @@ feedControllers.controller('eventListController', ['$scope', '$http',
          return "event_unseen";
        }
      };
+
+     $scope.askForTelephone = function() {
+       return $scope.getFeedScope().profileData.telephone_number == undefined;
+     }
   }]);

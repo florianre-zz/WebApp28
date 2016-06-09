@@ -48,35 +48,15 @@ feedControllers.controller('filterController', ['$scope', '$http',
             if($(this).prop("checked")) {
               $scope.getFeedScope().filterUniversity = "";
             } else {
-              $scope.getFeedScope().filterUniversity = $scope.profileData.university_name;
+              $scope.getFeedScope().filterUniversity = $scope.getFeedScope().profileData.university_name;
             }
             $scope.$apply();
           }
         })
       })
 
-      // Profile data retrieval
-      $scope.profileData = "";
-
-      // TODO only when connected as a user (do an if)
-      $scope.getProfileData = function () {
-        $http({
-          method: 'GET',
-          url: '/feed/user_info.json'
-        }).then(function(response) {
-          $scope.profileData = response.data[0];
-        },
-        function(response) {
-          // TODO: Error handling to do
-          alert("Failed to retrieve profile data");
-        });
-      };
-
-      // before linking phase
-      $scope.getProfileData();
-
       // Decide if toggle should be shown
       $scope.showToggle = function() {
-        return $scope.profileData.university_name != "";
+        return $scope.getFeedScope().profileData.university_name != "";
       };
 }]);
