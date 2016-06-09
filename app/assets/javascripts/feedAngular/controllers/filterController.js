@@ -11,16 +11,18 @@ feedControllers.controller('filterController', ['$scope', '$http',
         $scope.getFeedScope().$apply(function () {$scope.getFeedScope().filterDate = "";});
       });
 
-      //TODO open a pop up to select the sports
-      // Update the sport selected and bind it with the sport filter
-      $scope.selectedSport = "All Sports";
-      $scope.updateSport = function(name) {
-        $scope.selectedSport = name;
-        if(name == "All Sports")  {
+      // Manage change in university value in the autocomplete filter for university
+      $scope.inputSportUpdated = function (userInput) {
+        if (userInput == "") {
           $scope.getFeedScope().filterSport = "";
-        } else {
-          $scope.getFeedScope().filterSport = name;
         }
+        // TODO remove hardcoding
+        // Check whether the input is the user uni to automatically toggle the button
+      };
+      $scope.sportSelected = function (selectedInfo) {
+          if(selectedInfo != undefined) {
+            $scope.getFeedScope().filterSport = selectedInfo.title;
+          }
       };
 
       // Manage change in university value in the autocomplete filter for university
@@ -46,35 +48,15 @@ feedControllers.controller('filterController', ['$scope', '$http',
             if($(this).prop("checked")) {
               $scope.getFeedScope().filterUniversity = "";
             } else {
-              $scope.getFeedScope().filterUniversity = $scope.profileData.university_name;
+              $scope.getFeedScope().filterUniversity = $scope.getFeedScope().profileData.university_name;
             }
             $scope.$apply();
           }
         })
       })
 
-      // Profile data retrieval
-      $scope.profileData = "";
-
-      // TODO only when connected as a user (do an if)
-      $scope.getProfileData = function () {
-        $http({
-          method: 'GET',
-          url: '/feed/user_info.json'
-        }).then(function(response) {
-          $scope.profileData = response.data[0];
-        },
-        function(response) {
-          // TODO: Error handling to do
-          alert("Failed to retrieve profile data");
-        });
-      };
-
-      // before linking phase
-      $scope.getProfileData();
-
       // Decide if toggle should be shown
       $scope.showToggle = function() {
-        return $scope.profileData.university_name != "";
+        return $scope.getFeedScope().profileData.university_name != "";
       };
 }]);

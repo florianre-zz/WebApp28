@@ -13,18 +13,19 @@
 
           <div class="row"
                ng-repeat="participant in eventParticipants">
-            <div class="col-md-12 well" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
+            <div class="col-md-12 well" id="boxContainingParticipantToEvent" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
 
               <div class="pull-right" ng-hide="participantConfirmed(participant)">
                 <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="glyphicon glyphicon-ok"></i></button>
                 <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="glyphicon glyphicon-remove"></i></button>
               </div>
 
-              <h4>{{participant.first_name}} {{participant.last_name}}</h4>
-              <p>{{participant.university_name}}</p>
-              <p>Paticipants: {{participant.participants}}</p>
+              <h4 id="participant_name">{{participant.first_name}} {{participant.last_name}}</h4>
+              <p><i class="fa fa-university" aria-hidden="true"></i> {{participant.university_name}}</p>
+              <p><i class="fa fa-users" aria-hidden="true"></i> Paticipants: {{participant.participants}}</p>
               <p ng-hide="participant.message == ''">"{{participant.message}}"</p>
-              <p ng-show="participantConfirmed(participant)">Phone number: {{participant.telephone_number}}</p>
+              <p ng-show="participantConfirmed(participant)">
+                <i class="fa fa-phone" aria-hidden="true"></i>Phone number: {{participant.telephone_number}}</p>
 
             </div>
           </div>

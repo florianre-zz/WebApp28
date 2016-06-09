@@ -6,31 +6,40 @@ var feedControllers = angular.module('feedControllers');
 feedControllers.controller('eventListController', ['$scope', '$http',
   function($scope, $http) {
 
+    $scope.eventCreatedInfo = {
+      "participants":1,
+      "message":"",
+      "phone":""
+    }
+
+    var currentEventId = "";
+    $scope.setEventId = function(event_id) {
+      currentEventId = event_id;
+    }
+
     // Person join an event
     function eventJoinedupdateView(event_id) {
       for (var i = 0; i < $scope.events.length; i++) {
         if($scope.events[i].id == event_id) {
           $scope.events[i].status = "pending";
-          if(parseInt($scope.events[i].needed) > parseInt($scope.events[i].participants)) {
-            $scope.events[i].participants = String(parseInt($scope.events[i].participants) + 1);
-          }
         }
       }
+      $scope.getFeedScope().profileData.telephone_number = $scope.eventCreatedInfo.phone;
     };
-    
-    $scope.joinEvent = function(event_id) {
+
+    $scope.joinEvent = function() {
       $http({
         method: 'POST',
         url: '/event_participants.json',
         data: {
-          "event_id": event_id,
-          "participants": 1,
-          "message": ""
+          "event_id": currentEventId,
+          "participants": $scope.eventCreatedInfo.participants,
+          "message": $scope.eventCreatedInfo.message,
+          "telephone_number": $scope.eventCreatedInfo.phone
         }
       }).then(function(response) {
         // TODO: success message
-        alert("Successfully joined events");
-        eventJoinedupdateView(event_id);
+        eventJoinedupdateView(currentEventId);
       },
       function(response) {
         // TODO: Error handling to do
@@ -72,4 +81,8 @@ feedControllers.controller('eventListController', ['$scope', '$http',
          return "event_unseen";
        }
      };
+
+     $scope.askForTelephone = function() {
+       return $scope.getFeedScope().profileData.telephone_number == undefined;
+     }
   }]);

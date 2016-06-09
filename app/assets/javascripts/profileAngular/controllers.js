@@ -19,6 +19,11 @@ profileControllers.controller('createdEventsController', ['$scope', '$http',
       return $scope.createdEvents.length != 0;
     }
 
+    // Return a boolean telling if the additional info is empty
+    $scope.hasAdditionalInfos = function (additional_info) {
+      return additional_info.length != 0;
+    };
+
     // Get created events from database
     $scope.getCreatedEvents = function() {
       $http({
@@ -59,6 +64,15 @@ profileControllers.controller('joinedEventsController', ['$scope', '$http',
     $scope.hasJoinedEvents = function() {
       return $scope.joinedEvents.length != 0;
     }
+
+    $scope.hasBeenConfirmed = function(status) {
+      return status == "confirmed";
+    }
+
+    // Return a boolean telling if the additional info is empty
+    $scope.hasAdditionalInfos = function (additional_info) {
+      return additional_info.length != 0;
+    };
 
     // Get created events from database
     $scope.getJoinedEvents = function() {
@@ -227,4 +241,5 @@ profileControllers.controller('profileController', ['$scope', '$http',
     // before linking phase
     // TODO only when connected as a user (do an if)
     $scope.getProfileData();
-  }])
+  }
+]);

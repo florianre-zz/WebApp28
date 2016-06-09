@@ -1,11 +1,42 @@
 class ProfileController < ApplicationController
-
   helper_method :resource_name, :resource, :devise_mapping
 
   def index
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
+
     @profile = current_user
+    @profile_picture = current_user.filename.nil? ? 'missing.png' : current_user.filename
+  end
+
+  def show
+    
+    @new_event_link = "#"
+    @dropdown_partial = "shared/logged_in_dropdown"
+
+    # id of profile to show
+    user_id = params[:id]
+
+    user = User.find_by(:id => user_id)
+
+    if user.nil?
+      # raise error 404 if no user found
+      raise ActiveRecord::RecordNotFound
+    end
+
+    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
+
+    @user_first_name = user.first_name
+    @user_last_name = user.last_name
+    @user_description = user.description
+
+    get_user_university =
+      "SELECT university_mails.university_name
+       FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
+       WHERE users.id = #{user_id};"
+
+    @user_university_helper = ActiveRecord::Base.connection.execute(get_user_university)
+    @user_university = @user_university_helper[0]["university_name"]
   end
 
   def update
@@ -23,7 +54,9 @@ class ProfileController < ApplicationController
 
     image = params[:image]
     if !image.nil?
-      @user.update(image: image)
+      @user.update(filename: image.original_filename)
+      @user.update(content_type: image.content_type)
+      @user.update(file_contents: image.read)
     end
 
     telephone_number = params[:telephone_number]
@@ -38,6 +71,12 @@ class ProfileController < ApplicationController
 
     redirect_to '/profile'
   end
+
+  # def show_image
+  #   send_data(current_user.file_contents,
+  #             type: current_user.content_type,
+  #             filename: current_user.filename)
+  # end
 
   def get_created_events
 
@@ -115,7 +154,7 @@ class ProfileController < ApplicationController
                          sports.image_path,
                          users.first_name,
                          users.last_name,
-                         users.telephone_number,
+                         CASE WHEN event_participants.confirmed THEN users.telephone_number ELSE '' END AS telephone_number,
                          university_mails.university_name,
                          SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants,
                          event_participants.user_id,
@@ -167,7 +206,6 @@ class ProfileController < ApplicationController
   end
 
   def get_user_info
-    ## TODO: Add profile pic, description message and favourite sports
     get_user_info_query =
       "SELECT users.first_name,
               users.last_name,
@@ -196,5 +234,4 @@ class ProfileController < ApplicationController
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
 end

@@ -4,7 +4,7 @@
         <div class="panel-body">
           <div class="row row-eq-height">
             <div class="col-xs-offset-3 col-xs-6 col-sm-offset-0 col-sm-3 text-center">
-              <%= image_tag(current_user.image.url, class: "center-block img-circle img-thumbnail img-responsive") %>
+              <%= image_tag(@profile_picture, class: "center-block img-circle img-thumbnail img-responsive") %>
             </div>
 
             <div class="col-xs-12 col-sm-9">
@@ -12,14 +12,11 @@
                 <i id="settings" class="fa fa-cog fa-lg pull-right" aria-hidden="true"></i>
               </a>
               <h2>{{profileData.first_name}} {{profileData.last_name}}</h2>
-              <p><strong>University: </strong> {{profileData.university_name}} </p>
-              <p><strong>Description: </strong> {{profileData.description}}</p>
-              <p><strong>Telephone number: </strong> {{profileData.telephone_number}}</p>
+              <p><i class="fa fa-university" aria-hidden="true"></i> <strong>University: </strong> {{profileData.university_name}} </p>
+              <p><i class="fa fa-file-text" aria-hidden="true"></i> <strong>Description: </strong> {{profileData.description}}</p>
+              <p><i class="fa fa-phone" aria-hidden="true"></i> <strong>Telephone number: </strong> {{profileData.telephone_number}}</p>
 
               <!-- <p><strong>Favourites Sports: </strong>
-              <p><strong>University: </strong>{{profileData.university_name}}</p>
-              <p><strong>Description: </strong>{{profileData.description}}</p>
-              <p><strong>Favourites Sports: </strong>
                 <span class="label label-success tags" ng-click="test()">Rugby</span>
                 <span class="label label-success tags">Gym</span>
                 <span class="label label-success tags">Running</span>
@@ -56,7 +53,7 @@
 
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <%= text_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control"%>
+                    <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control" %>
                   </div>
                 </div>
 

@@ -21,6 +21,7 @@ describe("Testing Jasmine", function() {
         $httpBackend.expectGET('/events.json').respond([{test: 'fakeData'}]);
         $httpBackend.expectGET('/university_mails.json').respond();
         $httpBackend.expectGET('/sports.json').respond();
+        $httpBackend.expectGET('/feed/user_info.json').respond([{test: 'fakeData'}]);
       }));
 
       afterEach (function () {

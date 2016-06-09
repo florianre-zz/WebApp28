@@ -19,12 +19,16 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
 
       // Get all universities for autocomplete
       $scope.getSports();
+
+      // Get all user info for autocomplete
+      $scope.getProfileData();
     };
 
     // Get all feeds elements and universities when created
     $scope.events = [];
     $scope.universities = [];
     $scope.sports = [];
+    $scope.profileData = "";
     // Initialising filters
     $scope.filterLocation = "";
     $scope.filterSport = "";
@@ -75,15 +79,16 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
     };
 
     // Get all information from a user from database
-    $scope.getUserInfo = function() {
+    $scope.getProfileData = function () {
       $http({
         method: 'GET',
-        url: '/profile.json'
+        url: '/feed/user_info.json'
       }).then(function(response) {
+        $scope.profileData = response.data[0];
       },
       function(response) {
         // TODO: Error handling to do
-        alert("Failed to retrieve user info");
+        alert("Failed to retrieve profile data");
       });
     };
   }]);

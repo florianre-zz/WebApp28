@@ -9,14 +9,13 @@ class FeedController < ApplicationController
     if user_signed_in?
       @new_event_link = "#"
       @dropdown_partial = "shared/logged_in_dropdown"
-      @has_phone_number = User.find_by(id: current_user.id).telephone_number.nil?
     else
       @new_event_link = "users/sign_in"
       @dropdown_partial = "shared/login_dropdown"
-      @has_phone_number = false
     end
 
   end
+
 
   def get_user_info
     ## TODO: Add profile pic, description message and favourite sports
@@ -26,6 +25,7 @@ class FeedController < ApplicationController
       "SELECT users.first_name,
               users.last_name,
               users.description,
+              users.telephone_number,
               university_mails.university_name
        FROM users JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
        WHERE users.id = #{current_user.id};"

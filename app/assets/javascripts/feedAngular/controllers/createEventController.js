@@ -23,6 +23,20 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "additional_info": "Bring a racket",
         "level": "0"
       };
+      $scope.selectedLevelString = "Any level";
+      $scope.updateLevelValue = function () {
+        var levelValue = 0;
+        if($scope.selectedLevelString == "Any level") {
+          levelValue = 0;
+        } else if ($scope.selectedLevelString == "Beginner") {
+          levelValue = 1;
+        } else if ($scope.selectedLevelString == "Intermediate") {
+          levelValue = 2;
+        } else if ($scope.selectedLevelString == "Advanced") {
+          levelValue = 3;
+        }
+        $scope.event.level = levelValue;
+      }
 
       $scope.$watch('event', function(newValue, oldValue) {
         if(parseInt(newValue.needed) < 1) {
@@ -32,20 +46,6 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
       // Creating a new event
       $scope.createEvent = function() {
-        var level = $scope.event.level;
-
-        if(level == "All levels") {
-          level = 0;
-        } else if (level == "Beginner") {
-          level = 1;
-        } else if (level == "Intermediate") {
-          level = 2;
-        } else if (level == "Advance") {
-          level = 3;
-        }
-
-        $scope.event.level = level;
-
         $http({
           method: 'POST',
           url: '/events.json',
@@ -85,5 +85,15 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $('#datetimepickerEnd').on('dp.show', function(e) {
         // Close manually the dateTimePicker because it is not automatic (bug)
         $('#creationDatePicker').datepicker('hide');
+      });
+
+      // Update start time when change input start time
+      $('#datetimepickerStart').on('dp.change', function(e) {
+        $scope.event.start_time = e.date.format("HH:mm");
+      });
+
+      // Update end time when change input end time
+      $('#datetimepickerEnd').on('dp.change', function(e) {
+        $scope.event.end_time = e.date.format("HH:mm");
       });
 }]);

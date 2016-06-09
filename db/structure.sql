@@ -209,6 +209,7 @@ CREATE TABLE events (
     updated_at timestamp without time zone NOT NULL,
     university_location character varying NOT NULL,
     level integer DEFAULT 0,
+    CONSTRAINT level_between_zero_and_three CHECK (((level >= 0) AND (level <= 3))),
     CONSTRAINT logical_times CHECK ((start_time < end_time)),
     CONSTRAINT min_participants_gteq_two CHECK (((min_participants < 2) IS NOT TRUE)),
     CONSTRAINT needed_gteq_zero CHECK ((needed >= 1))
@@ -232,6 +233,16 @@ CREATE SEQUENCE events_id_seq
 --
 
 ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
+-- Name: favourite_sports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE favourite_sports (
+    user_id integer NOT NULL,
+    sport character varying NOT NULL
+);
 
 
 --
@@ -295,7 +306,10 @@ CREATE TABLE users (
     image_file_size integer,
     image_updated_at timestamp without time zone,
     telephone_number character varying,
-    description character varying
+    description character varying,
+    filename character varying,
+    content_type character varying,
+    file_contents bytea
 );
 
 
@@ -472,6 +486,14 @@ ALTER TABLE ONLY events
 
 
 --
+-- Name: fav_sport_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY favourite_sports
+    ADD CONSTRAINT fav_sport_to_sport_fk FOREIGN KEY (sport) REFERENCES sports(name);
+
+
+--
 -- Name: fk_rails_0cb5590091; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -485,6 +507,14 @@ ALTER TABLE ONLY events
 
 ALTER TABLE ONLY event_participants
     ADD CONSTRAINT fk_rails_565ef9d942 FOREIGN KEY (event_id) REFERENCES events(id);
+
+
+--
+-- Name: fk_rails_66517d4b5b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY favourite_sports
+    ADD CONSTRAINT fk_rails_66517d4b5b FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -544,4 +574,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160608174612');
 INSERT INTO schema_migrations (version) VALUES ('20160608214727');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609001702');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609112605');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609124907');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609134816');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609135959');
 
