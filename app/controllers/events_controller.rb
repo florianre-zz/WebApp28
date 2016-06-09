@@ -103,6 +103,11 @@ class EventsController < ApplicationController
   def create
     current_user_id = current_user.id
 
+    # user = User.find_by(:user_id => current_user_id)
+    # if user[:telephone_number].blank?
+    #   user.update(telephone_number: params[:telephone_number])
+    # end
+
     # Create new entry and store it in the events table of the database
     # Parameters of new event are given from the HTTP POST request
     new_event =
