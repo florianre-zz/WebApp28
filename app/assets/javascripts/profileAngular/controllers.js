@@ -242,4 +242,4 @@ profileControllers.controller('profileController', ['$scope', '$http',
     // TODO only when connected as a user (do an if)
     $scope.getProfileData();
   }
-])
+]);

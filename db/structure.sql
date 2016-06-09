@@ -48,7 +48,7 @@ CREATE FUNCTION check_creator_has_phone_number() RETURNS trigger
                      WHERE helper.user_id = NEW.user_id
                      AND   helper.event_id = NEW.id
                      AND   helper.telephone_number IS NOT NULL)
-                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
+                 THEN RAISE EXCEPTION 'Creator has not given his telephone number.';
                  END IF;
                  RETURN NEW;
                END;
@@ -570,5 +570,9 @@ INSERT INTO schema_migrations (version) VALUES ('20160608214727');
 INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609112605');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609124907');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609134816');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609135959');
