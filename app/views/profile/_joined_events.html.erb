@@ -1,0 +1,31 @@
+<div class="row" id="profile_joined_events"
+    ng-controller="joinedEventsController" ng-init="init()">
+
+   <div class="col-md-offset-2 col-md-8">
+     <h1>Joined Events</h1>
+
+     <!-- No events layout -->
+     <ul class="event-list" ng-if="!hasJoinedEvents()" ng-cloak>
+       <li class="event-listing">
+         <div class="event_info">
+           <p id="no_event_msg">Sorry, you have not joined events yet</p>
+         </div>
+       </li>
+     </ul>
+
+     <!-- Events layout -->
+     <ul class="event-list">
+       <li class="event-listing"
+           ng-repeat="event in joinedEvents
+           | orderBy: 'date'">
+
+        <!-- Event layout -->
+        <div class="event_info">
+          <%= render "shared/event_body" %>
+        </div>
+
+       </li>
+     </ul>
+
+  </div>
+</div>

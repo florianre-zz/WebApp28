@@ -20,3 +20,11 @@ asset 'angular-route'
 # Add angular ressource
 
 asset 'angular-resource'
+
+# Add angular animate
+
+asset 'angular-animate'
+
+# Add bootstrap toggle
+
+asset 'bootstrap-toggle'

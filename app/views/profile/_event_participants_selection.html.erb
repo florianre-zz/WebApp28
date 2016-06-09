@@ -1,0 +1,37 @@
+<div class="modal fade" id="select_participants" tabindex="-1" role="dialog" aria-labelledby="select_participants">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select participant to join your event ({{getSpaceLeft()}} space{{getPlurial()}} remaining)</h4>
+      </div>
+
+      <div class="modal-body">
+        <div ng-if="!hasEventParticipants()" ng-cloak>Sorry, no-one joined your event yet</div>
+        <div class="container-fluid">
+
+          <div class="row"
+               ng-repeat="participant in eventParticipants">
+            <div class="col-md-12 well" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
+
+              <div class="pull-right" ng-hide="participantConfirmed(participant)">
+                <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="glyphicon glyphicon-ok"></i></button>
+                <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="glyphicon glyphicon-remove"></i></button>
+              </div>
+
+              <h4>{{participant.first_name}} {{participant.last_name}}</h4>
+              <p>{{participant.university_name}}</p>
+              <p>Paticipants: {{participant.participants}}</p>
+              <p ng-hide="participant.message == ''">"{{participant.message}}"</p>
+              <p ng-show="participantConfirmed(participant)">Phone number: {{participant.telephone_number}}</p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

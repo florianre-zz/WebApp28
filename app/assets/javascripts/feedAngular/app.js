@@ -3,5 +3,9 @@
 /* Feed Module */
 
 var feedModule = angular.module('feedModule', [
-  'ngRoute'
+  'ngRoute',
+  'feedControllers',
+  'feedDirectives',
+  'angucomplete-alt',
+  'ngAnimate'
 ]);

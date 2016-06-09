@@ -5,10 +5,24 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  # FIXME: regex problem
-  # possible_reg = Regexp.union(UniversityMail.pluck(:mail_extension))
-  # validates :email, :format => /\A([\w+\-]\.?)+@#{possible_reg}\z/i
+  ## Check email is valid university mail
+  validate do |user|
+    unless University::Email.valid?(user.email)
+      errors.add(:email, "Must be valid university email!")
+    end
+  end
 
-  has_many :event_participants
-  has_many :events
+  ## Foreign key from event_participants.user_id to users.id
+  ## If user is destroyed, his participations are also destroyed
+  has_many :event_participants, dependent: :destroy
+
+  ## Foreign key from events.user_id to users.id
+  ## If user is destroyed, his events are also destroyed
+  has_many :events, dependent: :destroy
+
+  has_attached_file :image,
+                    :default_url => "profiles/default/:style/missing.png",
+                    :url => "profiles/:id/:style/:basename.:extension",
+                    :path => ":rails_root/app/assets/images/profiles/:id/:style/:basename.:extension"
+  do_not_validate_attachment_file_type :image
 end
