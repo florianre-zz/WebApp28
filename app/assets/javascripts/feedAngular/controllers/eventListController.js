@@ -17,7 +17,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }
     };
-    
+
     $scope.joinEvent = function(event_id) {
       $http({
         method: 'POST',
@@ -29,7 +29,6 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }).then(function(response) {
         // TODO: success message
-        alert("Successfully joined events");
         eventJoinedupdateView(event_id);
       },
       function(response) {
