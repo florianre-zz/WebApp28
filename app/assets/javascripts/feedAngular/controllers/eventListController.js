@@ -6,6 +6,11 @@ var feedControllers = angular.module('feedControllers');
 feedControllers.controller('eventListController', ['$scope', '$http',
   function($scope, $http) {
 
+    var currentEventId = "";
+    $scope.setEventId = function(event_id) {
+      currentEventId = event_id;
+    }
+
     // Person join an event
     function eventJoinedupdateView(event_id) {
       for (var i = 0; i < $scope.events.length; i++) {
@@ -15,18 +20,18 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       }
     };
 
-    $scope.joinEvent = function(event_id) {
+    $scope.joinEvent = function() {
       $http({
         method: 'POST',
         url: '/event_participants.json',
         data: {
-          "event_id": event_id,
+          "event_id": currentEventId,
           "participants": 1,
           "message": ""
         }
       }).then(function(response) {
         // TODO: success message
-        eventJoinedupdateView(event_id);
+        eventJoinedupdateView(currentEventId);
       },
       function(response) {
         // TODO: Error handling to do
