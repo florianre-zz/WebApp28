@@ -43,9 +43,22 @@
               </div>
 
               <div class="form-group col-md-4">
+                <select class="form-control" ng-model="selectedLevelString" ng-change="updateLevelValue()">
+                  <option selected="selected">Any level</option>
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="form-group col-md-12">
                 <input type="number"
                   class="form-control"
-                  placeholder="People needed"
+                  placeholder="How many other people do you need? (min: 1)"
                   ng-model="event.needed"></input>
               </div>
 
@@ -126,11 +139,31 @@
 
             </div>
 
-            <div class="row">
-              <div class="col-md-12">
-                <h4>Additional Information</h4>
+            <!-- TODO: sat cancel if phone number already exists -->
+            <div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4>Register Phone Number</h4>
+                </div>
               </div>
+
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <input type="number"
+                    class="form-control"
+                    placeholder="Participants will need it to contact you"></input>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4>Additional Information</h4>
+                </div>
+              </div>
+
             </div>
+            <!-- end of TODO -->
 
             <div class="form-group">
               <textarea type="text"
@@ -140,15 +173,6 @@
                   aria-describedby="sizing-addon2"
                   ng-model="event.additional_info">
               </textarea>
-            </div>
-
-            <div class="form-group">
-              <select ng-model="selectedLevelString" ng-change="updateLevelValue()">
-                <option selected="selected">All levels</option>
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Advanced</option>
-              </select>
             </div>
 
           </div>

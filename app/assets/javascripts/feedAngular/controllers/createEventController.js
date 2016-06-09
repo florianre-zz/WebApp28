@@ -23,10 +23,10 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "additional_info": "Bring a racket",
         "level": "0"
       };
-      $scope.selectedLevelString = "All levels";
+      $scope.selectedLevelString = "Any level";
       $scope.updateLevelValue = function () {
         var levelValue = 0;
-        if($scope.selectedLevelString == "All levels") {
+        if($scope.selectedLevelString == "Any level") {
           levelValue = 0;
         } else if ($scope.selectedLevelString == "Beginner") {
           levelValue = 1;
