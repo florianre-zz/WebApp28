@@ -21,15 +21,11 @@ class ProfileController < ApplicationController
     end
 
     image = params[:image]
-    puts
-    puts 'Image data...'
-    puts image.original_filename
-    puts '...no more'
-    puts
-    puts
-    # if !image.nil?
-    #   @user.update(file: image)
-    # end
+    if !image.nil?
+      @user.update(filename: image.original_filename)
+      @user.update(content_type: image.content_type)
+      @user.update(file_contents: image.read)
+    end
 
     telephone_number = params[:telephone_number]
     if !telephone_number.blank?
@@ -43,6 +39,12 @@ class ProfileController < ApplicationController
 
     redirect_to '/profile'
   end
+
+  # def show_image
+  #   send_data(current_user.file_contents,
+  #             type: current_user.content_type,
+  #             filename: current_user.filename)
+  # end
 
   def get_created_events
 
