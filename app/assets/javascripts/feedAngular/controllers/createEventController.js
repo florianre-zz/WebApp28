@@ -40,7 +40,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
           level = 1;
         } else if (level == "Intermediate") {
           level = 2;
-        } else if (level == "Advance") {
+        } else if (level == "Advanced") {
           level = 3;
         }
 
