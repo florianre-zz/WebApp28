@@ -19,14 +19,4 @@ class User < ActiveRecord::Base
   ## Foreign key from events.user_id to users.id
   ## If user is destroyed, his events are also destroyed
   has_many :events, dependent: :destroy
-
-  ## Foreign key from favourite_sports.user_id to users.id
-  ## If user is destroyed, his favourite sports entries are also destroyed
-  has_many :favourite_sports, dependent: :destroy
-
-  has_attached_file :image,
-                    :default_url => "profiles/default/:style/missing.png",
-                    :url => "profiles/:id/:style/:basename.:extension",
-                    :path => ":rails_root/app/assets/images/profiles/:id/:style/:basename.:extension"
-  do_not_validate_attachment_file_type :image
 end

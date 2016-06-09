@@ -301,12 +301,11 @@ CREATE TABLE users (
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
-    image_file_name character varying,
-    image_content_type character varying,
-    image_file_size integer,
-    image_updated_at timestamp without time zone,
     telephone_number character varying,
-    description character varying
+    description character varying,
+    filename character varying,
+    content_type character varying,
+    file_contents bytea
 );
 
 
@@ -560,8 +559,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 
 INSERT INTO schema_migrations (version) VALUES ('20160603213435');
 
-INSERT INTO schema_migrations (version) VALUES ('20160606113611');
-
 INSERT INTO schema_migrations (version) VALUES ('20160608104417');
 
 INSERT INTO schema_migrations (version) VALUES ('20160608132307');
@@ -574,7 +571,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609112605');
 
-INSERT INTO schema_migrations (version) VALUES ('20160609124907');
-
-INSERT INTO schema_migrations (version) VALUES ('20160609134816');
-
+INSERT INTO schema_migrations (version) VALUES ('20160609135959');
