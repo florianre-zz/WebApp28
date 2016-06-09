@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   has_many :favourite_sports, dependent: :destroy
 
   ## Check telephone number is valid
-  validates_format_of :telephone_number, :with => /\A([+ 0-9]+)\Z/i, :on => :update
+  validates_format_of :telephone_number, :allow_blank => true, :with => /\A([+ 0-9]+)\Z/i, :on => :update
   validate :tel_number_is_valid
-  
+
   private
 
   def tel_number_is_valid
