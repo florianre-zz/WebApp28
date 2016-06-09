@@ -43,6 +43,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         if(parseInt(newValue.needed) < 1) {
           $scope.event.needed = 1;
         }
+        console.log($scope.event.date);
       }, true);
 
       // Creating a new event
@@ -89,6 +90,9 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       });
       $('#creationDatePicker').datepicker().on('changeDate', function(e) {
         $scope.event.date = moment(e.date).format("dddd DD MMMM YYYY");
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
       });
       // Initialize date
       $("#creationDatePicker").datepicker("setDate", new Date());
