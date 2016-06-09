@@ -18,7 +18,6 @@ universities_hash.each do |ext, name|
   end
 end
 
-
 sports_hash = SportsHashGenerator.generate_sports_hash()
 sports_hash.each do |name, image_path|
   sport = Sport.find_by name: name
