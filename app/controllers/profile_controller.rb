@@ -6,11 +6,11 @@ class ProfileController < ApplicationController
     @dropdown_partial = "shared/logged_in_dropdown"
 
     @profile = current_user
+    @profile_picture = current_user.filename.nil? ? 'missing.png' : current_user.filename
   end
 
   def show
-
-    # Html
+    
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
 
@@ -24,7 +24,7 @@ class ProfileController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    # @user_picture = user.image.url
+    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
 
     @user_first_name = user.first_name
     @user_last_name = user.last_name
