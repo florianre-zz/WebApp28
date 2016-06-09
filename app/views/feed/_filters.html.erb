@@ -30,7 +30,24 @@
     <% else %>
     <div class="btn-group col-md-3 dropdown">
     <% end %>
-      <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <angucomplete-alt id="sportSelection"
+                selected-object="sportSelected"
+                title-field="name"
+                search-fields="name"
+                placeholder="Sport"
+                minlength="1"
+                local-data="sports"
+                text-searching="Finding matching Sports"
+                text-no-results="Sorry, sport not found"
+                auto-match="true"
+                focus-first="true"
+                input-class="form-control form-control-small"
+                pause="0"
+                input-changed="inputSportUpdated"
+                quantity="8"
+                match-class="highlightLetters">
+      </angucomplete-alt>
+      <!-- <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         {{selectedSport}} </span>
       </button>
       <ul class="dropdown-menu col-md-2">
@@ -38,7 +55,7 @@
         <li ng-repeat="sport in sports">
           <div class="dropdown-item" ng-click="$parent.updateSport(sport.name)">{{sport.name}}</div>
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="col-md-2">
