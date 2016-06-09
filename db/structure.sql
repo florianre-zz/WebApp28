@@ -30,6 +30,32 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
+-- Name: check_creator_has_phone_number(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_creator_has_phone_number() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF NOT EXISTS
+                    (WITH helper AS
+                       (SELECT users.telephone_number,
+                               events.user_id,
+                               events.id AS event_id
+                        FROM users JOIN events ON users.id = events.user_id)
+                     SELECT *
+                     FROM helper
+                     WHERE helper.user_id = NEW.user_id
+                     AND   helper.event_id = NEW.id
+                     AND   helper.telephone_number IS NOT NULL)
+                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
+--
 -- Name: check_email_is_valid(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -67,6 +93,33 @@ CREATE FUNCTION check_participants_is_valid() RETURNS trigger
                      FROM helper
                      WHERE helper.confirmed_participants > helper.needed
                      AND   helper.event_id = NEW.event_id)
+                 THEN RAISE EXCEPTION 'Too many participants';
+                 END IF;
+                 RETURN NEW;
+               END;
+             $$;
+
+
+--
+-- Name: check_participants_is_valid_creator(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION check_participants_is_valid_creator() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+               BEGIN
+                 IF EXISTS
+                    (WITH helper AS
+                      (SELECT SUM (CASE WHEN event_participants.confirmed
+                                        THEN event_participants.participants ELSE 0 END)
+                              OVER (PARTITION BY event_participants.event_id) AS confirmed_participants,
+                              events.needed AS needed,
+                              events.id AS event_id
+                       FROM events JOIN event_participants ON events.id = event_participants.event_id)
+                     SELECT *
+                     FROM helper
+                     WHERE helper.confirmed_participants > helper.needed
+                     AND   helper.event_id = NEW.id)
                  THEN RAISE EXCEPTION 'Too many participants';
                  END IF;
                  RETURN NEW;
@@ -390,10 +443,24 @@ CREATE CONSTRAINT TRIGGER phone_number_given AFTER INSERT OR UPDATE ON event_par
 
 
 --
+-- Name: phone_number_given_creator; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER phone_number_given_creator AFTER INSERT OR UPDATE ON events NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_creator_has_phone_number();
+
+
+--
 -- Name: valid_participants; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE CONSTRAINT TRIGGER valid_participants AFTER INSERT OR UPDATE ON event_participants NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_participants_is_valid();
+
+
+--
+-- Name: valid_participants_creator; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE CONSTRAINT TRIGGER valid_participants_creator AFTER INSERT OR UPDATE ON events NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE check_participants_is_valid_creator();
 
 
 --
@@ -475,4 +542,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608132307');
 INSERT INTO schema_migrations (version) VALUES ('20160608174612');
 
 INSERT INTO schema_migrations (version) VALUES ('20160608214727');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 

@@ -35,7 +35,7 @@
              <div class="join_button">
                <button type="button" class="btn btn-success pull-right"
                  data-toggle="modal"
-                 data-target="#join_event">Ask to join!
+                 data-target="#join_event_{{event.id}}">Ask to join!
                  <!-- ng-disabled="isNotEventAccessible(event)" -->
                </button>
              </div>
@@ -44,7 +44,7 @@
          </div>
 
          <!-- Join event modal (pop up) -->
-          <div class="modal fade" id="join_event" tabindex="-1" role="dialog">
+          <div class="modal fade" id="join_event_{{event.id}}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
 
