@@ -87,6 +87,11 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $('#creationDatePicker').datepicker().on('clearDate', function(e) {
         $scope.$apply(function () {$scope.event.date = "";});
       });
+      $('#creationDatePicker').datepicker().on('changeDate', function(e) {
+        $scope.event.date = moment(e.date).format("dddd DD MMMM YYYY");
+      });
+      // Initialize date
+      $("#creationDatePicker").datepicker("setDate", new Date());
 
       // Event when opened start time selaction
       $('#datetimepickerStart').on('dp.show', function(e) {
@@ -103,10 +108,24 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       // Update start time when change input start time
       $('#datetimepickerStart').on('dp.change', function(e) {
         $scope.event.start_time = e.date.format("HH:mm");
+        $scope.$apply();
       });
 
       // Update end time when change input end time
       $('#datetimepickerEnd').on('dp.change', function(e) {
         $scope.event.end_time = e.date.format("HH:mm");
+        $scope.$apply();
       });
-}]);
+
+      $scope.openEndTimePicker = function() {
+        $('#datetimepickerEnd').data("DateTimePicker").toggle();
+      }
+
+      $scope.opeStartTimePicker = function() {
+        $('#datetimepickerStart').data("DateTimePicker").toggle();
+      }
+
+      $scope.validTimeInputed = function () {
+        return !moment($scope.event.end_time, 'HH:mm').isAfter(moment($scope.event.start_time, 'HH:mm'));
+      }
+ }]);

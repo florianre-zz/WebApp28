@@ -73,16 +73,26 @@
                 <div class="form-group">
                   <div id="creationDatePicker" class="input-group date" data-provide="datepicker" data-date-format="DD dd MM yyyy" data-date-autoclose="true"
                       data-date-clear-btn="true" data-date-today-highlight="true" data-date-max-view-mode="0" data-date-start-date="today">
-                    <input type="text" class="form-control" ng-model="event.date" id="creationDate" ng-required="true" readonly>
+                    <input type="button" class="form-control" ng-model="event.date" id="creationDate" ng-required="true" readonly>
                     <div class="input-group-addon">
                       <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
                   </div>
                 </div>
 
+                <div class="col-md-12" ng-show="creationEventForm.endTime.$touched">
+                  <div ng-show="validTimeInputed()">The starting time must be before the ending time</div>
+                </div>
+
                 <div class="form-group">
                     <div class='input-group date' id='datetimepickerStart'>
-                        <input type='text' class="form-control"/>
+                        <input type='button'
+                               name="startTime"
+                               class="form-control"
+                               ng-model="event.start_time"
+                               ng-required="true"
+                               ng-click="openStartTimePicker()"
+                               value="15:00"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
                         </span>
@@ -91,11 +101,21 @@
 
                 <div class="form-group">
                     <div class='input-group date' id='datetimepickerEnd'>
-                        <input type='text' class="form-control"/>
+                        <input type='button'
+                               name="endTime"
+                               class="form-control"
+                               ng-model="event.end_time"
+                               ng-required="true"
+                               ng-click="openEndTimePicker()"
+                               value="16:00"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-time"></span>
                         </span>
                     </div>
+                </div>
+
+                <div class="col-md-12" ng-show="creationEventForm.endTime.$touched">
+                  <div ng-show="validTimeInputed()">The starting time must be before the ending time</div>
                 </div>
 
               </div>
@@ -125,9 +145,6 @@
                             field-required-class="required"
                             input-name="location">
                   </angucomplete-alt>
-                </div>
-                <div class="col-md-12" ng-show="creationEventForm.location.$isEmpty(event.university_location)">
-                  it is empty
                 </div>
 
                 <div class="col-md-12" ng-show="creationEventForm.location.$touched">
