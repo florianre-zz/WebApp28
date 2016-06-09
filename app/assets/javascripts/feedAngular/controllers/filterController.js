@@ -11,16 +11,18 @@ feedControllers.controller('filterController', ['$scope', '$http',
         $scope.getFeedScope().$apply(function () {$scope.getFeedScope().filterDate = "";});
       });
 
-      //TODO open a pop up to select the sports
-      // Update the sport selected and bind it with the sport filter
-      $scope.selectedSport = "All Sports";
-      $scope.updateSport = function(name) {
-        $scope.selectedSport = name;
-        if(name == "All Sports")  {
+      // Manage change in university value in the autocomplete filter for university
+      $scope.inputSportUpdated = function (userInput) {
+        if (userInput == "") {
           $scope.getFeedScope().filterSport = "";
-        } else {
-          $scope.getFeedScope().filterSport = name;
         }
+        // TODO remove hardcoding
+        // Check whether the input is the user uni to automatically toggle the button
+      };
+      $scope.sportSelected = function (selectedInfo) {
+          if(selectedInfo != undefined) {
+            $scope.getFeedScope().filterSport = selectedInfo.title;
+          }
       };
 
       // Manage change in university value in the autocomplete filter for university
