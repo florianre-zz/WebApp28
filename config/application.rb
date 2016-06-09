@@ -34,7 +34,7 @@ module Unisport
 
     ## Change the schema of the database to be SQL readable
     config.active_record.schema_format = :sql
-
+    
     ## Automatically load the library path for testing
     config.autoload_paths += %W(#{Rails.root}/lib)
 
