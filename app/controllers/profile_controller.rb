@@ -115,7 +115,7 @@ class ProfileController < ApplicationController
                          sports.image_path,
                          users.first_name,
                          users.last_name,
-                         users.telephone_number,
+                         CASE WHEN event_participants.confirmed THEN users.telephone_number ELSE '' END AS telephone_number,
                          university_mails.university_name,
                          SUM (CASE WHEN event_participants.confirmed THEN event_participants.participants ELSE 0 END) OVER (PARTITION BY event_participants.event_id) AS participants,
                          event_participants.user_id,

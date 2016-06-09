@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid email';
                  END IF;
                  RETURN NEW;
                END;
@@ -137,7 +137,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid university';
                  END IF;
                  RETURN NEW;
                END;
@@ -482,6 +482,14 @@ ALTER TABLE ONLY events
 
 
 --
+-- Name: fav_sport_to_sport_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY favourite_sports
+    ADD CONSTRAINT fav_sport_to_sport_fk FOREIGN KEY (sport) REFERENCES sports(name);
+
+
+--
 -- Name: fk_rails_0cb5590091; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -495,6 +503,14 @@ ALTER TABLE ONLY events
 
 ALTER TABLE ONLY event_participants
     ADD CONSTRAINT fk_rails_565ef9d942 FOREIGN KEY (event_id) REFERENCES events(id);
+
+
+--
+-- Name: fk_rails_66517d4b5b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY favourite_sports
+    ADD CONSTRAINT fk_rails_66517d4b5b FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -556,4 +572,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608214727');
 INSERT INTO schema_migrations (version) VALUES ('20160609001702');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609112605');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609124907');
 

@@ -24,6 +24,9 @@ class Event < ActiveRecord::Base
 	## Sport must be a valid sport
 	validate :sport_is_valid
 
+	## Level must be between 0 and 3
+	validates :level, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 3}
+
 
 	private
 
