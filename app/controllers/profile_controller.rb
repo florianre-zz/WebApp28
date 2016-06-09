@@ -174,7 +174,6 @@ class ProfileController < ApplicationController
   end
 
   def get_user_info
-    ## TODO: Add profile pic, description message and favourite sports
     get_user_info_query =
       "SELECT users.first_name,
               users.last_name,

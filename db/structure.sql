@@ -48,7 +48,7 @@ CREATE FUNCTION check_creator_has_phone_number() RETURNS trigger
                      WHERE helper.user_id = NEW.user_id
                      AND   helper.event_id = NEW.id
                      AND   helper.telephone_number IS NOT NULL)
-                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
+                 THEN RAISE EXCEPTION 'Creator has not given his telephone number.';
                  END IF;
                  RETURN NEW;
                END;
