@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid email';
                  END IF;
                  RETURN NEW;
                END;
@@ -137,7 +137,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RETURN NULL;
+                 THEN RAISE EXCEPTION 'Not a valid university';
                  END IF;
                  RETURN NEW;
                END;
@@ -232,6 +232,16 @@ CREATE SEQUENCE events_id_seq
 --
 
 ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
+-- Name: favourite_sports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE favourite_sports (
+    user_id integer,
+    sport character varying
+);
 
 
 --
@@ -544,4 +554,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608174612');
 INSERT INTO schema_migrations (version) VALUES ('20160608214727');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609001702');
+
+INSERT INTO schema_migrations (version) VALUES ('20160609112605');
 
