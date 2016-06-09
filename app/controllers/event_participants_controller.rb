@@ -3,9 +3,10 @@ class EventParticipantsController < ApplicationController
   def create
     ## Create new event_participant entry, set confirmed to false
     current_user_id = current_user.id
+    phone_num = params[:telephone_number]
 
-    user = User.find_by(:user_id => current_user_id)
-    if user[:telephone_number].blank?
+    user = User.find_by(:id => current_user_id)
+    if user[:telephone_number].nil? && !phone_num.blank?
       user.update(telephone_number: params[:telephone_number])
     end
 
