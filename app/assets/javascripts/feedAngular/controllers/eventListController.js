@@ -11,13 +11,10 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       for (var i = 0; i < $scope.events.length; i++) {
         if($scope.events[i].id == event_id) {
           $scope.events[i].status = "pending";
-          if(parseInt($scope.events[i].needed) > parseInt($scope.events[i].participants)) {
-            $scope.events[i].participants = String(parseInt($scope.events[i].participants) + 1);
-          }
         }
       }
     };
-    
+
     $scope.joinEvent = function(event_id) {
       $http({
         method: 'POST',
@@ -29,7 +26,6 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         }
       }).then(function(response) {
         // TODO: success message
-        alert("Successfully joined events");
         eventJoinedupdateView(event_id);
       },
       function(response) {

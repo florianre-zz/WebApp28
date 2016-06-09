@@ -26,3 +26,10 @@
 a #settings {
   color: #000000;
 }
+
+#boxContainingParticipantToEvent {
+  -webkit-transition: 0.25s linear all;
+  -moz-transition: 0.25s linear all;
+  -o-transition: 0.25s linear all;
+  transition: 0.25s linear all;
+}
