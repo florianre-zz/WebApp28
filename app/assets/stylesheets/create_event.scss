@@ -4,6 +4,14 @@ form {
     background: white;
   }
 
+  .create_event_errors {
+    margin-bottom: 5px;
+
+    li {
+      margin-left: 30px;
+    }
+  }
+
   // Setting layout at the beginning
   // on focus border color is grey
 
