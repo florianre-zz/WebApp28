@@ -19,7 +19,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
             || creationEventForm.endTime.$touched
             || creationEventForm.startTime.$touched
             || (creationEventForm.locationField.$touched && creationEventForm.locationField.$invalid)
-            || (creationEventForm.phoneNumber.$touched && creationEventForm.locationField.$invalid));
+            || (creationEventForm.phoneNumber.$touched && creationEventForm.phoneNumber.$invalid));
     }
 
     $scope.displayErrorSportEmpty = function(creationEventForm) {
@@ -76,6 +76,12 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       return creationEventForm.phoneNumber.$touched
             && !creationEventForm.phoneNumber.$error.required
             && creationEventForm.phoneNumber.$error.maxlength;
+    }
+
+    $scope.displayErrorPhoneInvalidFormat = function(creationEventForm) {
+      return creationEventForm.phoneNumber.$touched
+              && !creationEventForm.phoneNumber.$error.required
+              && creationEventForm.phoneNumber.$error.pattern;
     }
 
       // Initialisation of all event characteristics

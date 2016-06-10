@@ -76,6 +76,7 @@
                   <li ng-show="displayErrorPhoneEmpty(creationEventForm)">Phone number required</li>
                   <li ng-show="diplayErrorPhoneTooShort(creationEventForm)">Phone Number too short, it must be at least 5 characters long</li>
                   <li ng-show="diplayErrorPhoneTooLong(creationEventForm)">Phone Number too long, it must be a maximum of 20 characters long</li>
+                  <li ng-show="displayErrorPhoneInvalidFormat(creationEventForm)">Not a valid phone number format</li>
 
                 </ul>
 
@@ -241,12 +242,13 @@
 
               <div class="row">
                 <div class="form-group col-md-12">
-                  <input type="number"
+                  <input type="text"
                     name="phoneNumber"
                     class="form-control"
                     placeholder="Participants will need it to contact you"
                     ng-model="event.phone"
                     ng-required="askForTelephone()"
+                    ng-pattern="/^\+?(\d| )+$/"
                     ng-minlength="5"
                     ng-maxlength="20"></input>
                 </div>
