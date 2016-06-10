@@ -19,7 +19,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         "end_time": "",
         "university_location": "",
         "location": "",
-        "needed": 1,
+        "needed": "",
         "additional_info": "",
         "level": "0",
         "phone": ""
@@ -43,7 +43,6 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         if(parseInt(newValue.needed) < 1) {
           $scope.event.needed = 1;
         }
-        console.log($scope.event.date);
       }, true);
 
       // Creating a new event
@@ -125,7 +124,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         $('#datetimepickerEnd').data("DateTimePicker").toggle();
       }
 
-      $scope.opeStartTimePicker = function() {
+      $scope.openStartTimePicker = function() {
         $('#datetimepickerStart').data("DateTimePicker").toggle();
       }
 
