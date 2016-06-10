@@ -20,14 +20,23 @@ form {
   textarea:focus.ng-invalid,
   textarea:focus.ng-empty.ng-invalid,
   textarea:focus.ng-empty.ng-valid,
-  textarea:focus.ng-invalid.ng-empty.ng-touched {
+  textarea:focus.ng-invalid.ng-empty.ng-touched,
+  select:focus,
+  select:focus.ng-valid,
+  select:focus.ng-valid.ng-empty,
+  select:focus.ng-invalid,
+  select:focus.ng-empty.ng-invalid,
+  select:focus.ng-empty.ng-valid,
+  select:focus.ng-invalid.ng-empty.ng-touched {
     border-color: #66afe9;
   }
 
   input.ng-empty.ng-invalid,
   input.ng-empty.ng-valid,
   textarea.ng-empty.ng-invalid,
-  textarea.ng-empty.ng-valid {
+  textarea.ng-empty.ng-valid,
+  select.ng-empty.ng-invalid,
+  select.ng-empty.ng-valid {
     border-color: #ccc;
   }
 
@@ -37,7 +46,10 @@ form {
   input.ng-invalid.optionalForm,
   textarea.ng-invalid,
   textarea.ng-invalid.ng-empty.ng-touched,
-  textarea.ng-invalid.optionalForm, {
+  textarea.ng-invalid.optionalForm,
+  select.ng-invalid,
+  select.ng-invalid.ng-empty.ng-touched,
+  select.ng-invalid.optionalForm {
     border-color: #F4423E;
     border-width: 1px;
   }
@@ -48,7 +60,10 @@ form {
   input.ng-valid.ng-empty.ng-touched,
   textarea.ng-valid,
   textarea.ng-valid.optionalForm,
-  textarea.ng-valid.ng-empty.ng-touched {
+  textarea.ng-valid.ng-empty.ng-touched,
+  select.ng-valid,
+  select.ng-valid.optionalForm,
+  select.ng-valid.ng-empty.ng-touched {
     border-color: #58B957;
     border-width: 1px;
   }
