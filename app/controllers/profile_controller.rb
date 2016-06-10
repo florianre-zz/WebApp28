@@ -18,6 +18,11 @@ class ProfileController < ApplicationController
     # id of profile to show
     user_id = params[:id]
 
+    if user_id.to_i == current_user.id
+      redirect_to '/profile'
+      return
+    end
+
     user = User.find_by(:id => user_id)
 
     if user.nil?
@@ -25,7 +30,8 @@ class ProfileController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
+    @user_picture = user.filename.nil? ? 'missing.png'
+      : url_for(controller: "profile", action: "show_avatar", id: user.id)
 
     @user_first_name = user.first_name
     @user_last_name = user.last_name
