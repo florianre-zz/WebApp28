@@ -38,12 +38,23 @@
                           quantity="8"
                           match-class="highlightLetters"
                           field-required="true"
+                          field-required-class="required"
                           input-name="sport">
                 </angucomplete-alt>
               </div>
 
+              <div class="col-md-4" ng-show="creationEventForm.sport.$touched">
+                <div ng-show="creationEventForm.sport.$error.required
+                      && creationEventForm.sport.$isEmpty(event.university_location)">Sport required</div>
+                <div ng-show="creationEventForm.sport.$error.required
+                      && !creationEventForm.sport.$isEmpty(event.university_location)">Sport not valid</div>
+              </div>
+
               <div class="form-group col-md-4">
-                <select class="form-control" ng-model="selectedLevelString" ng-change="updateLevelValue()">
+                <select class="form-control"
+                        ng-model="selectedLevelString"
+                        ng-change="updateLevelValue()"
+                        ng-required="true">
                   <option selected="selected">Any level</option>
                   <option>Beginner</option>
                   <option>Intermediate</option>
@@ -57,9 +68,15 @@
 
               <div class="form-group col-md-12">
                 <input type="number"
+                  name="peopleComing"
                   class="form-control"
                   placeholder="How many other people do you need? (min: 1)"
-                  ng-model="event.needed"></input>
+                  ng-model="event.needed"
+                  ng-required="true"></input>
+              </div>
+
+              <div class="col-md-12" ng-show="creationEventForm.peopleComing.$touched">
+                <div ng-show="creationEventForm.peopleComing.$error.required">Number of people coming needed</div>
               </div>
 
             </div>
