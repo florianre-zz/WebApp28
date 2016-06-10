@@ -128,7 +128,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         $('#datetimepickerStart').data("DateTimePicker").toggle();
       }
 
-      $scope.validTimeInputed = function () {=
+      $scope.validTimeInputed = function () {
         return !moment($scope.event.end_time, 'HH:mm').isAfter(moment($scope.event.start_time, 'HH:mm'));
       }
  }]);
