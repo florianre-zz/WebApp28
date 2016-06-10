@@ -29,11 +29,12 @@ describe("Testing Jasmine", function() {
         $httpBackend.verifyNoOutstandingRequest();
       });
 
-      it("should post to database when joinEvent is called", function() {
-        $httpBackend.expectPOST('/event_participants.json').respond();
-        eventListScope.joinEvent();
-        $httpBackend.flush();
-      });
+      // TODO this test
+      // it("should post to database when joinEvent is called", function() {
+      //   $httpBackend.expectPOST('/event_participants.json').respond();
+      //   eventListScope.joinEvent();
+      //   $httpBackend.flush();
+      // });
 
     });
 });
