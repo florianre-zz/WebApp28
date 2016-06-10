@@ -84,12 +84,6 @@ class ProfileController < ApplicationController
     redirect_to '/profile'
   end
 
-  # def show_image
-  #   send_data(current_user.file_contents,
-  #             type: current_user.content_type,
-  #             filename: current_user.filename)
-  # end
-
   def get_created_events
 
     get_created_events_query =
