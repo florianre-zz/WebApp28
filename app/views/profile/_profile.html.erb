@@ -37,38 +37,40 @@
                 <h4 class="modal-title" id="myModalLabel">Modify Profile Information</h4>
               </div>
 
-              <div class="modal-body">
+              <form name="profileInformaForm">
+                <div class="modal-body">
 
-                <div class="row">
-                  <div class="form-group col-md-12">
-                    <%= text_field_tag 'first_name', nil, placeholder:'First Name', :class => "form-control"%>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <%= text_field_tag 'first_name', nil, placeholder:'First Name', :class => "form-control optionalForm", "ng-model" => "firstName" %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="row">
-                  <div class="form-group col-md-12">
-                    <%= text_field_tag 'last_name', nil, placeholder: 'Last Name', :class => "form-control"%>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <%= text_field_tag 'last_name', nil, placeholder: 'Last Name', :class => "form-control optionalForm", "ng-model" => "lastName" %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="row">
-                  <div class="form-group col-md-12">
-                    <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control" %>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control optionalForm", "ng-model" => "telephoneNumber" %>
+                    </div>
                   </div>
-                </div>
 
-                <div class="row">
-                  <div class="form-group col-md-12">
-                    <%= text_field_tag 'description', nil, placeholder: 'Description', :class => "form-control"%>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <%= text_field_tag 'description', nil, placeholder: 'Description', :class => "form-control optionalForm", "ng-model" => "description" %>
+                    </div>
                   </div>
+
+                  <%= file_field_tag 'image', placeholder: 'Profile picture' %>
+
                 </div>
-
-                <%= file_field_tag 'image', placeholder: 'Profile picture' %>
-
-              </div>
+              </form>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="creationEventForm.$invalid">Close</button>
                 <%= submit_tag "Save Profile", :class => "btn btn-primary" %>
               </div>
 
