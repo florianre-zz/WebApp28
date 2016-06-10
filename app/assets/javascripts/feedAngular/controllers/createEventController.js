@@ -11,6 +11,73 @@ feedControllers.controller('createEventController', ['$scope', '$http',
          return $scope.$parent.getFeedScope();
     };
 
+    $scope.displayErrors = function(creationEventForm) {
+      return creationEventForm.$invalid
+            && ((creationEventForm.sport.$touched && creationEventForm.sport.$invalid)
+            || (creationEventForm.peopleComing.$touched && creationEventForm.peopleComing.$invalid)
+            || (creationEventForm.location.$touched && creationEventForm.location.$invalid)
+            || creationEventForm.endTime.$touched
+            || creationEventForm.startTime.$touched
+            || (creationEventForm.locationField.$touched && creationEventForm.locationField.$invalid)
+            || creationEventForm.phoneNumber.$touched);
+    }
+
+    $scope.displayErrorSportEmpty = function(creationEventForm) {
+      return creationEventForm.sport.$touched
+            && creationEventForm.sport.$error.required
+            && creationEventForm.sport.$isEmpty($scope.event.sport);
+    }
+
+    $scope.displayErrorSportinvalid = function(creationEventForm) {
+      return creationEventForm.sport.$touched
+            && creationEventForm.sport.$error.required
+            && !creationEventForm.sport.$isEmpty($scope.event.sport);
+    }
+
+    $scope.displayErrorStartBiggerThanEnd = function(creationEventForm) {
+      return (creationEventForm.endTime.$touched || creationEventForm.startTime.$touched)
+            && validTimeInputed();
+    }
+
+    $scope.displayErrorPeopleEmpty = function (creationEventForm) {
+      return creationEventForm.peopleComing.$touched
+            && creationEventForm.peopleComing.$error.required;
+    }
+
+    $scope.displayErrorUniversityLocationEmpty = function(creationEventForm) {
+      return creationEventForm.location.$touched
+            && creationEventForm.location.$error.required
+            && creationEventForm.location.$isEmpty($scope.event.university_location);
+    }
+
+    $scope.displayErrorUniversityLocationInvalid = function(creationEventForm) {
+      return creationEventForm.location.$touched
+            && creationEventForm.location.$error.required
+            && !creationEventForm.location.$isEmpty($scope.event.university_location);
+    }
+
+    $scope.diplayErrorLocationRequired = function(creationEventForm) {
+      return creationEventForm.locationField.$touched
+            && creationEventForm.locationField.$error.required;
+    }
+
+    $scope.displayErrorPhoneEmpty = function(creationEventForm) {
+      return creationEventForm.phoneNumber.$touched
+            && creationEventForm.phoneNumber.$error.required;
+    }
+
+    $scope.diplayErrorPhoneTooShort = function(creationEventForm) {
+      return creationEventForm.phoneNumber.$touched
+            && !creationEventForm.phoneNumber.$error.required
+            && creationEventForm.phoneNumber.$error.minlength;
+    }
+
+    $scope.diplayErrorPhoneTooLong = function(creationEventForm) {
+      return creationEventForm.phoneNumber.$touched
+            && !creationEventForm.phoneNumber.$error.required
+            && creationEventForm.phoneNumber.$error.maxlength;
+    }
+
       // Initialisation of all event characteristics
       $scope.event = {
         "sport": "",

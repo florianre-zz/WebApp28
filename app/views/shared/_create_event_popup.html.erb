@@ -13,10 +13,6 @@
           <div class="modal-body">
 
             <!-- Error display div -->
-            <div class="alert alert-danger create_event_errors" ng-show="creationEventForm.$invalid
-                && (creationEventForm.sport.$touched || creationEventForm.peopleComing.$touched || creationEventForm.location.$touched
-                || creationEventForm.endTime.$touched || creationEventForm.startTime.$touched || creationEventForm.locationField.$touched
-                || creationEventForm.phoneNumber.$touched)">
 
               <!-- <div class="col-md-4" ng-show="creationEventForm.sport.$touched">
                 <div ng-show="creationEventForm.sport.$error.required
@@ -52,6 +48,8 @@
                 </div>
               </div> -->
 
+            <div class="alert alert-danger create_event_errors" ng-show="displayErrors(creationEventForm)" ng-click="test()">
+
               <div class="row">
 
                 <div class="col-md-12">
@@ -63,38 +61,21 @@
               <div class="row">
 
                 <ul class="col-md-12">
-                  <li ng-show="creationEventForm.sport.$touched
-                        && creationEventForm.sport.$error.required
-                        && creationEventForm.sport.$isEmpty(event.university_location)">Sport required</li>
-                  <li ng-show="creationEventForm.sport.$touched
-                        && creationEventForm.sport.$error.required
-                        && !creationEventForm.sport.$isEmpty(event.university_location)">Sport not valid</li>
+                  <li ng-show="displayErrorSportEmpty(creationEventForm)">Sport required</li>
+                  <li ng-show="displayErrorSportinvalid(creationEventForm)">Sport not valid</li>
 
-                  <li ng-show="creationEventForm.peopleComing.$touched
-                        && creationEventForm.peopleComing.$error.required">Number of people coming needed</li>
+                  <li ng-show="displayErrorPeopleEmpty(creationEventForm)">Number of people coming needed</li>
 
-                  <li ng-show="(creationEventForm.endTime.$touched || creationEventForm.startTime.$touched)
-                        && validTimeInputed()">The starting time must be before the ending time</li>
+                  <li ng-show="displayErrorStartBiggerThanEnd(creationEventForm)">The starting time must be before the ending time</li>
 
-                  <li ng-show="creationEventForm.location.$touched
-                        && creationEventForm.location.$error.required
-                        && creationEventForm.location.$isEmpty(event.university_location)">University location required</li>
-                  <li ng-show="creationEventForm.location.$touched
-                        && creationEventForm.location.$error.required
-                        && !creationEventForm.location.$isEmpty(event.university_location)">University location not valid</li>
+                  <li ng-show="displayErrorUniversityLocationEmpty(creationEventForm)">University location required</li>
+                  <li ng-show="displayErrorUniversityLocationInvalid(creationEventForm)">University location not valid</li>
 
-                  <li ng-show="creationEventForm.locationField.$touched
-                        && creationEventForm.locationField.$error.required">Exact location required</li>
+                  <li ng-show="diplayErrorLocationRequired(creationEventForm)">Exact location required</li>
 
-                  <li ng-show="creationEventForm.phoneNumber.$touched
-                        && creationEventForm.phoneNumber.$error.required">Phone number required</li>
-                  <li ng-show="creationEventForm.phoneNumber.$touched
-                        && !creationEventForm.phoneNumber.$error.required
-                        && creationEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least 5 characters long</li>
-
-                  <li ng-show="creationEventForm.phoneNumber.$touched
-                        && !creationEventForm.phoneNumber.$error.required
-                        && creationEventForm.phoneNumber.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</li>
+                  <li ng-show="displayErrorPhoneEmpty(creationEventForm)">Phone number required</li>
+                  <li ng-show="diplayErrorPhoneTooShort(creationEventForm)">Phone Number too short, it must be at least 5 characters long</li>
+                  <li ng-show="diplayErrorPhoneTooLong(creationEventForm)">Phone Number too long, it must be a maximum of 20 characters long</li>
 
                 </ul>
 
