@@ -107,6 +107,7 @@
 
                    <div class="col-md-12" ng-show="joinEventForm.numberOfPeople.$touched">
                       <div ng-show="joinEventForm.numberOfPeople.$error.required">Number of people coming required</div>
+                      <div ng-show="joinEventForm.numberOfPeople.$error.max">Too many people coming max is {{getEventById(currentEventId).needed - getEventById(currentEventId).participants}}</div>
                    </div>
 
                  </div>
