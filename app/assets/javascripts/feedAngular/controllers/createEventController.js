@@ -19,7 +19,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
             || creationEventForm.endTime.$touched
             || creationEventForm.startTime.$touched
             || (creationEventForm.locationField.$touched && creationEventForm.locationField.$invalid)
-            || creationEventForm.phoneNumber.$touched);
+            || (creationEventForm.phoneNumber.$touched && creationEventForm.locationField.$invalid));
     }
 
     $scope.displayErrorSportEmpty = function(creationEventForm) {
