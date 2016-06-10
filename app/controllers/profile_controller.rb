@@ -6,7 +6,8 @@ class ProfileController < ApplicationController
     @dropdown_partial = "shared/logged_in_dropdown"
 
     @profile = current_user
-    @profile_picture = current_user.filename.nil? ? 'missing.png' : url_for(controller: "profile", action: "show_avatar", id: @profile.id)
+    @profile_picture = current_user.filename.nil? ? 'missing.png'
+      : url_for(controller: "profile", action: "show_avatar", id: @profile.id)
   end
 
   def show
