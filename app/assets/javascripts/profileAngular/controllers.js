@@ -224,6 +224,12 @@ profileControllers.controller('profileController', ['$scope', '$http',
 
     $scope.profileData = "";
 
+    $scope.displayErrorsProfilePopUp = function(profileInformationForm) {
+      console.log(profileInformationForm);
+      return profileInformationForm.$invalid
+            && ((profileInformationForm.phoneNumber.$touched && profileInformationForm.phoneNumber.$invalid));
+    }
+
     // Profile data retrieval
     $scope.getProfileData = function () {
       $http({

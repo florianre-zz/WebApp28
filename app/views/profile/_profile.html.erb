@@ -30,44 +30,69 @@
       <div class="modal fade" id="modifyProfile" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-
+            <form name="profileInformationForm">
             <%= form_tag(profile_path(@profile), method: :put, multipart: true) do -%>
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Modify Profile Information</h4>
               </div>
 
-              <form name="profileInformaForm">
+
+
                 <div class="modal-body">
 
+                  <div class="alert alert-danger create_event_errors" ng-show="displayErrorsProfilePopUp(profileInformationForm)">
+
+                          <div class="row">
+
+                            <div class="col-md-12">
+                              <h4>You have errors:</h4>
+                            </div>
+
+                          </div>
+
+                          <div class="row">
+
+                            <ul class="col-md-12">
+                              <li ng-show="profileInformationForm.phoneNumber.$touched
+                              && !profileInformationForm.phoneNumber.$error.required
+                              && profileInformationForm.phoneNumber.$error.pattern">Not a valid phone number format</li>
+
+                            </ul>
+
+                          </div>
+
+                        </div>
+
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <%= text_field_tag 'first_name', nil, placeholder:'First Name', :class => "form-control optionalForm", "ng-model" => "firstName" %>
+                      <%= text_field_tag 'first_name', nil, placeholder:'First Name', :class => "form-group form-control optionalForm", "ng-model" => "firstName" %>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <%= text_field_tag 'last_name', nil, placeholder: 'Last Name', :class => "form-control optionalForm", "ng-model" => "lastName" %>
+                      <%= text_field_tag 'last_name', nil, placeholder: 'Last Name', :class => "form-group form-control optionalForm", "ng-model" => "lastName" %>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control optionalForm", "ng-model" => "telephoneNumber" %>
+                      <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', "type" => "text", :class => "form-group form-control optionalForm",
+                      "ng-model" => "telephoneNumber", "name" => "phoneNumber", "ng-pattern" => '/^\+?(\d| )+$/' %>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <%= text_field_tag 'description', nil, placeholder: 'Description', :class => "form-control optionalForm", "ng-model" => "description" %>
+                      <%= text_field_tag 'description', nil, placeholder: 'Description', :class => "form-group form-control optionalForm", "ng-model" => "description" %>
                     </div>
                   </div>
 
                   <%= file_field_tag 'image', placeholder: 'Profile picture' %>
 
                 </div>
-              </form>
+
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="creationEventForm.$invalid">Close</button>
@@ -75,6 +100,7 @@
               </div>
 
             <% end %>
+            </form>
           </div>
 
         </div>
