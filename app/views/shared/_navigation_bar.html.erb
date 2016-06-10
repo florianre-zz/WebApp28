@@ -17,24 +17,24 @@
         <li class="navbar-elem">
           <% if user_signed_in? %>
             <%= link_to @new_event_link, :class => "navbar-link", :'data-toggle' => "modal", :'data-target' => "#createEventModal" do %>
-              <span class="glyphicon glyphicon-plus-sign"></span> New Event</a>
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> New Event</a>
             <% end %>
           <% else %>
             <%= link_to @new_event_link, :class => "navbar-link" do %>
-              <span class="glyphicon glyphicon-plus-sign"></span> New Event</a>
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> New Event</a>
             <% end %>
           <% end %>
         </li>
 
         <li class="navbar-elem">
           <%= link_to "/", :class => "navbar-link" do %>
-            <span class="glyphicon glyphicon glyphicon-th-list"></span> Feed</a>
+            <i class="fa fa-list-ul" aria-hidden="true"></i> Feed</a>
           <% end %>
         </li>
 
         <li class="navbar-elem">
           <%= link_to "/profile", :class => "navbar-link" do %>
-            <span class="glyphicon glyphicon-user"></span> Profile
+            <i class="fa fa-user" aria-hidden="true"></i></span> Profile
           <% end %>
         </li>
 

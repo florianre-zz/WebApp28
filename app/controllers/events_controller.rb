@@ -27,6 +27,7 @@ class EventsController < ApplicationController
                               WHEN events.level=3 THEN 'Advanced'
                               ELSE 'All levels' END) AS level,
                          sports.image_path,
+                         users.id AS creator_id,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
@@ -102,12 +103,12 @@ class EventsController < ApplicationController
 
   def create
     current_user_id = current_user.id
-    # phone_num = params[:telephone_number]
+    phone_num = params[:phone]
 
-    # user = User.find_by(:id => current_user_id)
-    # if user[:telephone_number].nil? && !phone_num.blank?
-    #   user.update(telephone_number: params[:telephone_number])
-    # end
+    user = User.find_by(:id => current_user_id)
+    if user[:telephone_number].nil? && !phone_num.blank?
+      user.update(telephone_number: phone_num)
+    end
 
     # Create new entry and store it in the events table of the database
     # Parameters of new event are given from the HTTP POST request
