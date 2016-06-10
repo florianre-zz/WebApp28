@@ -40,7 +40,12 @@
                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> Meet at {{event.location}}</p>
                  <p ng-if="hasBeenConfirmed(event.status)">
                    <i class="fa fa-phone" aria-hidden="true"></i> Event organiser's number: {{event.telephone_number}}</p>
-                 <p class="text-right"><i class="fa fa-user" aria-hidden="true"></i> Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}</p>
+
+                 <p class="text-right"><i class="fa fa-user" aria-hidden="true"></i>
+                   <%= link_to "/profile/{{event.creator_id}}", :class => "no_color_link" do %>
+                     Posted by {{event.first_name}} {{event.last_name}}, {{event.university_name}}
+                   <% end %>
+                 </p>
                </div>
              </div>
 
