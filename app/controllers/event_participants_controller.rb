@@ -19,14 +19,12 @@ class EventParticipantsController < ApplicationController
     render :nothing => true
   end
 
-	def update
+  def update
     event_id = params[:id]
     user_id = params[:user_id]
 
     event_participation = EventParticipant.find_by(event_id: event_id, user_id: user_id)
     event_participation.update(confirmed: true)
-
-    puts
 
     render :nothing => true
   end

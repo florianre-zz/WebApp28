@@ -15,13 +15,14 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $scope.event = {
         "sport": "",
         "date": "",
-        "start_time": "16:00",
-        "end_time": "17:00",
+        "start_time": "",
+        "end_time": "",
         "university_location": "",
-        "location": "Hyde Park Tennis Courts",
+        "location": "",
         "needed": 1,
-        "additional_info": "Bring a racket",
-        "level": "0"
+        "additional_info": "",
+        "level": "0",
+        "phone": ""
       };
       $scope.selectedLevelString = "Any level";
       $scope.updateLevelValue = function () {
@@ -42,6 +43,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         if(parseInt(newValue.needed) < 1) {
           $scope.event.needed = 1;
         }
+        console.log($scope.event.date);
       }, true);
 
       // Creating a new event
@@ -59,11 +61,23 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         });
       };
 
+      $scope.creationSportUpdated = function (userInput) {
+        if (userInput != undefined) {
+          $scope.event.sport = userInput;
+        }
+      }
+
       $scope.creationSportSelected = function (selectedInfo) {
           if(selectedInfo != undefined) {
             $scope.event.sport = selectedInfo.title;
           }
       };
+
+      $scope.creationLocationUpdated = function (userInput) {
+        if (userInput != undefined) {
+          $scope.event.university_location = userInput;
+        }
+      }
 
       $scope.creationLocationSelected = function (selectedInfo) {
           if(selectedInfo != undefined) {
@@ -74,6 +88,14 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       $('#creationDatePicker').datepicker().on('clearDate', function(e) {
         $scope.$apply(function () {$scope.event.date = "";});
       });
+      $('#creationDatePicker').datepicker().on('changeDate', function(e) {
+        $scope.event.date = moment(e.date).format("dddd DD MMMM YYYY");
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
+      });
+      // Initialize date
+      $("#creationDatePicker").datepicker("setDate", new Date());
 
       // Event when opened start time selaction
       $('#datetimepickerStart').on('dp.show', function(e) {
@@ -90,10 +112,24 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       // Update start time when change input start time
       $('#datetimepickerStart').on('dp.change', function(e) {
         $scope.event.start_time = e.date.format("HH:mm");
+        $scope.$apply();
       });
 
       // Update end time when change input end time
       $('#datetimepickerEnd').on('dp.change', function(e) {
         $scope.event.end_time = e.date.format("HH:mm");
+        $scope.$apply();
       });
-}]);
+
+      $scope.openEndTimePicker = function() {
+        $('#datetimepickerEnd').data("DateTimePicker").toggle();
+      }
+
+      $scope.opeStartTimePicker = function() {
+        $('#datetimepickerStart').data("DateTimePicker").toggle();
+      }
+
+      $scope.validTimeInputed = function () {
+        return !moment($scope.event.end_time, 'HH:mm').isAfter(moment($scope.event.start_time, 'HH:mm'));
+      }
+ }]);

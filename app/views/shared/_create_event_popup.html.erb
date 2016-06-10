@@ -34,7 +34,7 @@
                           focus-first="true"
                           input-class="form-control form-control-small"
                           pause="0"
-                          input-changed=""
+                          input-changed="creationSportUpdated"
                           quantity="8"
                           match-class="highlightLetters"
                           field-required="true"
@@ -73,29 +73,49 @@
                 <div class="form-group">
                   <div id="creationDatePicker" class="input-group date" data-provide="datepicker" data-date-format="DD dd MM yyyy" data-date-autoclose="true"
                       data-date-clear-btn="true" data-date-today-highlight="true" data-date-max-view-mode="0" data-date-start-date="today">
-                    <input type="text" class="form-control" ng-model="event.date" id="creationDate" ng-required="true" readonly>
+                    <input type="button" class="form-control" ng-model="event.date" id="creationDate" ng-required="true" readonly>
                     <div class="input-group-addon">
                       <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
                   </div>
                 </div>
 
+                <div class="col-md-12" ng-show="creationEventForm.endTime.$touched">
+                  <div ng-show="validTimeInputed()">The starting time must be before the ending time</div>
+                </div>
+
                 <div class="form-group">
                     <div class='input-group date' id='datetimepickerStart'>
-                        <input type='text' class="form-control"/>
+                        <input type='button'
+                               name="startTime"
+                               class="form-control"
+                               ng-model="event.start_time"
+                               ng-required="true"
+                               ng-click="openStartTimePicker()"
+                               value="15:00"/>
                         <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class='input-group date' id='datetimepickerEnd'>
-                        <input type='text' class="form-control"/>
+                        <input type='button'
+                               name="endTime"
+                               class="form-control"
+                               ng-model="event.end_time"
+                               ng-required="true"
+                               ng-click="openEndTimePicker()"
+                               value="16:00"/>
                         <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
                         </span>
                     </div>
+                </div>
+
+                <div class="col-md-12" ng-show="creationEventForm.endTime.$touched">
+                  <div ng-show="validTimeInputed()">The starting time must be before the ending time</div>
                 </div>
 
               </div>
@@ -118,16 +138,25 @@
                             focus-first="true"
                             input-class="form-control form-control-small"
                             pause="0"
-                            input-changed=""
+                            input-changed="creationLocationUpdated"
                             quantity="5"
                             match-class="highlightLetters"
                             field-required="true"
+                            field-required-class="required"
                             input-name="location">
                   </angucomplete-alt>
                 </div>
 
+                <div class="col-md-12" ng-show="creationEventForm.location.$touched">
+                  <div ng-show="creationEventForm.location.$error.required
+                        && creationEventForm.location.$isEmpty(event.university_location)">University location required</div>
+                  <div ng-show="creationEventForm.location.$error.required
+                        && !creationEventForm.location.$isEmpty(event.university_location)">University location not valid</div>
+                </div>
+
                 <div class="form-group">
                   <textarea type="text"
+                    name="locationField"
                     class="form-control location-text-area"
                     placeholder="Choose exact location description"
                     ng-model="event.location"
@@ -135,12 +164,15 @@
                   </textarea>
                 </div>
 
+                <div class="col-md-12" ng-show="creationEventForm.locationField.$touched">
+                  <div ng-show="creationEventForm.locationField.$error.required">Exact location required</div>
+                </div>
+
               </div>
 
             </div>
 
-            <!-- TODO: sat cancel if phone number already exists -->
-            <div>
+            <div ng-show="askForTelephone()">
 
               <div class="row">
                 <div class="col-md-12">
@@ -151,24 +183,37 @@
               <div class="row">
                 <div class="form-group col-md-12">
                   <input type="number"
+                    name="phoneNumber"
                     class="form-control"
-                    placeholder="Participants will need it to contact you"></input>
+                    placeholder="Participants will need it to contact you"
+                    ng-model="event.phone"
+                    ng-required="askForTelephone()"
+                    ng-minlength="5"
+                    ng-maxlength="20"></input>
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <h4>Additional Information</h4>
+              <div class="col-md-12" ng-show="creationEventForm.phoneNumber.$touched">
+                <div ng-show="creationEventForm.phoneNumber.$error.required">Phone number required</div>
+                <div class="col-md-12" ng-show="!creationEventForm.phoneNumber.$error.required">
+                  <div ng-show="creationEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least 5 characters long</div>
+                  <div ng-show="creationEventForm.phoneNumber.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</div>
                 </div>
               </div>
-
             </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h4>Additional Information</h4>
+              </div>
+            </div>
+
             <!-- end of TODO -->
 
             <div class="form-group">
               <textarea type="text"
                   rows="3"
-                  class="form-control"
+                  class="form-control optionalForm"
                   placeholder="Add here any additional info related to the event"
                   aria-describedby="sizing-addon2"
                   ng-model="event.additional_info">

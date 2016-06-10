@@ -6,16 +6,22 @@ class ProfileController < ApplicationController
     @dropdown_partial = "shared/logged_in_dropdown"
 
     @profile = current_user
-    @profile_picture = current_user.filename.nil? ? 'missing.png' : current_user.filename
+    @profile_picture = current_user.filename.nil? ? 'missing.png'
+      : url_for(controller: "profile", action: "show_avatar", id: @profile.id)
   end
 
   def show
-    
+
     @new_event_link = "#"
     @dropdown_partial = "shared/logged_in_dropdown"
 
     # id of profile to show
     user_id = params[:id]
+
+    if user_id.to_i == current_user.id
+      redirect_to '/profile'
+      return
+    end
 
     user = User.find_by(:id => user_id)
 
@@ -24,7 +30,8 @@ class ProfileController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
 
-    @user_picture = user.filename.nil? ? 'missing.png' : user.filename
+    @user_picture = user.filename.nil? ? 'missing.png'
+      : url_for(controller: "profile", action: "show_avatar", id: user.id)
 
     @user_first_name = user.first_name
     @user_last_name = user.last_name
@@ -37,6 +44,11 @@ class ProfileController < ApplicationController
 
     @user_university_helper = ActiveRecord::Base.connection.execute(get_user_university)
     @user_university = @user_university_helper[0]["university_name"]
+  end
+
+  def show_avatar
+    user = User.find(params[:id])
+    send_data user.file_contents, type: user.content_type, disposition:'inline'
   end
 
   def update
@@ -71,12 +83,6 @@ class ProfileController < ApplicationController
 
     redirect_to '/profile'
   end
-
-  # def show_image
-  #   send_data(current_user.file_contents,
-  #             type: current_user.content_type,
-  #             filename: current_user.filename)
-  # end
 
   def get_created_events
 

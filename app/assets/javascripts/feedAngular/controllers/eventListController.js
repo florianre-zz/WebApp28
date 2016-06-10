@@ -12,6 +12,12 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       "phone":""
     }
 
+    $scope.$watch('eventCreatedInfo', function(newValue) {
+      if(parseInt(newValue.participants) < 1) {
+        $scope.eventCreatedInfo.participants = 1;
+      }
+    }, true);
+
     var currentEventId = "";
     $scope.setEventId = function(event_id) {
       currentEventId = event_id;
@@ -81,8 +87,4 @@ feedControllers.controller('eventListController', ['$scope', '$http',
          return "event_unseen";
        }
      };
-
-     $scope.askForTelephone = function() {
-       return $scope.getFeedScope().profileData.telephone_number == undefined;
-     }
   }]);

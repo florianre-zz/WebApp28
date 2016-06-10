@@ -15,17 +15,20 @@
                ng-repeat="participant in eventParticipants">
             <div class="col-md-12 well" id="boxContainingParticipantToEvent" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
 
-              <div class="pull-right" ng-hide="participantConfirmed(participant)">
-                <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="glyphicon glyphicon-ok"></i></button>
-                <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="glyphicon glyphicon-remove"></i></button>
+              <div class="pull-right participant_buttons" ng-hide="participantConfirmed(participant)">
+                <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
               </div>
 
-              <h4 id="participant_name">{{participant.first_name}} {{participant.last_name}}</h4>
+              <%= link_to "/profile/{{participant.id}}", :class => "profile-link" do %>
+                <h4 id="participant_name">{{participant.first_name}} {{participant.last_name}}</h4>
+              <% end %>
               <p><i class="fa fa-university" aria-hidden="true"></i> {{participant.university_name}}</p>
               <p><i class="fa fa-users" aria-hidden="true"></i> Paticipants: {{participant.participants}}</p>
-              <p ng-hide="participant.message == ''">"{{participant.message}}"</p>
               <p ng-show="participantConfirmed(participant)">
                 <i class="fa fa-phone" aria-hidden="true"></i>Phone number: {{participant.telephone_number}}</p>
+              <p ng-hide="participant.message == ''">
+                <i class="fa fa-envelope" aria-hidden="true"></i> "{{participant.message}}"</p>
 
             </div>
           </div>
