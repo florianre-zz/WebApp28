@@ -27,6 +27,7 @@ class EventsController < ApplicationController
                               WHEN events.level=3 THEN 'Advanced'
                               ELSE 'All levels' END) AS level,
                          sports.image_path,
+                         users.id AS creator_id,
                          users.first_name,
                          users.last_name,
                          university_mails.university_name,
