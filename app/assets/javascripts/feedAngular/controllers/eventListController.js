@@ -12,24 +12,30 @@ feedControllers.controller('eventListController', ['$scope', '$http',
       "phone":""
     }
 
+    $scope.getEventById = function(event_id) {
+      for (var i = 0; i < $scope.events.length; i++) {
+        if($scope.events[i].id == event_id) {
+          return $scope.events[i];
+        }
+      };
+    }
+
     $scope.$watch('eventCreatedInfo', function(newValue) {
       if(parseInt(newValue.participants) < 1) {
         $scope.eventCreatedInfo.participants = 1;
       }
     }, true);
 
-    var currentEventId = "";
+    $scope.currentEventId = "";
     $scope.setEventId = function(event_id) {
-      currentEventId = event_id;
+      $scope.currentEventId = event_id;
     }
 
     // Person join an event
     function eventJoinedupdateView(event_id) {
-      for (var i = 0; i < $scope.events.length; i++) {
-        if($scope.events[i].id == event_id) {
-          $scope.events[i].status = "pending";
-        }
-      }
+      var currentEvent = $scope.getEventById(event_id);
+      currentEvent.status = "pending";
+
       $scope.getFeedScope().profileData.telephone_number = $scope.eventCreatedInfo.phone;
     };
 
@@ -38,14 +44,14 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         method: 'POST',
         url: '/event_participants.json',
         data: {
-          "event_id": currentEventId,
+          "event_id": $scope.currentEventId,
           "participants": $scope.eventCreatedInfo.participants,
           "message": $scope.eventCreatedInfo.message,
           "telephone_number": $scope.eventCreatedInfo.phone
         }
       }).then(function(response) {
         // TODO: success message
-        eventJoinedupdateView(currentEventId);
+        eventJoinedupdateView($scope.currentEventId);
       },
       function(response) {
         // TODO: Error handling to do

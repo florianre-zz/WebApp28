@@ -94,7 +94,8 @@
                        class="form-control"
                        placeholder="Number of people coming"
                        ng-model="eventCreatedInfo.participants"
-                       ng-required="true">
+                       ng-required="true"
+                       ng-max="getEventById(currentEventId).needed - getEventById(currentEventId).participants">
                      </input>
                    </div>
 
