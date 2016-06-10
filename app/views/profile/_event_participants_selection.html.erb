@@ -16,7 +16,7 @@
             <div class="col-md-12 well" id="boxContainingParticipantToEvent" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
 
               <div class="pull-right participant_buttons" ng-hide="participantConfirmed(participant)">
-                <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="selectParticipant(participant.id, participant.participants)"><i class="fa fa-check" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="removeParticipant(participant.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
               </div>
 

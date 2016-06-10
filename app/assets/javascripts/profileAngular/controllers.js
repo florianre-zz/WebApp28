@@ -175,7 +175,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
       $scope.eventParticipants = [];
     };
 
-    $scope.selectParticipant = function(user_id) {
+    $scope.selectParticipant = function(user_id, user_participants) {
       $http({
         method: 'PUT',
         url: '/event_participants/' + currentCreatedEventId,
@@ -187,7 +187,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
         participant.confirmed = 'true';
         var createdEvent = getCreatedEventById(currentCreatedEventId);
         if(parseInt(createdEvent.needed) > parseInt(createdEvent.participants)) {
-          createdEvent.participants = String(parseInt(createdEvent.participants) + 1);
+          createdEvent.participants = String(parseInt(createdEvent.participants) + parseInt(user_participants));
         }
       },
       function(response) {
