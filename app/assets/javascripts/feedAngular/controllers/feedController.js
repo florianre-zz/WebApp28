@@ -9,6 +9,12 @@ feedControllers.controller('feedPageController', ['$scope', '$http', '$filter',
          return $scope;
     };
 
+    $scope.displayErrorsJoinPopUp = function(joinEventForm) {
+      return joinEventForm.$invalid
+            && (joinEventForm.numberOfPeople.$touched && joinEventForm.numberOfPeople.$invalid)
+            || (joinEventForm.phoneNumber.$touched && joinEventForm.phoneNumber.$invalid);
+    }
+
     // Initialisation of the pahe
     $scope.init = function() {
       // Get all events to display on feed
