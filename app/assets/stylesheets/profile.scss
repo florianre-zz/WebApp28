@@ -173,3 +173,29 @@ $marginBottom: 26px;
   padding-top: 0;
   padding-bottom:0;
 }
+
+.event-participant.ng-enter,
+.event-participant.ng-leave,
+.event-participant.ng-move {
+  -webkit-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  -moz-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  -o-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  transition: 1.0s cubic-bezier(.12,.88,.12,.95) all;
+}
+
+.event-participant.ng-leave {
+  opacity: 1;
+  height: 118px;
+  width: 568px;
+  position: absolute;
+  right: 0;
+  overflow: visible;
+}
+
+.event-participant.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0px;
+  width: 568px;
+  position: absolute;
+  right: -528px;
+}

@@ -8,10 +8,10 @@
       </div>
 
       <div class="modal-body">
-        <div ng-if="!hasEventParticipants()" ng-cloak>Sorry, no-one joined your event yet</div>
+        <div ng-show="!hasEventParticipants()" ng-cloak>Sorry, no-one joined your event yet</div>
         <div class="container-fluid">
 
-          <div class="row"
+          <div class="event-participant row"
                ng-repeat="participant in eventParticipants">
             <div class="col-md-12 well" id="boxContainingParticipantToEvent" ng-class="{confirmedParticipant:participantConfirmed(participant)}">
 
