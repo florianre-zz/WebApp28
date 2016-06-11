@@ -6,7 +6,6 @@ class FavouriteSport < ActiveRecord::Base
 	## Sport must be a valid sport
 	validate :sport_is_valid
 
-
 	private
 
 	def sport_is_valid
@@ -14,5 +13,5 @@ class FavouriteSport < ActiveRecord::Base
 			errors.add(:sport, "Sport choice is invalid.")
 		end
 	end
-	
+
 end
