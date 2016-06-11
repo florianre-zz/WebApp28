@@ -5,13 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :timeoutable
 
-  ## Check email is valid university mail
-  validate do |user|
-    unless University::Email.valid?(user.email)
-      errors.add(:email, "Must be valid university email!")
-    end
-  end
-
   ## Foreign key from event_participants.user_id to users.id
   ## If user is destroyed, his participations are also destroyed
   has_many :event_participants, dependent: :destroy
@@ -28,6 +21,16 @@ class User < ActiveRecord::Base
   validates_format_of :telephone_number, :allow_blank => true, :with => /\A([+ 0-9]+)\Z/i, :on => :update
   validate :tel_number_is_valid
 
+  ## Check email is valid university mail
+  validate do |user|
+    unless University::Email.valid?(user.email)
+      errors.add(:email, "Must be valid university email!")
+    end
+  end
+
+  ## Check image content type is valid
+  validate :image_content_type_is_valid
+
   private
 
   def tel_number_is_valid
@@ -38,4 +41,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def image_content_type_is_valid
+    if !content_type.nil?
+      if !content_type.match(/^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/)
+        errors.add(:content_type, 'File type is not allowed (only jpeg/png/gif images)')
+      end
+    end
+  end
+
 end
