@@ -36,7 +36,7 @@ feedControllers.controller('createEventController', ['$scope', '$http',
 
     $scope.displayErrorStartBiggerThanEnd = function(creationEventForm) {
       return (creationEventForm.endTime.$touched || creationEventForm.startTime.$touched)
-            && validTimeInputed();
+            && $scope.validTimeInputed();
     }
 
     $scope.displayErrorPeopleEmpty = function (creationEventForm) {

@@ -3,5 +3,8 @@
 /* Feed Module */
 
 var profileModule = angular.module('profileModule', [
-  'profileControllers'
+  'ngRoute',
+  'profileControllers',
+  'angucomplete-alt',
+  'ngAnimate'
 ]);
