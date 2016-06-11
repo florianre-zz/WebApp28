@@ -262,8 +262,8 @@ profileControllers.controller('createEventController', ['$scope', '$http',
             && ((creationEventForm.sport.$touched && creationEventForm.sport.$invalid)
             || (creationEventForm.peopleComing.$touched && creationEventForm.peopleComing.$invalid)
             || (creationEventForm.location.$touched && creationEventForm.location.$invalid)
-            || creationEventForm.endTime.$touched
-            || creationEventForm.startTime.$touched
+            || (creationEventForm.location.$touched && creationEventForm.location.$invalid)
+            || (creationEventForm.endTime.$touched && creationEventForm.endTime.$invalid)
             || (creationEventForm.locationField.$touched && creationEventForm.locationField.$invalid)
             || (creationEventForm.phoneNumber.$touched && creationEventForm.phoneNumber.$invalid));
     }
