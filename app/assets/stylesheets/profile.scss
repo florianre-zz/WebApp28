@@ -125,3 +125,51 @@ form {
   }
 
 }
+
+/* Animation events */
+// From there event listing is duplicate from event css
+$heightEvent: 120px;
+$marginBottom: 26px;
+
+.event-listing {
+  border: 0px;
+}
+
+.event-listing.ng-enter,
+.event-listing.ng-leave,
+.event-listing.ng-move {
+  -webkit-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  -moz-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  -o-transition: 1.0s cubic-bezier(.14,.64,.15,.99) all;
+  transition: 1.0s cubic-bezier(.12,.88,.12,.95) all;
+}
+
+// New event added to the feed
+
+.event-listing.ng-enter {
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.event-listing.ng-enter.ng-enter-active,
+.event-listing.ng-leave {
+  opacity: 1;
+  height: $heightEvent;
+  margin-bottom: $marginBottom;
+  overflow: hidden;
+}
+
+// Event removed from the feed
+
+.event-listing.ng-leave.ng-leave-active {
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+  border: 0;
+  padding-top: 0;
+  padding-bottom:0;
+}
