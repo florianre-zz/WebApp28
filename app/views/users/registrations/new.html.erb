@@ -50,8 +50,9 @@
 				</div>
 
 				<div class="form-group">
-          <%= f.label :password, "Password", :class => "cols-sm-2 control-label", :for => "password" %>
-           <% if @minimum_password_length %>(<%= @minimum_password_length %> characters minimum)<% end %>
+          <%= f.label :password, :class => "cols-sm-2 control-label", :for => "password" do %>
+           Password <% if @minimum_password_length %>(<%= @minimum_password_length %> characters minimum)<% end %>
+          <% end %>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
