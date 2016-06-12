@@ -283,7 +283,18 @@ profileControllers.controller('createEventController', ['$scope', '$http',
             || (creationEventForm.location.$touched && creationEventForm.location.$invalid)
             || (creationEventForm.endTime.$touched && creationEventForm.endTime.$invalid)
             || (creationEventForm.locationField.$touched && creationEventForm.locationField.$invalid)
-            || (creationEventForm.phoneNumber.$touched && creationEventForm.phoneNumber.$invalid));
+            || (creationEventForm.phoneNumber.$touched && creationEventForm.phoneNumber.$invalid))
+            && ($scope.displayErrorSportEmpty(creationEventForm)
+            || $scope.displayErrorSportinvalid(creationEventForm)
+            || $scope.displayErrorStartBiggerThanEnd(creationEventForm)
+            || $scope.displayErrorPeopleEmpty(creationEventForm)
+            || $scope.displayErrorUniversityLocationEmpty(creationEventForm)
+            || $scope.displayErrorUniversityLocationInvalid(creationEventForm)
+            || $scope.diplayErrorLocationRequired(creationEventForm)
+            || $scope.displayErrorPhoneEmpty(creationEventForm)
+            || $scope.diplayErrorPhoneTooShort(creationEventForm)
+            || $scope.diplayErrorPhoneTooLong(creationEventForm)
+            || $scope.displayErrorPhoneInvalidFormat(creationEventForm));
     }
 
     $scope.displayErrorSportEmpty = function(creationEventForm) {
