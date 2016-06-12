@@ -38,6 +38,19 @@ profileControllers.controller('createdEventsController', ['$scope', '$http',
       });
     };
 
+    $scope.deleteEvent = function(event_id) {
+      $http({
+        method: 'DELETE',
+        // url: '/profile/event_join_demands.json' + event_id
+      }).then(function(response) {
+        // $scope.createdEvents.
+      },
+      function(response) {
+        // TODO: Error handling to do
+        alert("Failed to delete event");
+      });
+    };
+
     $scope.eventStatus = function(event) {
       if(event.status == "confirmed") {
         return "event_confirmed";
@@ -104,6 +117,7 @@ profileControllers.controller('participantSelectionController', ['$scope', '$htt
   function($scope, $http) {
 
     $scope.eventParticipants = [];
+
     var currentCreatedEventId = "";
     function getCreatedEventById(event_id) {
       for (var i = 0; i < $scope.createdEvents.length; i++) {
