@@ -120,7 +120,8 @@ class ProfileController < ApplicationController
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
                       JOIN sports ON sports.name = events.sport
-          WHERE (NOT events.date < current_date)
+          WHERE events.date > current_date 
+          OR (events.date = current_date AND events.end_time > current_time)
          )
          SELECT *
          FROM events_table
@@ -169,7 +170,8 @@ class ProfileController < ApplicationController
                       JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                       JOIN event_participants ON events.id = event_participants.event_id
                       JOIN sports ON sports.name = events.sport
-          WHERE (NOT events.date < current_date)
+          WHERE events.date > current_date 
+          OR (events.date = current_date AND events.end_time > current_time)
          )
          SELECT *
          FROM events_table

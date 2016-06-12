@@ -34,7 +34,10 @@ class EventParticipantsController < ApplicationController
     user_id = params[:user_id]
 
     event_participation = EventParticipant.find_by(event_id: event_id, user_id: user_id)
-    event_participation.destroy
+
+    if (event_participation.user_id == current_user_id)
+      event_participation.destroy
+    end
 
     render :nothing => true
   end
