@@ -94,7 +94,14 @@
                     </div>
                   </div>
 
-                  <%= file_field_tag 'image', placeholder: 'Profile picture' %>
+                  <div class="input-group">
+                    <label class="input-group-btn">
+                      <span class="btn btn-primary">
+                        Find profile picture<%= file_field_tag 'image', placeholder: 'Profile picture',  "style" => "display:none;" %>
+                      </span>
+                    </label>
+                    <input type="text" class="form-control" readonly>
+                  </div>
 
                 </div>
 
