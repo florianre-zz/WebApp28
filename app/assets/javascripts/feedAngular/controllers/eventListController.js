@@ -3,13 +3,21 @@
 var feedControllers = angular.module('feedControllers');
 
 // Controllers for the list of event
-feedControllers.controller('eventListController', ['$scope', '$http',
-  function($scope, $http) {
+feedControllers.controller('eventListController', ['$scope', '$http', '$timeout',
+  function($scope, $http, $timeout) {
 
     $scope.eventCreatedInfo = {
       "participants":1,
       "message":"",
       "phone":""
+    }
+
+    var showNoEventMessage = false;
+    $timeout(function() {
+        showNoEventMessage = true;
+    }, 3000);
+    $scope.showMessageNoEvents = function() {
+      return showNoEventMessage;
     }
 
     $scope.getEventById = function(event_id) {
