@@ -11,6 +11,12 @@ feedControllers.controller('createEventController', ['$scope', '$http',
          return $scope.$parent.getFeedScope();
     };
 
+    $scope.test = function() {
+      console.log("ok cool");
+      console.log($('#creationEventForm').data().$formController);
+      $('#creationEventForm').data().$formController.sport.$setUntouched();
+    }
+
     $scope.displayErrors = function(creationEventForm) {
       return creationEventForm.$invalid
             && ((creationEventForm.sport.$touched && creationEventForm.sport.$invalid)
@@ -151,6 +157,9 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       }
 
       $scope.creationSportSelected = function (selectedInfo) {
+          // $('#creationEventForm').data().sport.$setUntouched();
+          console.log($('#creationEventForm').data());
+          console.log(($('#creationEventForm').data().$formController.sport));
           if(selectedInfo != undefined) {
             $scope.event.sport = selectedInfo.title;
           }
