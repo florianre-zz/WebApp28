@@ -15,7 +15,7 @@ feedControllers.controller('eventListController', ['$scope', '$http', '$timeout'
     var showNoEventMessage = false;
     $timeout(function() {
         showNoEventMessage = true;
-    }, 3000);
+    }, 1500);
     $scope.showMessageNoEvents = function() {
       return showNoEventMessage;
     }
