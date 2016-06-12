@@ -103,7 +103,7 @@
                         && joinEventForm.numberOfPeople.$error.max">Too many people coming max is {{getEventById(currentEventId).needed - getEventById(currentEventId).participants}}</li>
                         <li ng-show="joinEventForm.numberOfPeople.$touched
                         && joinEventForm.phoneNumber.$error.required">Phone number required</li>
-                        <li ng-show="joinEventForm.numberOfPeople.$touched
+                        <li ng-show="joinEventForm.phoneNumber.$touched
                         && !joinEventForm.phoneNumber.$error.required
                         && joinEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least 5 characters long</li>
                         <li ng-show="joinEventForm.phoneNumber.$touched

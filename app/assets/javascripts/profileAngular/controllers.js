@@ -250,7 +250,7 @@ profileControllers.controller('profileController', ['$scope', '$http',
 
     $scope.displayErrorsProfilePopUp = function(profileInformationForm) {
       return profileInformationForm.$invalid
-            && ((profileInformationForm.phoneNumber.$touched && profileInformationForm.phoneNumber.$invalid));
+            && ((profileInformationForm.telephone_number.$touched && profileInformationForm.telephone_number.$invalid));
     }
 
     // Profile data retrieval
@@ -259,10 +259,11 @@ profileControllers.controller('profileController', ['$scope', '$http',
         method: 'GET',
         url: '/profile/user_info.json'
       }).then(function(response) {
+        console.log($scope.telephoneNumber);
         $scope.profileData = response.data[0];
         $scope.firstName = $scope.profileData.first_name;
         $scope.lastName = $scope.profileData.last_name;
-        $scope.telephoneNumber =  $scope.profileData.telephone_number;
+        $scope.telephoneNumber = $scope.profileData.telephone_number;
         $scope.description = $scope.profileData.description;
       },
       function(response) {

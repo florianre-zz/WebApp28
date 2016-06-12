@@ -48,7 +48,7 @@ CREATE FUNCTION check_creator_has_phone_number() RETURNS trigger
                      WHERE helper.user_id = NEW.user_id
                      AND   helper.event_id = NEW.id
                      AND   helper.telephone_number IS NOT NULL)
-                 THEN RAISE EXCEPTION 'Creator has not given his telephone number.';
+                 THEN RAISE EXCEPTION 'User has not given his telephone number.';
                  END IF;
                  RETURN NEW;
                END;
@@ -66,7 +66,7 @@ CREATE FUNCTION check_email_is_valid() RETURNS trigger
                  IF NOT EXISTS (SELECT *
                                 FROM university_mails
                                 WHERE NEW.email ILIKE ('%@' || university_mails.mail_extension))
-                 THEN RAISE EXCEPTION 'Not a valid email';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -138,7 +138,7 @@ CREATE FUNCTION check_university_is_valid() RETURNS trigger
                BEGIN
                  IF NEW.university_location NOT IN (SELECT DISTINCT university_name
                                                     FROM university_mails)
-                 THEN RAISE EXCEPTION 'Not a valid university';
+                 THEN RETURN NULL;
                  END IF;
                  RETURN NEW;
                END;
@@ -302,6 +302,10 @@ CREATE TABLE users (
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
+    image_file_name character varying,
+    image_content_type character varying,
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
     telephone_number character varying,
     description character varying,
     filename character varying,
@@ -559,6 +563,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160531223133');
 INSERT INTO schema_migrations (version) VALUES ('20160531223222');
 
 INSERT INTO schema_migrations (version) VALUES ('20160603213435');
+
+INSERT INTO schema_migrations (version) VALUES ('20160606113611');
 
 INSERT INTO schema_migrations (version) VALUES ('20160608104417');
 
