@@ -12,9 +12,11 @@ feedControllers.controller('createEventController', ['$scope', '$http',
     };
 
     $scope.test = function() {
-      console.log("ok cool");
-      console.log($('#creationEventForm').data().$formController);
+      console.log("yo");
+      console.log($('#creationEventForm').data().$formController.sport);
       $('#creationEventForm').data().$formController.sport.$setUntouched();
+      console.log($('#creationEventForm').data().$formController.sport);
+      console.log($('#creationEventForm').data().$formController.sport.$touched);
     }
 
     $scope.displayErrors = function(creationEventForm) {
@@ -157,9 +159,10 @@ feedControllers.controller('createEventController', ['$scope', '$http',
       }
 
       $scope.creationSportSelected = function (selectedInfo) {
-          // $('#creationEventForm').data().sport.$setUntouched();
+          // $('#creationEventForm').data().$formController.sport.$setUntouched();
           console.log($('#creationEventForm').data());
-          console.log(($('#creationEventForm').data().$formController.sport));
+          console.log(($('#creationEventForm').data()).$formController.sport);
+
           if(selectedInfo != undefined) {
             $scope.event.sport = selectedInfo.title;
           }
