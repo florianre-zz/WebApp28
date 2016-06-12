@@ -84,7 +84,7 @@ feedControllers.controller('eventListController', ['$scope', '$http', '$timeout'
 
      // Return true if an event has more or the needed number of participant
      $scope.isNotEventAccessible = function(e) {
-       return e.needed <= e.participants || e.status != "unseen";
+       return parseInt(e.needed) <= parseInt(e.participants) || e.status != "unseen";
      };
 
      // Return true if event was created by user
