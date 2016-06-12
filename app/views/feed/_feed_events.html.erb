@@ -60,10 +60,6 @@
 
          <% end %>
 
-         <!-- Join event modal (pop up) -->
-          <div class="modal fade" id="join_event_{{event.id}}" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
        </li>
 
        <li ng-if="result.length == 0" class="event-listing panel">
@@ -88,6 +84,40 @@
 
             <form name="joinEventForm">
                <div class="modal-body">
+                  <div class="alert alert-danger create_event_errors" ng-show="displayErrorsJoinPopUp(joinEventForm)">
+
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <h4>You have errors:</h4>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+
+                      <ul class="col-md-12">
+                        <li ng-show="joinEventForm.numberOfPeople.$touched
+                        && joinEventForm.numberOfPeople.$error.required">Number of people coming required</li>
+                        <li ng-show="joinEventForm.numberOfPeople.$touched
+                        && joinEventForm.numberOfPeople.$error.max">Too many people coming max is {{getEventById(currentEventId).needed - getEventById(currentEventId).participants}}</li>
+                        <li ng-show="joinEventForm.numberOfPeople.$touched
+                        && joinEventForm.phoneNumber.$error.required">Phone number required</li>
+                        <li ng-show="joinEventForm.numberOfPeople.$touched
+                        && !joinEventForm.phoneNumber.$error.required
+                        && joinEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least 5 characters long</li>
+                        <li ng-show="joinEventForm.phoneNumber.$touched
+                        && !joinEventForm.phoneNumber.$error.required
+                        && joinEventForm.phoneNumber.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</li>
+                        <li ng-show="joinEventForm.phoneNumber.$touched
+                        && !joinEventForm.phoneNumber.$error.required
+                        && joinEventForm.phoneNumber.$error.pattern">Not a valid phone number format</li>
+
+                      </ul>
+
+                    </div>
+
+                  </div>
 
                  <div class="row">
                    <div class="col-md-12">
@@ -105,10 +135,6 @@
                      </input>
                    </div>
 
-                   <div class="col-md-12" ng-show="joinEventForm.numberOfPeople.$touched">
-                      <div ng-show="joinEventForm.numberOfPeople.$error.required">Number of people coming required</div>
-                   </div>
-
                  </div>
 
                  <!-- Ask for phone number only if phone number not already given -->
@@ -120,23 +146,16 @@
                    </div>
 
                    <div class="form-group col-md-12">
-                     <input type="tel"
+                     <input type="text"
                        name="phoneNumber"
                        class="form-control"
                        placeholder="eg: 07904562185"
                        ng-model="eventCreatedInfo.phone"
                        ng-required="askForTelephone()"
                        ng-minlength="5"
+                       ng-pattern="/^\+?(\d| )+$/"
                        ng-maxlength="20">
                      </input>
-                   </div>
-
-                   <div class="col-md-12" ng-show="joinEventForm.phoneNumber.$touched">
-                      <div ng-show="joinEventForm.phoneNumber.$error.required">Phone number required</div>
-                      <div class="col-md-12" ng-show="!joinEventForm.phoneNumber.$error.required">
-                        <div ng-show="joinEventForm.phoneNumber.$error.minlength">Phone Number too short, it must be at least 5 characters long</div>
-                        <div ng-show="joinEventForm.phoneNumber.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</div>
-                      </div>
                    </div>
 
                  </div>
