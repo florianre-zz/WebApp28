@@ -204,6 +204,16 @@ feedControllers.controller('createEventController', ['$scope', '$http',
         $scope.$apply();
       });
 
+      $('#datetimepickerStart').on('dp.show', function(e) {
+        angular.element(document.getElementsByClassName("glyphicon-chevron-up")).addClass("fa fa-chevron-up").removeClass('glyphicon-chevron-up');
+        angular.element(document.getElementsByClassName("glyphicon-chevron-down")).addClass("fa fa-chevron-down").removeClass('glyphicon-chevron-down');
+      });
+
+      $('#datetimepickerEnd').on('dp.show', function(e) {
+        angular.element(document.getElementsByClassName("glyphicon-chevron-up")).addClass("fa fa-chevron-up").removeClass('glyphicon-chevron-up');
+        angular.element(document.getElementsByClassName("glyphicon-chevron-down")).addClass("fa fa-chevron-down").removeClass('glyphicon-chevron-down');
+      });
+
       $scope.openEndTimePicker = function() {
         $('#datetimepickerEnd').data("DateTimePicker").toggle();
       }
