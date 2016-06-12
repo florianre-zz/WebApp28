@@ -7,7 +7,7 @@ en:
       send_instructions: "Hey there! You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
-      already_authenticated: "Woops! You are already signed in."
+      already_authenticated: "You are already signed in!"
       inactive: "Woops! Your account is not activated yet."
       invalid: "Woops! Invalid %{authentication_keys} or password."
       locked: "Woops! Your account is locked."
@@ -52,11 +52,11 @@ en:
       unlocked: "Amazing! Your account has been unlocked successfully. Please sign in to continue."
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
-      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-      expired: "has expired, please request a new one"
-      not_found: "not found"
-      not_locked: "was not locked"
+      already_confirmed: "Your account was already confirmed, please try signing in!"
+      confirmation_period_expired: "Your account needs to be confirmed within %{period}!"
+      expired: "Woops! The confirmation link has expired, please request a new one!"
+      not_found: "The email you entered was not found!"
+      not_locked: "Your account was not locked!"
       not_saved:
         one: "Woops! There was an error:"
-        other: "Woops! There were multiple errors:"
+        other: "Woops! There were %{count} errors:"
