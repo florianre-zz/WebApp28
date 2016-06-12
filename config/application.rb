@@ -62,7 +62,7 @@ module Unisport
 
       Users::SessionsController.layout           "users/sessions"
       Users::RegistrationsController.layout      "users/registrations"
-      Users::ConfirmationsController.layout      "application"
+      Users::ConfirmationsController.layout      "users/confirmations"
       Users::UnlocksController.layout            "users/unlocks"
       Users::PasswordsController.layout          "users/passwords"
       Users::OmniauthCallbacksController.layout  "application"

@@ -8,7 +8,7 @@
 			<form class="form-horizontal" method="post" action="#">
 
         <%- flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <%= content_tag :div, msg, :class => "flash alert alert-warning", :id => "flash_#{name}" if msg.is_a?(String) %>
         <%- end -%>
 
         <div class="panel-title text-center">

@@ -53,9 +53,15 @@
                           <div class="row">
 
                             <ul class="col-md-12">
-                              <li ng-show="profileInformationForm.phoneNumber.$touched
-                              && !profileInformationForm.phoneNumber.$error.required
-                              && profileInformationForm.phoneNumber.$error.pattern">Not a valid phone number format</li>
+                              <li ng-show="profileInformationForm.telephone_number.$touched
+                              && !profileInformationForm.telephone_number.$error.required
+                              && profileInformationForm.telephone_number.$error.pattern">Not a valid phone number format</li>
+                              <li ng-show="profileInformationForm.telephone_number.$touched
+                              && !profileInformationForm.telephone_number.$error.required
+                              && profileInformationForm.telephone_number.$error.minlength">Phone Number too short, it must be at least 5 characters long</li>
+                              <li ng-show="profileInformationForm.telephone_number.$touched
+                              && !profileInformationForm.telephone_number.$error.required
+                              && profileInformationForm.telephone_number.$error.maxlength">Phone Number too long, it must be a maximum of 20 characters long</li>
 
                             </ul>
 
@@ -77,8 +83,8 @@
 
                   <div class="row">
                     <div class="form-group col-md-12">
-                      <%= number_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', "type" => "text", :class => "form-control optionalForm",
-                      "ng-model" => "telephoneNumber", "name" => "phoneNumber", "ng-pattern" => '/^\+?(\d| )+$/' %>
+                      <%= text_field_tag 'telephone_number', nil, placeholder: 'Telephone Number', :class => "form-control optionalForm",
+                      "ng-model" => "telephoneNumber", "ng-pattern" => '/^\+?(\d| )+$/', "ng-minlength" => "5", "ng-maxlength" => "20" %>
                     </div>
                   </div>
 
