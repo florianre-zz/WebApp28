@@ -65,7 +65,7 @@ feedControllers.controller('eventListController', ['$scope', '$http',
         return "";
       }
 
-      var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY/MM/DD HH:mm:ss');
+      var convertedDate = moment($scope.filterDate, 'dddd DD MMMM YYYY').format('YYYY/MM/DD');
       return convertedDate;
      };
 
