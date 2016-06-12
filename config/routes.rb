@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'feed/user_info', to: 'feed#get_user_info'
 
   # http request redirected to events_controller
-  resources :events, only: [:index, :create]
+  resources :events, only: [:index, :create, :destroy]
 
   # http request redirected to university_mails_controller
   resources :university_mails, only: [:index]
