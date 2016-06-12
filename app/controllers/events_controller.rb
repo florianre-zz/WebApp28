@@ -137,4 +137,18 @@ class EventsController < ApplicationController
 
     render :nothing => true
   end
+
+  def destroy
+    current_user_id = current_user.id
+    event_id = params[:id]
+
+    event = Event.find_by id: event_id
+
+    if (event.user_id == current_user_id)
+      Event.destroy(event_id)
+    end
+
+    render :nothing => true
+  end
+
 end
