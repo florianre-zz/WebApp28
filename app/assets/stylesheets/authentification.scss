@@ -59,10 +59,24 @@
  }
 
  .login-button {
- 	 margin-top: 5px;
+ 	 margin-top: 25px;
  }
 
  .login-register {
  	 font-size: 11px;
  	 text-align: center;
+ }
+
+ .flash {
+   text-align: center;
+ }
+
+ #error_explanation {
+   h2 {
+     font-size: 18px;
+   }
+ }
+
+ .devise_error {
+   // style devise error messages here
  }
