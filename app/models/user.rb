@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable, :timeoutable
+         :confirmable, :lockable, :timeoutable
 
   ## Foreign key from event_participants.user_id to users.id
   ## If user is destroyed, his participations are also destroyed

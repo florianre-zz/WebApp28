@@ -53,7 +53,8 @@ class EventsController < ApplicationController
                      JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                      JOIN event_participants ON events.id = event_participants.event_id
                      JOIN sports ON sports.name = events.sport
-         WHERE (NOT events.date < current_date);"
+         WHERE events.date > current_date 
+         OR (events.date = current_date AND events.end_time > current_time);"
 
       @events = ActiveRecord::Base.connection.execute(get_all_events_signed_in_query)
 
@@ -92,7 +93,8 @@ class EventsController < ApplicationController
                        JOIN university_mails ON users.email ILIKE ('%@' || university_mails.mail_extension)
                        JOIN event_participants ON events.id = event_participants.event_id
                        JOIN sports ON sports.name = events.sport
-           WHERE (NOT events.date < current_date);"
+           WHERE events.date > current_date 
+           OR (events.date = current_date AND events.end_time > current_time);"
 
       @events = ActiveRecord::Base.connection.execute(get_all_events_signed_out_query)
     end
@@ -142,10 +144,10 @@ class EventsController < ApplicationController
     current_user_id = current_user.id
     event_id = params[:id]
 
-    event = Event.find_by id: event_id
+    event = Event.find_by(id: event_id)
 
     if (event.user_id == current_user_id)
-      Event.destroy(event_id)
+      event.destroy
     end
 
     render :nothing => true

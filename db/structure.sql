@@ -91,8 +91,9 @@ CREATE FUNCTION check_participants_is_valid() RETURNS trigger
                        FROM events JOIN event_participants ON events.id = event_participants.event_id)
                      SELECT *
                      FROM helper
-                     WHERE helper.confirmed_participants > helper.needed
-                     AND   helper.event_id = NEW.event_id)
+                     WHERE helper.event_id = NEW.event_id
+                     AND  ((NEW.confirmed = true AND helper.confirmed_participants > helper.needed)
+                           OR (NEW.confirmed = false AND helper.confirmed_participants + NEW.participants > helper.needed)))
                  THEN RAISE EXCEPTION 'Too many participants';
                  END IF;
                  RETURN NEW;
@@ -576,4 +577,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160609124907');
 INSERT INTO schema_migrations (version) VALUES ('20160609134816');
 
 INSERT INTO schema_migrations (version) VALUES ('20160609135959');
+
+INSERT INTO schema_migrations (version) VALUES ('20160612114358');
 

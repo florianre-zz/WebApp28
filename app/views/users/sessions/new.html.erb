@@ -7,13 +7,12 @@
 		<div class="main-login main-center">
 			<form class="form-horizontal" method="post" action="#">
 
-        <!-- FIXME: flash messages when error -->
-        <!-- <%- flash.each do |name, msg| -%>
+        <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-        <%- end -%> -->
+        <%- end -%>
 
         <div class="panel-title text-center">
-          <h1 class="title">Sign In</h1>
+          <h1 class="title">Log In</h1>
           <hr/>
         </div>
 
