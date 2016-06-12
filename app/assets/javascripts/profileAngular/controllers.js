@@ -251,6 +251,10 @@ profileControllers.controller('profileController', ['$scope', '$http',
         url: '/profile/user_info.json'
       }).then(function(response) {
         $scope.profileData = response.data[0];
+        $scope.firstName = $scope.profileData.first_name;
+        $scope.lastName = $scope.profileData.last_name;
+        $scope.telephoneNumber =  $scope.profileData.telephone_number;
+        $scope.description = $scope.profileData.description;
       },
       function(response) {
         // TODO: Error handling to do
