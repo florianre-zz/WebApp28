@@ -14,10 +14,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-## Use for debugger
-gem 'pry-rails'
-gem 'hirb', '~> 0.7.3'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -89,6 +85,10 @@ group :development, :test do
 
   ## Gem for creating factories instead of real instance
   gem 'factory_girl_rails', "~> 4.0"
+
+  ## Use for debugger
+  gem 'pry-rails'
+  gem 'hirb', '~> 0.7.3'
 
 end
 
