@@ -38,12 +38,21 @@ profileControllers.controller('createdEventsController', ['$scope', '$http',
       });
     };
 
+    function getCreatedEventIndex(event_id) {
+      for (var i = 0; i < $scope.createdEvents.length; i++) {
+        if($scope.createdEvents[i].id == event_id) {
+          return $scope.createdEvents[i];
+        }
+      };
+    }
+
     $scope.deleteEvent = function(event_id) {
       $http({
         method: 'DELETE',
-        // url: '/profile/event_join_demands.json' + event_id
+        url: '/events/' + event_id
       }).then(function(response) {
-        // $scope.createdEvents.
+        var eventIndex = getCreatedEventIndex(event_id);
+        $scope.createdEvents.splice(eventIndex, 1);
       },
       function(response) {
         // TODO: Error handling to do
