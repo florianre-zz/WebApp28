@@ -28,7 +28,7 @@
                   <li ng-show="displayErrorSportEmpty(creationEventForm)">Sport required</li>
                   <li ng-show="displayErrorSportinvalid(creationEventForm)">Sport not valid</li>
 
-                  <li ng-show="displayErrorPeopleEmpty(creationEventForm)">Number of people coming needed</li>
+                  <li ng-show="displayErrorPeopleEmpty(creationEventForm)">Number of people needed required</li>
 
                   <li ng-show="displayErrorStartBiggerThanEnd(creationEventForm)">The starting time must be before the ending time</li>
 
@@ -38,9 +38,9 @@
                   <li ng-show="diplayErrorLocationRequired(creationEventForm)">Exact location required</li>
 
                   <li ng-show="displayErrorPhoneEmpty(creationEventForm)">Phone number required</li>
-                  <li ng-show="diplayErrorPhoneTooShort(creationEventForm)">Phone Number too short, it must be at least 5 characters long</li>
-                  <li ng-show="diplayErrorPhoneTooLong(creationEventForm)">Phone Number too long, it must be a maximum of 20 characters long</li>
-                  <li ng-show="displayErrorPhoneInvalidFormat(creationEventForm)">Not a valid phone number format</li>
+                  <li ng-show="diplayErrorPhoneTooShort(creationEventForm)">Phone Number too short (at least 5 characters long)</li>
+                  <li ng-show="diplayErrorPhoneTooLong(creationEventForm)">Phone Number too long (maximum of 20 characters long)</li>
+                  <li ng-show="displayErrorPhoneInvalidFormat(creationEventForm)">Phone number format not valid </li>
 
                 </ul>
 
